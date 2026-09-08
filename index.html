@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Alijon & Madina — Nikoh To'yi Taklifnomasi</title>
-  <meta name="description" content="Alijon va Madinaning baxt to'yiga lutfan taklif etamiz!" />
-  <meta property="og:title" content="Alijon & Madina — To'y Taklifnomasi" />
-  <meta property="og:description" content="Kelayotgan to'yimizga sizni aziz mehmonimiz bo'lishga taklif etamiz!" />
+  <title>To'y Taklifnomasi Generatori — O'z taklifnomangizni yarating</title>
+  <meta name="description" content="Kelin-kuyovlar uchun interaktiv to'y taklifnomasi yaratish generatori. Ma'lumotlaringizni kiriting va hashamatli taklifnomaga ega bo'ling!" />
+  <meta property="og:title" content="To'y Taklifnomasi Generatori" />
+  <meta property="og:description" content="O'z to'y taklifnomangizni bir necha daqiqada yarating va yaqinlaringizga ulashing!" />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#FAF7F2" />
 
   <!-- ==========================================================
-       1. KUTUBXONALAR (CDN LINKS): GOOGLE FONTS, TAILWIND, AOS, SWIPER
+       GOOGLE FONTS: Cormorant Garamond, Montserrat, Great Vibes, Playfair
        ========================================================== -->
-  <!-- Google Fonts: Cormorant Garamond, Montserrat, Great Vibes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -31,12 +30,13 @@
               soft: '#F4EBE2',
             },
             gold: {
-              light: '#E4C988',
+              light: '#E6CF9B',
               DEFAULT: '#C5A059',
               dark: '#9A7836',
+              border: 'rgba(197, 160, 89, 0.4)',
             },
             espresso: {
-              light: '#5C4E48',
+              light: '#655750',
               DEFAULT: '#2B211E',
             }
           },
@@ -58,14 +58,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <!-- ==========================================================
-       2. MAXSUS USLUBLAR (CUSTOM CSS)
+       CUSTOM LUXURY STYLES
        ========================================================== -->
   <style>
     :root {
       --bg-cream: #FAF7F2;
       --bg-card: #FDFBF7;
       --gold-primary: #C5A059;
-      --gold-gradient: linear-gradient(135deg, #DFBA6B 0%, #C5A059 50%, #9E7D3B 100%);
+      --gold-gradient: linear-gradient(135deg, #E4C988 0%, #C5A059 50%, #9A7836 100%);
       --text-dark: #2B211E;
     }
 
@@ -77,14 +77,20 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Oltin rangli matn gradienti */
+    /* Naqshli fon */
+    .wedding-pattern-bg {
+      background-image: radial-gradient(rgba(197, 160, 89, 0.1) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Oltin gradient matn */
     .text-gold-gradient {
       background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Hashamatli chegara va kartochkalar */
+    /* Hashamatli chegara qutisi */
     .luxury-box {
       background: var(--bg-card);
       border: 1px solid rgba(197, 160, 89, 0.35);
@@ -118,7 +124,7 @@
     .swiper {
       width: 100%;
       padding-top: 10px;
-      padding-bottom: 40px;
+      padding-bottom: 38px;
     }
     .swiper-slide {
       background-position: center;
@@ -137,585 +143,686 @@
     /* Silliq pastga puls animatsiyasi */
     @keyframes pulseSoft {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(8px); }
+      50% { transform: translateY(7px); }
     }
     .animate-float-down {
-      animation: pulseSoft 2s ease-in-out infinite;
+      animation: pulseSoft 2.2s ease-in-out infinite;
     }
 
-    /* Naqshli fon */
-    .wedding-pattern-bg {
-      background-image: radial-gradient(rgba(197, 160, 89, 0.09) 1px, transparent 1px);
-      background-size: 24px 24px;
+    /* Input focus effekti */
+    .custom-input {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      color: #2B211E;
+      transition: all 0.2s ease-in-out;
+    }
+    .custom-input:focus {
+      outline: none;
+      border-color: #C5A059;
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
     }
   </style>
 </head>
-<body class="wedding-pattern-bg">
+<body class="wedding-pattern-bg min-h-screen">
 
   <!-- ==========================================================
-       FON MUSIQASI PLEYERI (SUZUVCHI TUGMA - FLOATING AUDIO PLAYER)
+       TOP STATUSBOR (REJIMLARNI O'ZGARTIRISH VA HARAKATLAR)
        ========================================================== -->
-  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3" id="audioPlayerWidget">
-    <div id="musicPill" class="hidden sm:flex items-center px-3 py-1.5 rounded-full bg-white/95 border border-gold/40 shadow-lg text-xs font-medium text-espresso cursor-pointer backdrop-blur-md transition-all duration-300">
-      <span id="musicStatusText">Musiqa o'chiq</span>
-      <span class="ml-1 text-gold">🎵</span>
+  <aside id="topFloatingBar" class="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-lg hidden" aria-label="Taklifnoma boshqaruv paneli">
+    <div class="bg-white/95 backdrop-blur-md border border-gold/50 rounded-full px-4 py-2 shadow-xl flex items-center justify-between gap-2 text-xs">
+      <div class="flex items-center gap-2 overflow-hidden">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0 animate-pulse"></span>
+        <span class="font-semibold text-espresso truncate" id="topBarTitle">Taklifnoma Rejimi</span>
+      </div>
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button id="topBarEditBtn" class="px-3 py-1.5 rounded-full bg-cream-soft hover:bg-gold/20 text-gold-dark font-medium transition-colors flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+          </svg>
+          <span>Tahrirlash</span>
+        </button>
+        <button id="topBarShareBtn" class="px-3 py-1.5 rounded-full bg-gold text-white font-medium hover:bg-gold-dark transition-colors flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+          </svg>
+          <span>Ulashish</span>
+        </button>
+      </div>
     </div>
-
-    <button id="musicToggleBtn" aria-label="Fon musiqasi" class="relative w-14 h-14 rounded-full bg-white/95 border-2 border-gold flex items-center justify-center text-gold-dark shadow-xl backdrop-blur-md cursor-pointer transition-transform hover:scale-105 active:scale-95 group">
-      <!-- Vinyl aylana ramka -->
-      <span id="vinylDisc" class="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center bg-cream-soft transition-transform">
-        <svg id="musicIconPlay" class="w-5 h-5 translate-x-0.5 text-gold-dark" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-        <svg id="musicIconPause" class="w-5 h-5 hidden text-gold-dark" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-        </svg>
-      </span>
-      <!-- Sound waves ping indikator -->
-      <span id="soundPing" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-gold rounded-full animate-ping"></span>
-    </button>
-  </div>
-
-  <!-- Audio fayli (Yuqori sifatli romantik to'y kuylari) -->
-  <audio id="weddingAudio" loop preload="auto">
-    <source src="https://assets.mixkit.co/music/preview/mixkit-wedding-piano-walk-537.mp3" type="audio/mp3" />
-  </audio>
+  </aside>
 
   <!-- ==========================================================
-       HERO MUQOVA (BOSH QISM - HERO SECTION)
+       1. ADMIN / SOZLASH PANELI (BOSHIDA KO'RINADI)
        ========================================================== -->
-  <header class="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden" id="hero">
-    <!-- Orqa fon rasmi va qoramtir-krem overlay -->
-    <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-1000 scale-105"
-         style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');">
-    </div>
-    <div class="absolute inset-0 z-0 bg-gradient-to-b from-cream/80 via-cream/90 to-cream"></div>
-
-    <!-- Markaziy qism -->
-    <div class="relative z-10 max-w-xl mx-auto pt-16 pb-12 flex flex-col items-center">
-      
-      <!-- Monogramma Muhri -->
-      <div data-aos="zoom-in" data-aos-duration="1000" class="w-20 h-20 mb-6 rounded-full border-2 border-gold flex items-center justify-center bg-white/70 backdrop-blur-md shadow-lg shadow-gold/20 relative">
-        <span class="absolute inset-1 rounded-full border border-dashed border-gold/60"></span>
-        <!-- ISMLAR MONOGRAMMASI: A & M -->
-        <span class="font-script text-3xl text-gold-dark pt-1">A&M</span>
-      </div>
-
-      <!-- Bismillahir Rohmanir Rohiym -->
-      <p data-aos="fade-up" data-aos-delay="200" class="font-serif italic text-lg sm:text-xl text-gold-dark tracking-widest mb-3">
-        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-      </p>
-
-      <!-- Kichik taklif matni -->
-      <p data-aos="fade-up" data-aos-delay="300" class="uppercase text-xs sm:text-sm font-semibold tracking-[4px] text-espresso-light mb-4">
-        Nikoh To'yi Tantanasi
-      </p>
-
-      <!-- KELIN VA KUYOV ISMLARI (SHU YERDA O'ZGARTIRING) -->
-      <h1 data-aos="fade-up" data-aos-delay="400" class="font-script text-6xl sm:text-8xl text-espresso mb-3 leading-tight drop-shadow-sm">
-        Alijon <span class="font-serif italic text-gold text-4xl sm:text-6xl align-middle">&</span> Madina
-      </h1>
-
-      <!-- Oltin chiziq va yurakcha ajratgich -->
-      <div data-aos="fade-up" data-aos-delay="500" class="flex items-center gap-4 w-48 my-4">
-        <span class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-gold"></span>
-        <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-        <span class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-gold"></span>
-      </div>
-
-      <!-- Romantik taklif jumlasi -->
-      <p data-aos="fade-up" data-aos-delay="600" class="font-serif text-xl sm:text-2xl italic text-espresso/90 max-w-md mx-auto leading-relaxed my-2">
-        "Sizni qalbimiz rishtalari bog'langan eng baxtli kunimizda oramizda ko'rishdan behad mamnun bo'lamiz!"
-      </p>
-
-      <!-- To'y sanasi tugmasi / nishoni -->
-      <div data-aos="fade-up" data-aos-delay="700" class="mt-6 inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/90 border border-gold/50 shadow-md backdrop-blur-sm text-gold-dark font-semibold text-sm tracking-widest uppercase">
-        <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-        <!-- TO'Y SANASI (SHU YERDA O'ZGARTIRING) -->
-        <span>24 · OKTABR · 2026</span>
-      </div>
-
-      <!-- Pastga surilish ko'rsatkichi (Scroll Down Button) -->
-      <a href="#about" data-aos="fade-up" data-aos-delay="800" class="mt-12 flex flex-col items-center text-xs uppercase tracking-widest text-espresso-light hover:text-gold transition-colors duration-300">
-        <span class="mb-2">Taklifnoma</span>
-        <svg class="w-5 h-5 animate-float-down text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-      </a>
-
-    </div>
-  </header>
-
-  <!-- ==========================================================
-       ASOSIY KONTEYNER (MOBILE FIRST - MAX-W-XL)
-       ========================================================== -->
-  <main class="max-w-xl mx-auto px-4 py-8 space-y-16">
-
-    <!-- ==========================================================
-         1. TO'Y HAQIDA & SAMIMIY TAKLIF MATNI (ABOUT / INVITATION)
-         ========================================================== -->
-    <section id="about" data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8 text-center">
+  <section id="generatorSection" class="py-10 px-4 min-h-screen flex items-center justify-center">
+    <div class="max-w-xl w-full mx-auto luxury-box p-6 sm:p-10">
       <span class="corner-decor corner-tl"></span>
       <span class="corner-decor corner-tr"></span>
       <span class="corner-decor corner-bl"></span>
       <span class="corner-decor corner-br"></span>
 
-      <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-espresso mb-3">
-        Hurmatli va Qadrli Mehmonimiz!
-      </h2>
-
-      <div class="flex items-center justify-center gap-3 my-4">
-        <span class="w-12 h-[1px] bg-gold/50"></span>
-        <span class="text-gold text-lg">✦</span>
-        <span class="w-12 h-[1px] bg-gold/50"></span>
-      </div>
-
-      <div class="font-serif text-lg sm:text-xl text-espresso/85 space-y-4 leading-relaxed">
-        <p>
-          Hayotimizdagi eng unutilmas, hayajonli va quvonchli kun — yangi oila rishtalari bog'lanayotgan ushbu tantanali onlarda biz bilan birga bo'lishingizni chin yurakdan istaymiz.
-        </p>
-        <p>
-          Sizning samimiy tabassumingiz, ezgu duolaringiz va mehr to'la tilaklaringiz bizning xonadonimizga fayz, qalbimizga cheksiz quvonch bag'ishlaydi.
-        </p>
-      </div>
-
-      <!-- Ota-onalar ehtiromi -->
-      <div class="mt-8 pt-6 border-t border-gold/20">
-        <p class="font-script text-4xl text-gold-dark">Alijon & Madina</p>
-        <p class="text-xs uppercase tracking-widest text-espresso-light font-medium mt-1">
-          Hamda ota-onalarimiz ehtiromi ila
-        </p>
-      </div>
-    </section>
-
-    <!-- ==========================================================
-         2. ISHQ QISSASI (LOVE STORY TIMELINE)
-         ========================================================== -->
-    <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8">
-      <span class="corner-decor corner-tl"></span>
-      <span class="corner-decor corner-tr"></span>
-      <span class="corner-decor corner-bl"></span>
-      <span class="corner-decor corner-br"></span>
-
+      <!-- Generator Sarlavhasi -->
       <div class="text-center mb-8">
-        <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Bizning Ishq Qissamiz</h3>
-        <p class="text-xs uppercase tracking-widest text-gold-dark mt-1">Muhabbat bilan yo'g'rilgan qadamlar</p>
-      </div>
-
-      <div class="space-y-6 relative before:absolute before:inset-0 before:left-5 before:w-0.5 before:bg-gold/30">
-        <!-- 1. Birinchi uchrashuv -->
-        <div class="relative flex items-start gap-5">
-          <div class="w-10 h-10 rounded-full bg-white border-2 border-gold flex items-center justify-center text-gold-dark shrink-0 z-10 shadow-sm">
-            ❤️
-          </div>
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-gold-dark">15-May, 2024</span>
-            <h4 class="font-serif text-xl font-semibold text-espresso">Birinchi Uchrashuv</h4>
-            <p class="text-sm text-espresso-light mt-1">Taqdir bizni ilk bor uchrashtirgan va qalbimizda samimiy hislar uyg'ongan kun.</p>
-          </div>
+        <div class="w-16 h-16 mx-auto mb-3 rounded-full border-2 border-gold flex items-center justify-center bg-cream-soft shadow-inner">
+          <span class="font-script text-3xl text-gold-dark pt-1">💍</span>
         </div>
-
-        <!-- 2. Taklif -->
-        <div class="relative flex items-start gap-5">
-          <div class="w-10 h-10 rounded-full bg-white border-2 border-gold flex items-center justify-center text-gold-dark shrink-0 z-10 shadow-sm">
-            💍
-          </div>
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-gold-dark">21-Mart, 2025</span>
-            <h4 class="font-serif text-xl font-semibold text-espresso">Unutilmas Taklif</h4>
-            <p class="text-sm text-espresso-light mt-1">Bir umr birga bo'lishga berilgan eng go'zal va'da va rozilik lahzasi.</p>
-          </div>
-        </div>
-
-        <!-- 3. Baxt To'yi -->
-        <div class="relative flex items-start gap-5">
-          <div class="w-10 h-10 rounded-full bg-gold border-2 border-white flex items-center justify-center text-white shrink-0 z-10 shadow-md">
-            ✨
-          </div>
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-gold-dark">24-Oktabr, 2026</span>
-            <h4 class="font-serif text-xl font-semibold text-espresso">Baxt To'yi Oqshomi</h4>
-            <p class="text-sm text-espresso-light mt-1">Yangi oila poydevorini aziz mehmonlarimiz davrasida quramiz.</p>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-espresso">
+          To'y Taklifnomasi Generatori
+        </h1>
+        <p class="text-xs uppercase tracking-widest text-gold-dark mt-2">
+          O'z ma'lumotlaringizni kiriting va hashamatli taklifnoma yarating
+        </p>
+        
+        <!-- Oldingi saqlangan ma'lumot tugmasi (agar mavjud bo'lsa) -->
+        <div id="savedDataNotice" class="mt-4 hidden">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-medium">
+            <span>💾 Saqlangan taklifnomangiz mavjud</span>
+            <button type="button" id="quickViewSavedBtn" class="underline font-bold hover:text-emerald-950">
+              Ko'rish 👉
+            </button>
           </div>
         </div>
       </div>
-    </section>
+
+      <!-- Tezkor Namuna Tugmalari (Preset / Demo) -->
+      <div class="mb-6 p-3 rounded-xl bg-cream-soft/60 border border-gold/30 flex flex-wrap items-center justify-between gap-2">
+        <span class="text-xs text-espresso-light font-medium flex items-center gap-1">
+          <span>✨</span>
+          <span>Tezkor to'ldirish uchun:</span>
+        </span>
+        <div class="flex items-center gap-2">
+          <button type="button" id="loadSampleDataBtn" class="text-xs px-3 py-1 rounded-lg bg-white border border-gold/50 text-gold-dark font-medium hover:bg-gold hover:text-white transition-colors">
+            Namuna ma'lumotlar
+          </button>
+          <button type="button" id="clearFormBtn" class="text-xs px-2.5 py-1 rounded-lg text-espresso-light hover:text-red-600 transition-colors">
+            Tozalash
+          </button>
+        </div>
+      </div>
+
+      <!-- ASOSIY GENERATOR FORMASI -->
+      <form id="invitationSetupForm" class="space-y-5">
+        
+        <!-- Kuyov va Kelin Ismlari -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="inputGroom" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+              Kuyovning Ismi *
+            </label>
+            <input type="text" id="inputGroom" required placeholder="Masalan: Alijon" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div>
+            <label for="inputBride" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+              Kelinning Ismi *
+            </label>
+            <input type="text" id="inputBride" required placeholder="Masalan: Madina" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
+          </div>
+        </div>
+
+        <!-- To'y Sanasi va Vaqti -->
+        <div>
+          <label for="inputDate" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+            To'y Sanasi va Vaqti *
+          </label>
+          <input type="datetime-local" id="inputDate" required class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
+          <p class="text-[11px] text-espresso-light mt-1">Ushbu vaqtga asosan avtomatik orqaga sanash taymeri ishlaydi.</p>
+        </div>
+
+        <!-- To'yxona Nomi -->
+        <div>
+          <label for="inputVenue" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+            To'yxona / Restoran Nomi *
+          </label>
+          <input type="text" id="inputVenue" required placeholder="Masalan: 'Versal' Tantanalar Saroyi" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
+        </div>
+
+        <!-- To'yxona Manzili -->
+        <div>
+          <label for="inputAddress" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+            Aniq Manzili va Mo'ljali *
+          </label>
+          <input type="text" id="inputAddress" required placeholder="Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi 42-uy" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
+        </div>
+
+        <!-- Yandex / Google Maps Havolasi -->
+        <div>
+          <label for="inputMapUrl" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+            Xarita Havolasi (Yandex yoki Google Maps linki)
+          </label>
+          <div class="relative">
+            <input type="url" id="inputMapUrl" placeholder="https://yandex.uz/maps/... yoki https://maps.google.com/..." class="custom-input w-full px-4 py-2.5 rounded-xl text-sm pr-9" />
+            <span class="absolute right-3 top-2.5 text-gold-dark text-base">📍</span>
+          </div>
+          <p class="text-[11px] text-espresso-light mt-1">Mehmonlar ushbu havola orqali bir bosishda to'yxonagacha yo'nalish olishadi.</p>
+        </div>
+
+        <!-- Fon Musiqasi (Audio MP3 URL) -->
+        <div>
+          <label for="inputMusicUrl" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+            Fon Musiqasi uchun MP3 Havolasi
+          </label>
+          <input type="url" id="inputMusicUrl" placeholder="https://.../music.mp3" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
+          
+          <!-- Tayyor musiqa namunalarini tanlash -->
+          <div class="mt-2 flex flex-wrap gap-2 items-center">
+            <span class="text-[11px] text-espresso-light font-medium">Namuna kuylar:</span>
+            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all" data-url="https://assets.mixkit.co/music/preview/mixkit-wedding-piano-walk-537.mp3">
+              🎹 Romantik Piano
+            </button>
+            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all" data-url="https://assets.mixkit.co/music/preview/mixkit-love-story-piano-solo-543.mp3">
+              🎻 Mayin Melodiya
+            </button>
+            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all" data-url="https://assets.mixkit.co/music/preview/mixkit-inspiring-cinematic-ambient-1162.mp3">
+              ✨ Lirik Oqshom
+            </button>
+          </div>
+        </div>
+
+        <!-- Samimiy Taklifnoma Matni -->
+        <div>
+          <label for="inputMessage" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+            Samimiy Taklifnoma Matni *
+          </label>
+          <textarea id="inputMessage" rows="4" required placeholder="Hayotimizdagi eng unutilmas va quvonchli kunimizda biz bilan birga bo'lishingizni chin yurakdan istaymiz..." class="custom-input w-full px-4 py-2.5 rounded-xl text-sm"></textarea>
+          <p class="text-[11px] text-espresso-light mt-1">Mehmonlar taklifnomani ochganda ushbu ezgu jumlalarni o'qishadi.</p>
+        </div>
+
+        <!-- Generatsiya Tugmasi -->
+        <div class="pt-3">
+          <button type="submit" id="generateBtn" class="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-widest shadow-lg shadow-gold/30 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>✨ Taklifnomani Generatsiya Qilish</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       2. TAKLIFNOMA REJIMI (TAYYOR TAKLIFNOMA SAYTI - GENERATED INVITATION)
+       ========================================================== -->
+  <div id="invitationView" class="hidden">
+
+    <!-- SUZUVCHI FON MUSIQASI PLEYERI -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3" id="audioPlayerWidget">
+      <div id="musicPill" class="hidden sm:flex items-center px-3 py-1.5 rounded-full bg-white/95 border border-gold/40 shadow-lg text-xs font-medium text-espresso cursor-pointer backdrop-blur-md transition-all duration-300">
+        <span id="musicStatusText">Musiqa o'chiq</span>
+        <span class="ml-1 text-gold">🎵</span>
+      </div>
+
+      <button id="musicToggleBtn" aria-label="Fon musiqasi" class="relative w-14 h-14 rounded-full bg-white/95 border-2 border-gold flex items-center justify-center text-gold-dark shadow-xl backdrop-blur-md cursor-pointer transition-transform hover:scale-105 active:scale-95 group">
+        <!-- Vinyl aylana ramka -->
+        <span id="vinylDisc" class="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center bg-cream-soft transition-transform">
+          <svg id="musicIconPlay" class="w-5 h-5 translate-x-0.5 text-gold-dark" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="musicIconPause" class="w-5 h-5 hidden text-gold-dark" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+        </span>
+        <!-- Sound waves ping indikator -->
+        <span id="soundPing" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-gold rounded-full animate-ping"></span>
+      </button>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="weddingAudio" loop preload="auto"></audio>
 
     <!-- ==========================================================
-         3. COUNTDOWN TIMER (TO'Y KUNIGACHA QOLGAN VAQT)
+         HERO SECTION (BOSH QISM)
          ========================================================== -->
-    <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8 text-center" id="countdownSection">
-      <span class="corner-decor corner-tl"></span>
-      <span class="corner-decor corner-tr"></span>
-      <span class="corner-decor corner-bl"></span>
-      <span class="corner-decor corner-br"></span>
-
-      <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Kutilgan Kun Yaqinlashmoqda</h3>
-      <p class="text-xs uppercase tracking-widest text-gold-dark mt-1 mb-6">To'yimizgacha qolgan vaqt</p>
-
-      <!-- Taymer Bloklari Grid (Kun, Soat, Daqiqa, Soniya) -->
-      <div class="grid grid-cols-4 gap-2 sm:gap-4 my-6 max-w-md mx-auto">
-        <!-- Kun -->
-        <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
-          <span id="days" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
-          <span class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Kun</span>
-        </div>
-        <!-- Soat -->
-        <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
-          <span id="hours" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
-          <span class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Soat</span>
-        </div>
-        <!-- Daqiqa -->
-        <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
-          <span id="minutes" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
-          <span class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Daqiqa</span>
-        </div>
-        <!-- Soniya -->
-        <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
-          <span id="seconds" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
-          <span class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Soniya</span>
-        </div>
+    <header class="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden" id="hero">
+      <!-- Orqa fon rasmi va gradient qatlam -->
+      <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-1000 scale-105"
+           style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');">
       </div>
+      <div class="absolute inset-0 z-0 bg-gradient-to-b from-cream/80 via-cream/90 to-cream"></div>
 
-      <p class="text-xs text-espresso-light italic mt-4">
-        📅 2026-yil 24-Oktabr, Shanba kuni soat 18:00 da
-      </p>
+      <!-- Markaziy qism -->
+      <div class="relative z-10 max-w-xl mx-auto pt-16 pb-12 flex flex-col items-center">
+        
+        <!-- Monogramma Muhri (Avtomatik bosh harflar) -->
+        <div data-aos="zoom-in" data-aos-duration="1000" class="w-20 h-20 mb-6 rounded-full border-2 border-gold flex items-center justify-center bg-white/80 backdrop-blur-md shadow-lg shadow-gold/20 relative">
+          <span class="absolute inset-1 rounded-full border border-dashed border-gold/60"></span>
+          <span id="previewMonogram" class="font-script text-3xl text-gold-dark pt-1">A&M</span>
+        </div>
 
-      <!-- Google Calendar'ga qo'shish havolasi -->
-      <div class="mt-4">
-        <a id="addToCalendarBtn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Alijon+va+Madinaning+To%27yi&dates=20261024T130000Z/20261024T180000Z&details=Alijon+va+Madinaning+nikoh+to%27yi+tantanasiga+taklif+etamiz!&location=Versal+Tantanalar+Saroyi,+Toshkent" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-gold-dark hover:text-gold underline underline-offset-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <!-- Bismillahir Rohmanir Rohiym -->
+        <p data-aos="fade-up" data-aos-delay="200" class="font-serif italic text-lg sm:text-xl text-gold-dark tracking-widest mb-3">
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </p>
+
+        <!-- Kichik taklif sarlavhasi -->
+        <p data-aos="fade-up" data-aos-delay="300" class="uppercase text-xs sm:text-sm font-semibold tracking-[4px] text-espresso-light mb-4">
+          Nikoh To'yi Tantanasi
+        </p>
+
+        <!-- KELIN VA KUYOV ISMLARI (Dinamik) -->
+        <h1 data-aos="fade-up" data-aos-delay="400" class="font-script text-6xl sm:text-8xl text-espresso mb-3 leading-tight drop-shadow-sm">
+          <span id="previewGroomName">Alijon</span>
+          <span class="font-serif italic text-gold text-4xl sm:text-6xl align-middle px-1">&</span>
+          <span id="previewBrideName">Madina</span>
+        </h1>
+
+        <!-- Oltin chiziq va yurakcha -->
+        <div data-aos="fade-up" data-aos-delay="500" class="flex items-center gap-4 w-48 my-4">
+          <span class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-gold"></span>
+          <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-gold"></span>
+        </div>
+
+        <!-- Romantik shior -->
+        <p data-aos="fade-up" data-aos-delay="600" class="font-serif text-xl sm:text-2xl italic text-espresso/90 max-w-md mx-auto leading-relaxed my-2">
+          "Qalbimiz rishtalari bog'langan eng baxtli kunimizda oramizda ko'rishdan behad mamnun bo'lamiz!"
+        </p>
+
+        <!-- To'y sanasi nishoni (Dinamik) -->
+        <div data-aos="fade-up" data-aos-delay="700" class="mt-6 inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/90 border border-gold/50 shadow-md backdrop-blur-sm text-gold-dark font-semibold text-sm tracking-widest uppercase">
+          <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="16" y1="2" x2="16" y2="6"></line>
             <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="12" y1="11" x2="12" y2="17"></line>
-            <line x1="9" y1="14" x2="15" y2="14"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
-          Google Taqvimga Saqlab Qo'yish
+          <span id="previewDateBadge">24 · OKTABR · 2026</span>
+        </div>
+
+        <!-- Pastga surilish tugmasi -->
+        <a href="#about" data-aos="fade-up" data-aos-delay="800" class="mt-12 flex flex-col items-center text-xs uppercase tracking-widest text-espresso-light hover:text-gold transition-colors duration-300">
+          <span class="mb-2">Taklifnoma</span>
+          <svg class="w-5 h-5 animate-float-down text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
         </a>
+
       </div>
-    </section>
+    </header>
 
     <!-- ==========================================================
-         4. FOTO GALEREYA (SWIPER.JS CAROUSEL)
+         ASOSIY KONTEYNER (MOBILE-FIRST)
          ========================================================== -->
-    <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-6 sm:p-8 text-center">
-      <span class="corner-decor corner-tl"></span>
-      <span class="corner-decor corner-tr"></span>
-      <span class="corner-decor corner-bl"></span>
-      <span class="corner-decor corner-br"></span>
+    <main class="max-w-xl mx-auto px-4 py-8 space-y-16">
 
-      <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Bizning Foto Galereyamiz</h3>
-      <p class="text-xs uppercase tracking-widest text-gold-dark mt-1 mb-6">Muhabbat onlaridan shirin xotiralar</p>
+      <!-- 1. SAMIMIY TAKLIF MATNI -->
+      <section id="about" data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8 text-center">
+        <span class="corner-decor corner-tl"></span>
+        <span class="corner-decor corner-tr"></span>
+        <span class="corner-decor corner-bl"></span>
+        <span class="corner-decor corner-br"></span>
 
-      <!-- Swiper Slider Konteyneri -->
-      <div class="swiper weddingSwiper">
-        <div class="swiper-wrapper">
-          <!-- Rasm 1 -->
-          <div class="swiper-slide">
-            <div class="aspect-[4/5] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80');">
-              <div class="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
-                <span class="font-script text-white text-2xl">Ilohiy Muhabbat</span>
-              </div>
-            </div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-espresso mb-3">
+          Hurmatli va Qadrli Mehmonimiz!
+        </h2>
+
+        <div class="flex items-center justify-center gap-3 my-4">
+          <span class="w-12 h-[1px] bg-gold/50"></span>
+          <span class="text-gold text-lg">✦</span>
+          <span class="w-12 h-[1px] bg-gold/50"></span>
+        </div>
+
+        <!-- Dinamik kiritilgan taklif matni -->
+        <div id="previewMessage" class="font-serif text-lg sm:text-xl text-espresso/85 space-y-4 leading-relaxed whitespace-pre-line">
+          Hayotimizdagi eng unutilmas, hayajonli va quvonchli kun — yangi oila rishtalari bog'lanayotgan ushbu tantanali onlarda biz bilan birga bo'lishingizni chin yurakdan istaymiz.
+        </div>
+
+        <!-- Kelin-kuyov va ota-onalar ehtiromi -->
+        <div class="mt-8 pt-6 border-t border-gold/20">
+          <p id="previewSignCouple" class="font-script text-4xl text-gold-dark">Alijon & Madina</p>
+          <p class="text-xs uppercase tracking-widest text-espresso-light font-medium mt-1">
+            Hamda ota-onalarimiz ehtiromi ila
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. COUNTDOWN TIMER (TO'Y KUNIGACHA QOLGAN VAQT) -->
+      <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8 text-center" id="countdownSection">
+        <span class="corner-decor corner-tl"></span>
+        <span class="corner-decor corner-tr"></span>
+        <span class="corner-decor corner-bl"></span>
+        <span class="corner-decor corner-br"></span>
+
+        <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Kutilgan Kun Yaqinlashmoqda</h3>
+        <p class="text-xs uppercase tracking-widest text-gold-dark mt-1 mb-6">To'yimizgacha qolgan vaqt</p>
+
+        <!-- Taymer Bloklari -->
+        <div class="grid grid-cols-4 gap-2 sm:gap-4 my-6 max-w-md mx-auto">
+          <!-- Kun -->
+          <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
+            <span id="days" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Kun</span>
           </div>
-          <!-- Rasm 2 -->
-          <div class="swiper-slide">
-            <div class="aspect-[4/5] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80');">
-              <div class="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
-                <span class="font-script text-white text-2xl">Samimiy Tabassumlar</span>
-              </div>
-            </div>
+          <!-- Soat -->
+          <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
+            <span id="hours" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Soat</span>
           </div>
-          <!-- Rasm 3 -->
-          <div class="swiper-slide">
-            <div class="aspect-[4/5] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80');">
-              <div class="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
-                <span class="font-script text-white text-2xl">Bir Umrlik Va'da</span>
-              </div>
-            </div>
+          <!-- Daqiqa -->
+          <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
+            <span id="minutes" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Daqiqa</span>
           </div>
-          <!-- Rasm 4 -->
-          <div class="swiper-slide">
-            <div class="aspect-[4/5] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80');">
-              <div class="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
-                <span class="font-script text-white text-2xl">Orzular Oqshomi</span>
-              </div>
-            </div>
+          <!-- Soniya -->
+          <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
+            <span id="seconds" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Soniya</span>
           </div>
         </div>
 
-        <!-- Pagination & Navigation -->
-        <div class="swiper-pagination !bottom-0"></div>
-      </div>
-      <p class="text-[11px] text-espresso-light mt-1">👈 Rasmlarni suring 👉</p>
-    </section>
+        <p id="previewFullDateText" class="text-xs text-espresso-light italic mt-4">
+          📅 2026-yil 24-Oktabr, soat 18:00 da
+        </p>
 
-    <!-- ==========================================================
-         5. TADBIR TAFSILOTLARI VA LOKATSIYA (EVENT DETAILS & MAP)
-         ========================================================== -->
-    <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8 text-center" id="location">
-      <span class="corner-decor corner-tl"></span>
-      <span class="corner-decor corner-tr"></span>
-      <span class="corner-decor corner-bl"></span>
-      <span class="corner-decor corner-br"></span>
-
-      <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Tadbir Dasturi va Manzil</h3>
-      <p class="text-xs uppercase tracking-widest text-gold-dark mt-1 mb-8">Marosim manzili va aniq vaqti</p>
-
-      <!-- To'yxona Manzili Kartochkasi -->
-      <div class="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center mb-8">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-cream-soft border border-gold/40 flex items-center justify-center text-gold-dark">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          </svg>
-        </div>
-
-        <!-- TO'YXONA NOMI (SHU YERDA O'ZGARTIRING) -->
-        <h4 class="font-serif text-2xl font-bold text-espresso mb-1">"Versal" Tantanalar Saroyi</h4>
-        <p class="text-sm font-medium text-gold-dark mb-2">Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi, 42-uy</p>
-        <p class="text-xs text-espresso-light italic">Mo'ljal: Mirzo Ulug'bek metrosi yaqinida</p>
-
-        <!-- NAVIGATOR TUGMALARI (YANDEX & GOOGLE MAPS) -->
-        <div class="flex flex-col sm:flex-row gap-3 justify-center mt-6">
-          <!-- Yandex Navigator / Xarita -->
-          <a href="https://yandex.uz/maps/?text=Versal+Restaurant+Tashkent" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white border-2 border-gold text-gold-dark hover:bg-cream-soft font-semibold text-xs tracking-wider uppercase transition-all shadow-sm">
-            <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+        <!-- Google Calendar Havolasi -->
+        <div class="mt-4">
+          <a id="addToCalendarBtn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-gold-dark hover:text-gold underline underline-offset-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="12" y1="11" x2="12" y2="17"></line>
+              <line x1="9" y1="14" x2="15" y2="14"></line>
             </svg>
-            Yandex Xaritada Ochish
-          </a>
-
-          <!-- Google Maps -->
-          <a href="https://maps.google.com/?q=Versal+Restaurant+Tashkent" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md hover:brightness-105">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-            </svg>
-            Google Maps'da Yo'nalish
+            Google Taqvimga Saqlab Qo'yish
           </a>
         </div>
-      </div>
+      </section>
 
-      <!-- Marosim Dasturi (Wedding Timeline) -->
-      <div class="text-left space-y-4 max-w-md mx-auto">
-        <h4 class="font-serif text-xl font-semibold text-espresso text-center mb-4">Marosim Rejasi</h4>
+      <!-- 3. FOTO GALEREYA (SWIPER CAROUSEL) -->
+      <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-6 sm:p-8 text-center">
+        <span class="corner-decor corner-tl"></span>
+        <span class="corner-decor corner-tr"></span>
+        <span class="corner-decor corner-bl"></span>
+        <span class="corner-decor corner-br"></span>
 
-        <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
-          <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">17:30</span>
-          <div>
-            <p class="font-semibold text-sm text-espresso">Mehmonlarni Kutib Olish</p>
-            <p class="text-xs text-espresso-light">Fotozona va xushbo'y sharbatlar taqdimoti</p>
+        <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Bizning Foto Galereyamiz</h3>
+        <p class="text-xs uppercase tracking-widest text-gold-dark mt-1 mb-6">Muhabbat onlaridan shirin xotiralar</p>
+
+        <div class="swiper weddingSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="aspect-[4/5] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80');">
+                <div class="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
+                  <span class="font-script text-white text-2xl">Ilohiy Muhabbat</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="aspect-[4/5] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80');">
+                <div class="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
+                  <span class="font-script text-white text-2xl">Samimiy Tabassumlar</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="aspect-[4/5] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80');">
+                <div class="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
+                  <span class="font-script text-white text-2xl">Bir Umrlik Va'da</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="aspect-[4/5] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80');">
+                <div class="w-full h-full bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-4">
+                  <span class="font-script text-white text-2xl">Orzular Oqshomi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination !bottom-0"></div>
+        </div>
+        <p class="text-[11px] text-espresso-light mt-1">👈 Rasmlarni suring 👉</p>
+      </section>
+
+      <!-- 4. TADBIR TAFSILOTLARI VA LOKATSIYA -->
+      <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8 text-center" id="location">
+        <span class="corner-decor corner-tl"></span>
+        <span class="corner-decor corner-tr"></span>
+        <span class="corner-decor corner-bl"></span>
+        <span class="corner-decor corner-br"></span>
+
+        <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Tadbir Dasturi va Manzil</h3>
+        <p class="text-xs uppercase tracking-widest text-gold-dark mt-1 mb-8">Marosim manzili va aniq vaqti</p>
+
+        <!-- To'yxona Manzili Kartochkasi -->
+        <div class="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center mb-8">
+          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-cream-soft border border-gold/40 flex items-center justify-center text-gold-dark">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+
+          <!-- Dinamik to'yxona nomi va manzili -->
+          <h4 id="previewVenueName" class="font-serif text-2xl font-bold text-espresso mb-1">
+            "Versal" Tantanalar Saroyi
+          </h4>
+          <p id="previewVenueAddress" class="text-sm font-medium text-gold-dark mb-4">
+            Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi, 42-uy
+          </p>
+
+          <!-- XARITA TUGMALARI -->
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <!-- Foydalanuvchi kiritgan xarita linki -->
+            <a id="previewMapLinkBtn" href="https://yandex.uz/maps/?text=Versal+Restaurant+Tashkent" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md hover:brightness-105">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <span>Xaritada Yo'nalish Olish</span>
+            </a>
           </div>
         </div>
 
-        <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
-          <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">18:30</span>
-          <div>
-            <p class="font-semibold text-sm text-espresso">Kelin-Kuyovning Tantanali Kirib Kelishi</p>
-            <p class="text-xs text-espresso-light">Karnay-surnay sadolari ostida tantananing boshlanishi</p>
+        <!-- Marosim Dasturi (Timeline) -->
+        <div class="text-left space-y-4 max-w-md mx-auto">
+          <h4 class="font-serif text-xl font-semibold text-espresso text-center mb-4">Marosim Rejasi</h4>
+
+          <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
+            <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">17:30</span>
+            <div>
+              <p class="font-semibold text-sm text-espresso">Mehmonlarni Kutib Olish</p>
+              <p class="text-xs text-espresso-light">Fotozona va xushbo'y sharbatlar taqdimoti</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
+            <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">18:30</span>
+            <div>
+              <p class="font-semibold text-sm text-espresso">Kelin-Kuyovning Tantanali Kirib Kelishi</p>
+              <p class="text-xs text-espresso-light">Karnay-surnay sadolari ostida tantananing boshlanishi</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
+            <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">19:30</span>
+            <div>
+              <p class="font-semibold text-sm text-espresso">To'y Oqshomi Ziyofati</p>
+              <p class="text-xs text-espresso-light">Jonli musiqa, tabriklar va fayzli davra</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
+            <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">21:30</span>
+            <div>
+              <p class="font-semibold text-sm text-espresso">To'y Torti & Gul Otish Marosimi</p>
+              <p class="text-xs text-espresso-light">Esdalik sovg'alari va shirin lahzalar</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
-          <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">19:30</span>
+      <!-- 5. RSVP FORMASI (TASHRIFNI TASDIQLASH) -->
+      <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8" id="rsvp">
+        <span class="corner-decor corner-tl"></span>
+        <span class="corner-decor corner-tr"></span>
+        <span class="corner-decor corner-bl"></span>
+        <span class="corner-decor corner-br"></span>
+
+        <div class="text-center mb-8">
+          <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Tashrifingizni Tasdiqlang</h3>
+          <p class="text-xs uppercase tracking-widest text-gold-dark mt-1">
+            Dasturxonimizni rejalashtirishimiz uchun javobingiz muhim
+          </p>
+        </div>
+
+        <form id="guestRsvpForm" class="space-y-5">
           <div>
-            <p class="font-semibold text-sm text-espresso">To'y Oqshomi Ziyofati</p>
-            <p class="text-xs text-espresso-light">Jonli musiqa, tabriklar va fayzli davra</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
-          <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">21:30</span>
-          <div>
-            <p class="font-semibold text-sm text-espresso">To'y Torti & Gul Otish Marosimi</p>
-            <p class="text-xs text-espresso-light">Esdalik sovg'alari va shirin lahzalar</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================
-         6. RSVP FORMASI (TASHRIFNI TASDIQLASH & TELEGRAM INTEGRATSIYA)
-         ========================================================== -->
-    <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8" id="rsvp">
-      <span class="corner-decor corner-tl"></span>
-      <span class="corner-decor corner-tr"></span>
-      <span class="corner-decor corner-bl"></span>
-      <span class="corner-decor corner-br"></span>
-
-      <div class="text-center mb-8">
-        <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Tashrifingizni Tasdiqlang</h3>
-        <p class="text-xs uppercase tracking-widest text-gold-dark mt-1">
-          Dasturxonimizni rejalashtirishimiz uchun javobingiz muhim
-        </p>
-      </div>
-
-      <!-- RSVP FORM -->
-      <form id="weddingRsvpForm" class="space-y-5">
-        <!-- Mehmon Ismi -->
-        <div>
-          <label for="rsvpName" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
-            Ism va Familiyangiz *
-          </label>
-          <input type="text" id="rsvpName" required placeholder="Masalan: Jamshid Karimov" class="w-full px-4 py-3 rounded-xl bg-white border border-gold/40 text-espresso placeholder-espresso-light/40 text-sm focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all" />
-        </div>
-
-        <!-- Telefon Raqami -->
-        <div>
-          <label for="rsvpPhone" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
-            Telefon Raqamingiz (Telegram)
-          </label>
-          <input type="tel" id="rsvpPhone" placeholder="+998 90 123 45 67" class="w-full px-4 py-3 rounded-xl bg-white border border-gold/40 text-espresso placeholder-espresso-light/40 text-sm focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all" />
-        </div>
-
-        <!-- Qaror (Boraman / Bora olmayman) -->
-        <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-2">
-            To'yimizga kela olasizmi? *
-          </label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <label class="flex items-center gap-3 p-3 rounded-xl border border-gold/40 bg-white cursor-pointer hover:bg-cream-soft/50 transition-all has-[:checked]:border-gold has-[:checked]:bg-cream-soft">
-              <input type="radio" name="rsvpStatus" value="Ha, albatta boraman" checked class="accent-gold w-4 h-4" />
-              <span class="text-xs sm:text-sm font-medium text-espresso">💍 Ha, albatta boraman</span>
+            <label for="guestRsvpName" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+              Ism va Familiyangiz *
             </label>
-
-            <label class="flex items-center gap-3 p-3 rounded-xl border border-gold/40 bg-white cursor-pointer hover:bg-cream-soft/50 transition-all has-[:checked]:border-gold has-[:checked]:bg-cream-soft">
-              <input type="radio" name="rsvpStatus" value="Afsuski, bora olmayman" class="accent-gold w-4 h-4" />
-              <span class="text-xs sm:text-sm font-medium text-espresso">🌸 Afsuski, bora olmayman</span>
-            </label>
+            <input type="text" id="guestRsvpName" required placeholder="Masalan: Jamshid Karimov" class="custom-input w-full px-4 py-3 rounded-xl text-sm" />
           </div>
+
+          <div>
+            <label for="guestRsvpPhone" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+              Telefon Raqamingiz (Telegram)
+            </label>
+            <input type="tel" id="guestRsvpPhone" placeholder="+998 90 123 45 67" class="custom-input w-full px-4 py-3 rounded-xl text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-2">
+              To'yimizga kela olasizmi? *
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gold/40 bg-white cursor-pointer hover:bg-cream-soft/50 transition-all has-[:checked]:border-gold has-[:checked]:bg-cream-soft">
+                <input type="radio" name="rsvpDecision" value="Ha, albatta boraman" checked class="accent-gold w-4 h-4" />
+                <span class="text-xs sm:text-sm font-medium text-espresso">💍 Ha, albatta boraman</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gold/40 bg-white cursor-pointer hover:bg-cream-soft/50 transition-all has-[:checked]:border-gold has-[:checked]:bg-cream-soft">
+                <input type="radio" name="rsvpDecision" value="Afsuski, bora olmayman" class="accent-gold w-4 h-4" />
+                <span class="text-xs sm:text-sm font-medium text-espresso">🌸 Afsuski, bora olmayman</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label for="guestCountSelect" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+              Necha kishi bo'lib tashrif buyurasiz?
+            </label>
+            <select id="guestCountSelect" class="custom-input w-full px-4 py-3 rounded-xl text-sm">
+              <option value="1 kishi (Yolg'iz)">1 kishi (Yolg'iz)</option>
+              <option value="2 kishi (Juftlik bilan)" selected>2 kishi (Juftlik bilan)</option>
+              <option value="Oilaviy (3+ kishi)">Oilaviy (3+ kishi)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="guestRsvpNote" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
+              Kelin-kuyovga samimiy tilaklaringiz
+            </label>
+            <textarea id="guestRsvpNote" rows="3" placeholder="Ezgu tilaklaringizni qoldiring..." class="custom-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-widest shadow-lg shadow-gold/25 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            <span>Javobni Yuborish</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </form>
+      </section>
+
+      <!-- 6. MEHMONLAR TILAKLARI (TILAKLAR DEVORI) -->
+      <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8" id="wishesSection">
+        <span class="corner-decor corner-tl"></span>
+        <span class="corner-decor corner-tr"></span>
+        <span class="corner-decor corner-bl"></span>
+        <span class="corner-decor corner-br"></span>
+
+        <div class="text-center mb-8">
+          <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Mehmonlar Tilaklari</h3>
+          <p class="text-xs uppercase tracking-widest text-gold-dark mt-1">
+            Yurakdan chiqqan samimiy qutlovlar
+          </p>
         </div>
 
-        <!-- Mehmonlar Soni (Dropdown) -->
-        <div id="guestCountBox">
-          <label for="rsvpGuestCount" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
-            Necha kishi bo'lib tashrif buyurasiz?
-          </label>
-          <select id="rsvpGuestCount" class="w-full px-4 py-3 rounded-xl bg-white border border-gold/40 text-espresso text-sm focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all">
-            <option value="1 kishi (Yolg'iz)">1 kishi (Yolg'iz)</option>
-            <option value="2 kishi (Juftlik bilan)" selected>2 kishi (Juftlik bilan)</option>
-            <option value="Oilaviy (3+ kishi)">Oilaviy (3+ kishi)</option>
-          </select>
+        <!-- Tezkor tilak yozish -->
+        <form id="quickGuestWishForm" class="mb-8 p-4 rounded-2xl bg-white border border-gold/30">
+          <div class="space-y-3">
+            <input type="text" id="wishAuthor" required placeholder="Ismingiz..." class="w-full px-3 py-2 text-sm rounded-lg bg-cream/60 border border-gold/30 focus:outline-none focus:ring-2 focus:ring-gold/40" />
+            <textarea id="wishMessage" required rows="2" placeholder="Kelin va kuyovga samimiy baxt tilaklaringiz..." class="w-full px-3 py-2 text-sm rounded-lg bg-cream/60 border border-gold/30 focus:outline-none focus:ring-2 focus:ring-gold/40"></textarea>
+            <button type="submit" class="w-full py-2.5 rounded-lg bg-gold text-white font-medium text-xs uppercase tracking-wider hover:bg-gold-dark transition-colors flex items-center justify-center gap-1.5">
+              <span>Tilakni Chop Etish</span>
+              <span>✍️</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Tilaklar ro'yxati -->
+        <div id="wishesFeed" class="space-y-3 max-h-80 overflow-y-auto pr-1">
+          <!-- JS orqali kiritiladi -->
         </div>
+      </section>
 
-        <!-- Kelin-kuyovga tilak -->
-        <div>
-          <label for="rsvpNote" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
-            Kelin-kuyovga samimiy tilaklaringiz
-          </label>
-          <textarea id="rsvpNote" rows="3" placeholder="Ezgu tilaklaringizni qoldiring..." class="w-full px-4 py-3 rounded-xl bg-white border border-gold/40 text-espresso placeholder-espresso-light/40 text-sm focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all"></textarea>
-        </div>
+      <!-- 7. TAKLIFNOMANI ULASHISH TUGMASI -->
+      <section data-aos="fade-up" class="text-center py-4">
+        <p class="text-xs uppercase tracking-widest text-espresso-light mb-3">Taklifnomani yaqinlaringizga ulashing</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <button id="shareTelegramBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2AABEE] text-white text-xs font-semibold tracking-wide shadow-sm hover:opacity-90 transition-opacity">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            Telegram orqali yuborish
+          </button>
 
-        <!-- Yuborish Tugmasi -->
-        <button type="submit" id="rsvpSubmitBtn" class="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-widest shadow-lg shadow-gold/25 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-          <span>Javobni Yuborish</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </button>
-      </form>
-    </section>
-
-    <!-- ==========================================================
-         7. TILAKLAR VA TABRIKLAR QISMI (GUESTBOOK / WISHES WALL)
-         ========================================================== -->
-    <section data-aos="fade-up" data-aos-duration="900" class="luxury-box p-8" id="wishesSection">
-      <span class="corner-decor corner-tl"></span>
-      <span class="corner-decor corner-tr"></span>
-      <span class="corner-decor corner-bl"></span>
-      <span class="corner-decor corner-br"></span>
-
-      <div class="text-center mb-8">
-        <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">Mehmonlar Tilaklari</h3>
-        <p class="text-xs uppercase tracking-widest text-gold-dark mt-1">
-          Yurakdan chiqqan samimiy qutlovlar
-        </p>
-      </div>
-
-      <!-- Tezkor tilak yozish qismi -->
-      <form id="quickWishForm" class="mb-8 p-4 rounded-2xl bg-white border border-gold/30">
-        <div class="space-y-3">
-          <input type="text" id="wishAuthorInput" required placeholder="Ismingiz..." class="w-full px-3 py-2 text-sm rounded-lg bg-cream/60 border border-gold/30 focus:outline-none focus:ring-2 focus:ring-gold/40" />
-          <textarea id="wishTextInput" required rows="2" placeholder="Alijon va Madinaga baxt tilaklaringiz..." class="w-full px-3 py-2 text-sm rounded-lg bg-cream/60 border border-gold/30 focus:outline-none focus:ring-2 focus:ring-gold/40"></textarea>
-          <button type="submit" class="w-full py-2.5 rounded-lg bg-gold text-white font-medium text-xs uppercase tracking-wider hover:bg-gold-dark transition-colors flex items-center justify-center gap-1.5">
-            <span>Tilakni Chop Etish</span>
-            <span>✍️</span>
+          <button id="copyLinkBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-gold/50 text-espresso text-xs font-semibold tracking-wide shadow-sm hover:bg-cream-soft transition-all">
+            <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <span id="copyLinkText">Havolani Nusxalash</span>
           </button>
         </div>
-      </form>
+      </section>
 
-      <!-- Tilaklar ro'yxati (LocalStorage orqali yuklanadi) -->
-      <div id="wishesContainer" class="space-y-3 max-h-80 overflow-y-auto pr-1">
-        <!-- JS orqali dinamik kartochkalar kiritiladi -->
-      </div>
-    </section>
+    </main>
 
     <!-- ==========================================================
-         8. TAKLIFNOMANI ULASHISH TUGMASI (SHARE WIDGET)
+         FOOTER (PASTKI QISM)
          ========================================================== -->
-    <section data-aos="fade-up" class="text-center py-4">
-      <p class="text-xs uppercase tracking-widest text-espresso-light mb-3">Taklifnomani yaqinlaringizga yuboring</p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <button id="shareTelegramBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2AABEE] text-white text-xs font-semibold tracking-wide shadow-sm hover:opacity-90 transition-opacity">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
-          Telegram orqali ulashish
-        </button>
+    <footer class="text-center py-16 px-4 bg-gradient-to-b from-transparent to-cream-soft/60">
+      <div class="max-w-md mx-auto space-y-4">
+        <div class="flex items-center justify-center gap-4 text-gold">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <path d="M12 2L8 14h8L12 2z"></path>
+            <path d="M7 17l-3 5h16l-3-5"></path>
+            <path d="M10 14v8"></path>
+            <path d="M14 14v8"></path>
+            <path d="M9 10h6"></path>
+          </svg>
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <path d="M12 2L8 14h8L12 2z"></path>
+            <path d="M7 17l-3 5h16l-3-5"></path>
+            <path d="M10 14v8"></path>
+            <path d="M14 14v8"></path>
+            <path d="M9 10h6"></path>
+          </svg>
+        </div>
 
-        <button id="copyLinkBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-gold/50 text-espresso text-xs font-semibold tracking-wide shadow-sm hover:bg-cream-soft transition-all">
-          <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-          <span id="copyBtnText">Havolani Nusxalash</span>
-        </button>
+        <h4 class="font-serif text-2xl font-semibold text-espresso">Sizni Intiqlik Bilan Kutib Qolamiz!</h4>
+        <p id="footerCoupleSign" class="font-script text-4xl text-gold-dark">Alijon & Madina</p>
+        <p id="footerDateSign" class="text-xs uppercase tracking-widest text-espresso-light">2026</p>
+
+        <div class="pt-6">
+          <button id="footerEditBtn" class="inline-flex items-center gap-1.5 text-xs text-gold-dark hover:text-espresso font-medium underline underline-offset-4">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+            <span>Taklifnoma ma'lumotlarini o'zgartirish</span>
+          </button>
+        </div>
       </div>
-    </section>
+    </footer>
 
-  </main>
+  </div>
 
   <!-- ==========================================================
-       FOOTER (PASTKI QISM)
-       ========================================================== -->
-  <footer class="text-center py-16 px-4 bg-gradient-to-b from-transparent to-cream-soft/60">
-    <div class="max-w-md mx-auto space-y-4">
-      <!-- Eyfel minorasi va yurakcha simvollari -->
-      <div class="flex items-center justify-center gap-4 text-gold">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
-          <path d="M12 2L8 14h8L12 2z"></path>
-          <path d="M7 17l-3 5h16l-3-5"></path>
-          <path d="M10 14v8"></path>
-          <path d="M14 14v8"></path>
-          <path d="M9 10h6"></path>
-        </svg>
-        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
-          <path d="M12 2L8 14h8L12 2z"></path>
-          <path d="M7 17l-3 5h16l-3-5"></path>
-          <path d="M10 14v8"></path>
-          <path d="M14 14v8"></path>
-          <path d="M9 10h6"></path>
-        </svg>
-      </div>
-
-      <h4 class="font-serif text-2xl font-semibold text-espresso">Sizni Intiqik Bilan Kutib Qolamiz!</h4>
-      <p class="font-script text-4xl text-gold-dark">Alijon & Madina</p>
-      <p class="text-xs uppercase tracking-widest text-espresso-light">24 · OKTABR · 2026</p>
-
-      <p class="text-[11px] text-espresso-light/60 pt-4">
-        Muhabbat va ehtirom bilan yaratildi © 2026
-      </p>
-    </div>
-  </footer>
-
-  <!-- ==========================================================
-       MODAL OYNA (RSVP TASDIQLASH XABARI - SUCCESS MODAL)
+       MODAL OYNA (RSVP TASDIQLASH XABARI)
        ========================================================== -->
   <div id="rsvpSuccessModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
     <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center border-2 border-gold shadow-2xl relative transform scale-95 transition-transform duration-300">
@@ -726,97 +833,334 @@
       <p id="modalFeedbackText" class="text-sm text-espresso-light mb-6 leading-relaxed">
         Javobingiz muvaffaqiyatli qabul qilindi. Sizni baxtli kunimizda ko'rishdan behad mamnunmiz!
       </p>
-      <button id="closeModalBtn" class="w-full py-3 rounded-full bg-gold text-white font-semibold text-xs uppercase tracking-widest hover:bg-gold-dark transition-colors shadow-md">
+      <button id="closeModalBtn" class="w-full py-3 rounded-full bg-gold text-white font-semibold text-xs uppercase tracking-widest hover:bg-gold-dark transition-colors shadow-md cursor-pointer">
         Tushunarli
       </button>
     </div>
   </div>
 
   <!-- ==========================================================
-       3. JAVASCRIPT KUTUBXONALARI (CDN)
+       JAVASCRIPT KUTUBXONALARI (CDN)
        ========================================================== -->
-  <!-- AOS JS CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <!-- Swiper.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <!-- ==========================================================
-       4. INTERAKTIV DASTUR MANTIQI (FULL JAVASCRIPT ENGINE)
+       INTERAKTIV DASTUR MANTIQI (FULL GENERATOR & VIEWER ENGINE)
        ========================================================== -->
   <script>
-    /* ==========================================================================
-       SOZLAMALAR BLOKI (CONFIG) - HAMMA MA'LUMOTLARNI SHU YERDAN O'ZGARTIRING
-       ========================================================================== */
-    const WEDDING_CONFIG = {
-      groomName: "Alijon",
-      brideName: "Madina",
-      weddingDate: "2026-10-24T18:00:00", // To'y sanasi va vaqti (YYYY-MM-DDTHH:mm:ss)
-      venueName: "Versal Tantanalar Saroyi",
-      venueAddress: "Toshkent shahri, Bunyodkor shoh ko'chasi, 42-uy",
-
-      // TELEGRAM BOT SOZLAMALARI:
-      // Kelin-kuyov Telegram orqali mehmonlar javoblarini olishi uchun:
-      // 1. @BotFather dan bot yarating va TOKEN oling.
-      // 2. O'z chat ID ingizni (@userinfobot orqali) bilib oling.
-      // 3. Quyidagi ikkita o'zgaruvchini to'ldiring va enableTelegram: true qiling!
-      telegram: {
-        enabled: false, // <-- Telegramga xabar yuborishni yoqish uchun 'true' qiling
-        botToken: "BOT_TOKENINGIZNI_SHU_YERGA_YOZING", // Masalan: "123456789:ABCdefGHIjk..."
-        chatId: "CHAT_IDINGIZNI_SHU_YERGA_YOZING"      // Masalan: "987654321"
-      }
+    // =========================================================================
+    // 1. STANDART VA NAMUNA MA'LUMOTLAR (DEFAULT STATE)
+    // =========================================================================
+    const DEFAULT_DATA = {
+      groom: "Alijon",
+      bride: "Madina",
+      weddingDate: "2026-10-24T18:00",
+      venue: '"Versal" Tantanalar Saroyi',
+      address: "Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi, 42-uy",
+      mapUrl: "https://yandex.uz/maps/?text=Versal+Restaurant+Tashkent",
+      musicUrl: "https://assets.mixkit.co/music/preview/mixkit-wedding-piano-walk-537.mp3",
+      message: "Hayotimizdagi eng unutilmas, hayajonli va quvonchli kun — yangi oila rishtalari bog'lanayotgan ushbu tantanali onlarda biz bilan birga bo'lishingizni chin yurakdan istaymiz.\n\nSizning samimiy tabassumingiz, ezgu duolaringiz va mehr to'la tilaklaringiz bizning xonadonimizga fayz, qalbimizga cheksiz quvonch bag'ishlaydi."
     };
 
-    /* ==========================================================================
-       AOS (ANIMATE ON SCROLL) INITIALIZATION
-       ========================================================================== */
-    AOS.init({
-      once: true,
-      duration: 800,
-      easing: 'ease-out-cubic',
-      offset: 40
-    });
+    const STORAGE_KEY = "my_custom_wedding_invitation";
+    const WISHES_STORAGE_KEY = "wedding_guest_wishes";
 
-    /* ==========================================================================
-       SWIPER (FOTO GALEREYA) INITIALIZATION
-       ========================================================================== */
-    const weddingSwiper = new Swiper('.weddingSwiper', {
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      coverflowEffect: {
-        rotate: 15,
-        stretch: 0,
-        depth: 120,
-        modifier: 1,
-        slideShadows: true,
-      },
-      loop: true,
-      autoplay: {
-        delay: 3500,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
-
-    /* ==========================================================================
-       1. AUDIO PLAYER & BIRINCHI TEGINISHDA AVTO-START (USER INTERACTION)
-       ========================================================================== */
-    const weddingAudio = document.getElementById('weddingAudio');
-    const musicToggleBtn = document.getElementById('musicToggleBtn');
-    const vinylDisc = document.getElementById('vinylDisc');
-    const musicIconPlay = document.getElementById('musicIconPlay');
-    const musicIconPause = document.getElementById('musicIconPause');
-    const musicStatusText = document.getElementById('musicStatusText');
-    const soundPing = document.getElementById('soundPing');
-
+    // Holat o'zgaruvchilari
+    let currentWedding = { ...DEFAULT_DATA };
+    let countdownInterval = null;
+    let weddingSwiperInstance = null;
     let isAudioPlaying = false;
-    let hasInteracted = false;
+    let userHasInteractedWithAudio = false;
 
+    // =========================================================================
+    // 2. DOM ELEMENTLARINI BOG'LASH
+    // =========================================================================
+    const generatorSection = document.getElementById("generatorSection");
+    const invitationView = document.getElementById("invitationView");
+    const topFloatingBar = document.getElementById("topFloatingBar");
+    const topBarEditBtn = document.getElementById("topBarEditBtn");
+    const topBarShareBtn = document.getElementById("topBarShareBtn");
+    const footerEditBtn = document.getElementById("footerEditBtn");
+    const savedDataNotice = document.getElementById("savedDataNotice");
+    const quickViewSavedBtn = document.getElementById("quickViewSavedBtn");
+
+    // Form inputs
+    const invitationSetupForm = document.getElementById("invitationSetupForm");
+    const inputGroom = document.getElementById("inputGroom");
+    const inputBride = document.getElementById("inputBride");
+    const inputDate = document.getElementById("inputDate");
+    const inputVenue = document.getElementById("inputVenue");
+    const inputAddress = document.getElementById("inputAddress");
+    const inputMapUrl = document.getElementById("inputMapUrl");
+    const inputMusicUrl = document.getElementById("inputMusicUrl");
+    const inputMessage = document.getElementById("inputMessage");
+    const loadSampleDataBtn = document.getElementById("loadSampleDataBtn");
+    const clearFormBtn = document.getElementById("clearFormBtn");
+
+    // Preview elementlari
+    const previewMonogram = document.getElementById("previewMonogram");
+    const previewGroomName = document.getElementById("previewGroomName");
+    const previewBrideName = document.getElementById("previewBrideName");
+    const previewDateBadge = document.getElementById("previewDateBadge");
+    const previewMessage = document.getElementById("previewMessage");
+    const previewSignCouple = document.getElementById("previewSignCouple");
+    const previewFullDateText = document.getElementById("previewFullDateText");
+    const previewVenueName = document.getElementById("previewVenueName");
+    const previewVenueAddress = document.getElementById("previewVenueAddress");
+    const previewMapLinkBtn = document.getElementById("previewMapLinkBtn");
+    const addToCalendarBtn = document.getElementById("addToCalendarBtn");
+    const footerCoupleSign = document.getElementById("footerCoupleSign");
+    const footerDateSign = document.getElementById("footerDateSign");
+
+    // Countdown elementlari
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    // Audio elementlari
+    const weddingAudio = document.getElementById("weddingAudio");
+    const musicToggleBtn = document.getElementById("musicToggleBtn");
+    const vinylDisc = document.getElementById("vinylDisc");
+    const musicIconPlay = document.getElementById("musicIconPlay");
+    const musicIconPause = document.getElementById("musicIconPause");
+    const soundPing = document.getElementById("soundPing");
+    const musicStatusText = document.getElementById("musicStatusText");
+
+    // Modal
+    const rsvpSuccessModal = document.getElementById("rsvpSuccessModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const modalFeedbackText = document.getElementById("modalFeedbackText");
+
+    // =========================================================================
+    // 3. YORDAMCHI SANANI FORMATLASH FUNKSIYALARI
+    // =========================================================================
+    const OYZLAR_UZ = [
+      "Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun",
+      "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"
+    ];
+
+    function formatWeddingBadgeDate(dateString) {
+      if (!dateString) return "24 · OKTABR · 2026";
+      const d = new Date(dateString);
+      if (isNaN(d.getTime())) return "24 · OKTABR · 2026";
+      const day = d.getDate();
+      const month = OYZLAR_UZ[d.getMonth()] ? OYZLAR_UZ[d.getMonth()].toUpperCase() : "";
+      const year = d.getFullYear();
+      return `${day} · ${month} · ${year}`;
+    }
+
+    function formatWeddingFullDate(dateString) {
+      if (!dateString) return "📅 2026-yil 24-Oktabr, soat 18:00 da";
+      const d = new Date(dateString);
+      if (isNaN(d.getTime())) return "📅 2026-yil 24-Oktabr, soat 18:00 da";
+      const day = d.getDate();
+      const month = OYZLAR_UZ[d.getMonth()] || "";
+      const year = d.getFullYear();
+      const hours = String(d.getHours()).padStart(2, "0");
+      const mins = String(d.getMinutes()).padStart(2, "0");
+      return `📅 ${year}-yil ${day}-${month}, soat ${hours}:${mins} da`;
+    }
+
+    function createMonogram(groom, bride) {
+      const gInitial = (groom && groom.trim().length > 0) ? groom.trim().charAt(0).toUpperCase() : "A";
+      const bInitial = (bride && bride.trim().length > 0) ? bride.trim().charAt(0).toUpperCase() : "M";
+      return `${gInitial}&${bInitial}`;
+    }
+
+    // =========================================================================
+    // 4. FORMANI MA'LUMOTLAR BILAN TO'LDIRISH VA SAQLASH
+    // =========================================================================
+    function populateForm(data) {
+      inputGroom.value = data.groom || "";
+      inputBride.value = data.bride || "";
+      inputDate.value = data.weddingDate || "";
+      inputVenue.value = data.venue || "";
+      inputAddress.value = data.address || "";
+      inputMapUrl.value = data.mapUrl || "";
+      inputMusicUrl.value = data.musicUrl || "";
+      inputMessage.value = data.message || "";
+    }
+
+    function readFormData() {
+      return {
+        groom: inputGroom.value.trim() || DEFAULT_DATA.groom,
+        bride: inputBride.value.trim() || DEFAULT_DATA.bride,
+        weddingDate: inputDate.value || DEFAULT_DATA.weddingDate,
+        venue: inputVenue.value.trim() || DEFAULT_DATA.venue,
+        address: inputAddress.value.trim() || DEFAULT_DATA.address,
+        mapUrl: inputMapUrl.value.trim() || DEFAULT_DATA.mapUrl,
+        musicUrl: inputMusicUrl.value.trim() || DEFAULT_DATA.musicUrl,
+        message: inputMessage.value.trim() || DEFAULT_DATA.message,
+      };
+    }
+
+    // =========================================================================
+    // 5. TAKLIFNOMA SHABLONIGA MA'LUMOTLARNI JOYLASH (RENDER)
+    // =========================================================================
+    function applyDataToInvitation(data) {
+      currentWedding = { ...data };
+
+      // Kelin va kuyov
+      previewGroomName.innerText = data.groom;
+      previewBrideName.innerText = data.bride;
+      previewMonogram.innerText = createMonogram(data.groom, data.bride);
+      previewSignCouple.innerText = `${data.groom} & ${data.bride}`;
+      footerCoupleSign.innerText = `${data.groom} & ${data.bride}`;
+
+      // Sana va vaqt
+      previewDateBadge.innerText = formatWeddingBadgeDate(data.weddingDate);
+      previewFullDateText.innerText = formatWeddingFullDate(data.weddingDate);
+
+      const d = new Date(data.weddingDate);
+      footerDateSign.innerText = !isNaN(d.getTime()) ? d.getFullYear() : "2026";
+
+      // Taklifnoma xati
+      previewMessage.innerText = data.message;
+
+      // Lokatsiya
+      previewVenueName.innerText = data.venue;
+      previewVenueAddress.innerText = data.address;
+
+      if (data.mapUrl && data.mapUrl.startsWith("http")) {
+        previewMapLinkBtn.href = data.mapUrl;
+        previewMapLinkBtn.classList.remove("pointer-events-none", "opacity-50");
+      } else {
+        previewMapLinkBtn.href = `https://yandex.uz/maps/?text=${encodeURIComponent(data.venue + " " + data.address)}`;
+      }
+
+      // Google Calendar linkini yangilash
+      if (!isNaN(d.getTime())) {
+        const startIso = d.toISOString().replace(/-|:|\.\d\d\d/g, "");
+        const endD = new Date(d.getTime() + 4 * 60 * 60 * 1000);
+        const endIso = endD.toISOString().replace(/-|:|\.\d\d\d/g, "");
+        addToCalendarBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(data.groom + " va " + data.bride + "ning Baxt To'yi")}&dates=${startIso}/${endIso}&details=${encodeURIComponent(data.groom + " va " + data.bride + "ning nikoh to'yiga taklif etamiz!")}&location=${encodeURIComponent(data.venue + ", " + data.address)}`;
+      }
+
+      // Audio pleyerni yangilash
+      if (data.musicUrl && data.musicUrl.trim().length > 5) {
+        if (weddingAudio.src !== data.musicUrl) {
+          weddingAudio.src = data.musicUrl;
+        }
+      }
+
+      // Sahifa title'ini moslashtirish
+      document.title = `${data.groom} & ${data.bride} — Nikoh To'yi Taklifnomasi`;
+
+      // Taymerni yangilash
+      startCountdown(data.weddingDate);
+    }
+
+    // =========================================================================
+    // 6. COUNTDOWN TIMER MANTIQI
+    // =========================================================================
+    function startCountdown(dateString) {
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+
+      function update() {
+        const targetTime = new Date(dateString).getTime();
+        const now = new Date().getTime();
+
+        if (isNaN(targetTime)) {
+          daysEl.innerText = "00";
+          hoursEl.innerText = "00";
+          minutesEl.innerText = "00";
+          secondsEl.innerText = "00";
+          return;
+        }
+
+        const distance = targetTime - now;
+
+        if (distance <= 0) {
+          daysEl.innerText = "00";
+          hoursEl.innerText = "00";
+          minutesEl.innerText = "00";
+          secondsEl.innerText = "00";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        daysEl.innerText = days < 10 ? "0" + days : days;
+        hoursEl.innerText = hours < 10 ? "0" + hours : hours;
+        minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
+        secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+      }
+
+      update();
+      countdownInterval = setInterval(update, 1000);
+    }
+
+    // =========================================================================
+    // 7. REJIMLARNI ALMASHTIRISH (ADMIN / TAKLIFNOMA)
+    // =========================================================================
+    function showInvitationMode() {
+      generatorSection.classList.add("hidden");
+      invitationView.classList.remove("hidden");
+      topFloatingBar.classList.remove("hidden");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      // AOS va Swiper qayta ishga tushirish
+      setTimeout(() => {
+        AOS.refresh();
+        initSwiperIfNeeded();
+      }, 100);
+    }
+
+    function showAdminMode() {
+      invitationView.classList.add("hidden");
+      topFloatingBar.classList.add("hidden");
+      generatorSection.classList.remove("hidden");
+
+      // Musiqa yangrayotgan bo'lsa to'xtatamiz
+      if (isAudioPlaying) {
+        pauseAudio();
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function initSwiperIfNeeded() {
+      if (!weddingSwiperInstance) {
+        weddingSwiperInstance = new Swiper('.weddingSwiper', {
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflowEffect: {
+            rotate: 15,
+            stretch: 0,
+            depth: 120,
+            modifier: 1,
+            slideShadows: true,
+          },
+          loop: true,
+          autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+        });
+      }
+    }
+
+    // =========================================================================
+    // 8. AUDIO PLAYER NAZORATI
+    // =========================================================================
     function playAudio() {
+      if (!weddingAudio.src || weddingAudio.src === window.location.href) {
+        weddingAudio.src = currentWedding.musicUrl || DEFAULT_DATA.musicUrl;
+      }
       weddingAudio.play().then(() => {
         isAudioPlaying = true;
         vinylDisc.classList.add('vinyl-spinning');
@@ -825,7 +1169,7 @@
         soundPing.classList.remove('hidden');
         if (musicStatusText) musicStatusText.innerText = "Musiqa yangramoqda";
       }).catch(err => {
-        console.log("Audio autoplay bloklandi, foydalanuvchi teginishi kutilmoqda:", err);
+        console.log("Audio autoplay kutilmoqda:", err);
       });
     }
 
@@ -839,7 +1183,6 @@
       if (musicStatusText) musicStatusText.innerText = "Musiqa to'xtatildi";
     }
 
-    // Tugma orqali yoqish / to'xtatish
     musicToggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       if (isAudioPlaying) {
@@ -849,12 +1192,10 @@
       }
     });
 
-    // Foydalanuvchi sahifaga ilk bor bosganda / aylantirganda musiqani silliq boshlash
     function initialUserGesture() {
-      if (!hasInteracted) {
-        hasInteracted = true;
+      if (!userHasInteractedWithAudio && !invitationView.classList.contains("hidden")) {
+        userHasInteractedWithAudio = true;
         playAudio();
-        // Eshituvchilarni olib tashlaymiz
         window.removeEventListener('click', initialUserGesture);
         window.removeEventListener('scroll', initialUserGesture);
         window.removeEventListener('touchstart', initialUserGesture);
@@ -864,207 +1205,232 @@
     window.addEventListener('scroll', initialUserGesture, { passive: true });
     window.addEventListener('touchstart', initialUserGesture, { passive: true });
 
-    /* ==========================================================================
-       2. COUNTDOWN TIMER (VAQT TAYMERI)
-       ========================================================================== */
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
+    // =========================================================================
+    // 9. FORM HODISALARI (SUBMIT, PRESETS, RESET)
+    // =========================================================================
+    invitationSetupForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = readFormData();
 
-    function updateCountdown() {
-      const targetTime = new Date(WEDDING_CONFIG.weddingDate).getTime();
-      const now = new Date().getTime();
-      const distance = targetTime - now;
-
-      if (distance <= 0) {
-        daysEl.innerText = "00";
-        hoursEl.innerText = "00";
-        minutesEl.innerText = "00";
-        secondsEl.innerText = "00";
-        return;
+      // LocalStorage ga saqlaymiz
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (err) {
+        console.warn("LocalStorage saqlashda xatolik:", err);
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      applyDataToInvitation(data);
+      showInvitationMode();
+    });
 
-      daysEl.innerText = days < 10 ? '0' + days : days;
-      hoursEl.innerText = hours < 10 ? '0' + hours : hours;
-      minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
-      secondsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+    // Namuna ma'lumotlarni yuklash tugmasi
+    loadSampleDataBtn.addEventListener("click", () => {
+      populateForm(DEFAULT_DATA);
+    });
+
+    // Formani tozalash tugmasi
+    clearFormBtn.addEventListener("click", () => {
+      if (confirm("Hamma maydonlar tozalansinmi?")) {
+        invitationSetupForm.reset();
+      }
+    });
+
+    // Preset musiqa tugmalari
+    document.querySelectorAll(".preset-music-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const url = btn.getAttribute("data-url");
+        if (url) {
+          inputMusicUrl.value = url;
+        }
+      });
+    });
+
+    // Tahrirlash tugmalari
+    topBarEditBtn.addEventListener("click", showAdminMode);
+    footerEditBtn.addEventListener("click", showAdminMode);
+
+    if (quickViewSavedBtn) {
+      quickViewSavedBtn.addEventListener("click", () => {
+        showInvitationMode();
+      });
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    // Ulashish / Nusxalash
+    const copyLinkBtn = document.getElementById("copyLinkBtn");
+    const copyLinkText = document.getElementById("copyLinkText");
+    const shareTelegramBtn = document.getElementById("shareTelegramBtn");
 
-    /* ==========================================================================
-       3. RSVP FORMASI VA TELEGRAM BOT INTEGRATSIYASI
-       ========================================================================== */
-    const weddingRsvpForm = document.getElementById('weddingRsvpForm');
-    const rsvpSuccessModal = document.getElementById('rsvpSuccessModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const modalFeedbackText = document.getElementById('modalFeedbackText');
+    function copyInvitationUrl() {
+      const url = window.location.href.split('#')[0];
+      navigator.clipboard.writeText(url).then(() => {
+        if (copyLinkText) copyLinkText.innerText = "Nusxalandi! ✓";
+        setTimeout(() => {
+          if (copyLinkText) copyLinkText.innerText = "Havolani Nusxalash";
+        }, 2500);
+      }).catch(() => {
+        alert("Havola: " + url);
+      });
+    }
 
-    weddingRsvpForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
+    if (copyLinkBtn) copyLinkBtn.addEventListener("click", copyInvitationUrl);
+    if (topBarShareBtn) topBarShareBtn.addEventListener("click", copyInvitationUrl);
 
-      const name = document.getElementById('rsvpName').value.trim();
-      const phone = document.getElementById('rsvpPhone').value.trim() || "Kiritilmadi";
-      const status = document.querySelector('input[name="rsvpStatus"]:checked').value;
-      const guestCount = document.getElementById('rsvpGuestCount').value;
-      const note = document.getElementById('rsvpNote').value.trim() || "—";
+    if (shareTelegramBtn) {
+      shareTelegramBtn.addEventListener("click", () => {
+        const text = encodeURIComponent(`${currentWedding.groom} va ${currentWedding.bride}ning to'y taklifnomasi! Sizni lutfan taklif etamiz:`);
+        const url = encodeURIComponent(window.location.href.split('#')[0]);
+        window.open(`https://t.me/share/url?url=${url}&text=${text}`, '_blank');
+      });
+    }
 
-      // 1. Agar Telegram faollashtirilgan bo'lsa, xabar yuboramiz
-      if (WEDDING_CONFIG.telegram.enabled && WEDDING_CONFIG.telegram.botToken !== "BOT_TOKENINGIZNI_SHU_YERGA_YOZING") {
-        const textMessage = `💌 *Yangi To'y RSVP Javobi!*\n\n` +
-          `👤 *Mehmon:* ${name}\n` +
-          `📞 *Telefon:* ${phone}\n` +
-          `💍 *Qaror:* ${status}\n` +
-          `👥 *Soni:* ${guestCount}\n` +
-          `✍️ *Tilak:* ${note}`;
+    // =========================================================================
+    // 10. GUEST RSVP VA TILAKLAR DEVORI (LOCALSTORAGE)
+    // =========================================================================
+    const guestRsvpForm = document.getElementById("guestRsvpForm");
+    if (guestRsvpForm) {
+      guestRsvpForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("guestRsvpName").value.trim();
+        const decision = document.querySelector('input[name="rsvpDecision"]:checked').value;
+        const note = document.getElementById("guestRsvpNote").value.trim();
 
-        try {
-          await fetch(`https://api.telegram.org/bot${WEDDING_CONFIG.telegram.botToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              chat_id: WEDDING_CONFIG.telegram.chatId,
-              text: textMessage,
-              parse_mode: 'Markdown'
-            })
-          });
-        } catch (error) {
-          console.error("Telegramga yuborishda xatolik yuz berdi:", error);
+        if (note.length > 0) {
+          saveAndRenderWish(name, note);
         }
-      }
 
-      // 2. Agar tilak yozilgan bo'lsa, uni avtomatik mehmonlar devoriga ham qo'shamiz
-      if (note && note !== "—") {
-        addWishToStorage(name, note);
-      }
+        modalFeedbackText.innerText = `Rahmat, ${name}! Sizning javobingiz qabul qilindi: "${decision}". Sizni ko'rishdan behad mamnunmiz!`;
+        openSuccessModal();
+        guestRsvpForm.reset();
+      });
+    }
 
-      // 3. Chiroyli modalni ochish
-      if (status.includes("boraman")) {
-        modalFeedbackText.innerText = `Rahmat, ${name}! Sizning tashrifingiz biz uchun katta sharaf. To'yimizda ko'rishguncha!`;
-      } else {
-        modalFeedbackText.innerText = `Rahmat, ${name}! Samimiy munosabatingiz uchun minnatdormiz. Duolaringizda eslab turing!`;
-      }
-
+    function openSuccessModal() {
       rsvpSuccessModal.classList.remove('hidden');
       setTimeout(() => {
         rsvpSuccessModal.classList.remove('opacity-0');
         rsvpSuccessModal.querySelector('div').classList.remove('scale-95');
-      }, 20);
+      }, 10);
+    }
 
-      weddingRsvpForm.reset();
-    });
-
-    closeModalBtn.addEventListener('click', () => {
+    function closeSuccessModal() {
       rsvpSuccessModal.classList.add('opacity-0');
       rsvpSuccessModal.querySelector('div').classList.add('scale-95');
       setTimeout(() => {
         rsvpSuccessModal.classList.add('hidden');
       }, 300);
+    }
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeSuccessModal);
+    rsvpSuccessModal.addEventListener('click', (e) => {
+      if (e.target === rsvpSuccessModal) closeSuccessModal();
     });
 
-    /* ==========================================================================
-       4. TILAKLAR VA TABRIKLAR QISMI (LOCALSTORAGE GUESTBOOK)
-       ========================================================================== */
-    const wishesContainer = document.getElementById('wishesContainer');
-    const quickWishForm = document.getElementById('quickWishForm');
+    // Tezkor tilak yozish
+    const quickGuestWishForm = document.getElementById("quickGuestWishForm");
+    const wishesFeed = document.getElementById("wishesFeed");
 
-    // Boshlang'ich samimiy tilaklar
-    const defaultWishes = [
-      {
-        author: "Otabek & Shahnoza",
-        text: "Ilohim qo'sha qaringlar! Oila mustahkam, muhabbatingiz abadiy bo'lsin. Baxt doim hamrohingiz bo'lsin!",
-        time: "Bugun"
-      },
-      {
-        author: "Farrux Zokirov",
-        text: "Kelin va kuyovga cheksiz baxt, xonadoningizga fayzu-baraka tilayman. To'y muborak!",
-        time: "Kecha"
+    function loadSavedWishes() {
+      try {
+        const stored = localStorage.getItem(WISHES_STORAGE_KEY);
+        if (stored) {
+          return JSON.parse(stored);
+        }
+      } catch (e) {
+        console.warn(e);
       }
-    ];
+      return [
+        { author: "Davron va Nilufar", text: "Baxtingizga ko'z tegmasin! Bir umr baxtli va saodatli oilalardan bo'linglar!", time: "Bugun, 10:20" },
+        { author: "Anvar aka", text: "Alijon do'stim, uylanish muborak bo'lsin! Yangi xonadoningizga tinchlik va fayz-baraka tilayman!", time: "Kecha, 19:45" },
+      ];
+    }
 
-    function loadWishes() {
-      const saved = localStorage.getItem('wedding_wishes_list');
-      let wishes = saved ? JSON.parse(saved) : defaultWishes;
-
-      wishesContainer.innerHTML = '';
-      wishes.forEach(item => {
-        const card = document.createElement('div');
-        card.className = "p-3.5 rounded-xl bg-white border border-gold/25 shadow-sm text-left";
-        card.innerHTML = `
+    function renderWishes() {
+      const list = loadSavedWishes();
+      wishesFeed.innerHTML = "";
+      list.forEach(w => {
+        const div = document.createElement("div");
+        div.className = "p-3 bg-white/80 rounded-xl border border-gold/20 shadow-2xs";
+        div.innerHTML = `
           <div class="flex items-center justify-between mb-1">
-            <span class="font-semibold text-xs text-gold-dark flex items-center gap-1.5">
-              <span>🌸</span> ${escapeHTML(item.author)}
-            </span>
-            <span class="text-[10px] text-espresso-light/60">${escapeHTML(item.time || 'Yangi')}</span>
+            <span class="font-serif font-bold text-sm text-espresso">${escapeHtml(w.author)}</span>
+            <span class="text-[10px] text-espresso-light/70">${escapeHtml(w.time)}</span>
           </div>
-          <p class="text-xs text-espresso/90 italic leading-relaxed">"${escapeHTML(item.text)}"</p>
+          <p class="text-xs text-espresso-light leading-relaxed">"${escapeHtml(w.text)}"</p>
         `;
-        wishesContainer.appendChild(card);
+        wishesFeed.appendChild(div);
       });
     }
 
-    function addWishToStorage(author, text) {
-      const saved = localStorage.getItem('wedding_wishes_list');
-      let wishes = saved ? JSON.parse(saved) : defaultWishes;
-      wishes.unshift({
-        author: author,
+    function saveAndRenderWish(author, text) {
+      const list = loadSavedWishes();
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+      list.unshift({
+        author: author || "Mehmon",
         text: text,
-        time: "Hozirgina"
+        time: `Bugun, ${timeStr}`
       });
-      localStorage.setItem('wedding_wishes_list', JSON.stringify(wishes));
-      loadWishes();
+      try {
+        localStorage.setItem(WISHES_STORAGE_KEY, JSON.stringify(list));
+      } catch (e) {}
+      renderWishes();
     }
 
-    quickWishForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const author = document.getElementById('wishAuthorInput').value.trim();
-      const text = document.getElementById('wishTextInput').value.trim();
+    if (quickGuestWishForm) {
+      quickGuestWishForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const author = document.getElementById("wishAuthor").value.trim();
+        const text = document.getElementById("wishMessage").value.trim();
+        if (author && text) {
+          saveAndRenderWish(author, text);
+          quickGuestWishForm.reset();
+        }
+      });
+    }
 
-      if (author && text) {
-        addWishToStorage(author, text);
-        quickWishForm.reset();
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.innerText = text || "";
+      return div.innerHTML;
+    }
+
+    // =========================================================================
+    // 11. DASTUR YUKLANISHI (INITIALIZATION)
+    // =========================================================================
+    window.addEventListener("DOMContentLoaded", () => {
+      AOS.init({
+        once: true,
+        duration: 800,
+        easing: 'ease-out-cubic',
+        offset: 40
+      });
+
+      renderWishes();
+
+      // LocalStorage tekshirish
+      let savedData = null;
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          savedData = JSON.parse(raw);
+        }
+      } catch (err) {
+        console.warn("LocalStorage o'qishda xatolik:", err);
+      }
+
+      if (savedData && savedData.groom && savedData.bride) {
+        currentWedding = { ...savedData };
+        populateForm(currentWedding);
+        applyDataToInvitation(currentWedding);
+        
+        // Agar foydalanuvchi avval ma'lumot saqlagan bo'lsa, bildirishnoma ko'rsatamiz
+        if (savedDataNotice) {
+          savedDataNotice.classList.remove("hidden");
+        }
+      } else {
+        populateForm(DEFAULT_DATA);
+        applyDataToInvitation(DEFAULT_DATA);
       }
     });
-
-    function escapeHTML(str) {
-      const p = document.createElement('p');
-      p.appendChild(document.createTextNode(str));
-      return p.innerHTML;
-    }
-
-    loadWishes();
-
-    /* ==========================================================================
-       5. TELEGRAMDA ULASHISH VA HAVOLANI NUSXALASH
-       ========================================================================== */
-    const shareTelegramBtn = document.getElementById('shareTelegramBtn');
-    const copyLinkBtn = document.getElementById('copyLinkBtn');
-    const copyBtnText = document.getElementById('copyBtnText');
-
-    shareTelegramBtn.addEventListener('click', () => {
-      const shareUrl = encodeURIComponent(window.location.href);
-      const shareText = encodeURIComponent(`${WEDDING_CONFIG.groomName} & ${WEDDING_CONFIG.brideName}ning Nikoh To'yi Taklifnomasi! Sizni lutfan taklif etamiz 💍`);
-      window.open(`https://t.me/share/url?url=${shareUrl}&text=${shareText}`, '_blank');
-    });
-
-    copyLinkBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(window.location.href).then(() => {
-        copyBtnText.innerText = "Nusxalandi! ✓";
-        setTimeout(() => {
-          copyBtnText.innerText = "Havolani Nusxalash";
-        }, 2500);
-      }).catch(() => {
-        alert("Havola: " + window.location.href);
-      });
-    });
-
   </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 {
-  "name": "To'y Taklifnomasi",
-  "description": "Kelin-kuyovlar uchun mo'ljallangan zamonaviy, nafis va mobil qurilmalarga to'liq moslashuvchan to'y taklifnomasi veb-sayti.",
+  "name": "To'y Taklifnomasi Generatori",
+  "description": "Kelin-kuyovlar o'z ma'lumotlarini kiritib yaratadigan interaktiv To'y Taklifnomasi Generatori (Admin panel va hashamatli taklifnoma rejimi).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
