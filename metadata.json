@@ -1,6 +1,6 @@
 {
   "name": "To'y Taklifnomasi Generatori",
-  "description": "Kelin-kuyovlar o'z ma'lumotlarini kiritib yaratadigan interaktiv To'y Taklifnomasi Generatori (Admin panel va hashamatli taklifnoma rejimi).",
+  "description": "Har bir to'y uchun unikal va doimiy havola (URL Base64) generatsiya qiladigan interaktiv Taklifnoma Generator sayti.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

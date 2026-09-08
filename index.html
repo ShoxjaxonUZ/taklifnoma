@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>To'y Taklifnomasi Generatori — O'z taklifnomangizni yarating</title>
-  <meta name="description" content="Kelin-kuyovlar uchun interaktiv to'y taklifnomasi yaratish generatori. Ma'lumotlaringizni kiriting va hashamatli taklifnomaga ega bo'ling!" />
+  <title>To'y Taklifnomasi Generatori — Shaxsiy Havola Bilan</title>
+  <meta name="description" content="Har bir to'y uchun unikal va doimiy havola (URL) generatsiya qiladigan zamonaviy taklifnoma sayti." />
   <meta property="og:title" content="To'y Taklifnomasi Generatori" />
-  <meta property="og:description" content="O'z to'y taklifnomangizni bir necha daqiqada yarating va yaqinlaringizga ulashing!" />
+  <meta property="og:description" content="Kelin-kuyovlar uchun shaxsiy havolali hashamatli to'y taklifnomasi!" />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#FAF7F2" />
 
@@ -149,7 +149,7 @@
       animation: pulseSoft 2.2s ease-in-out infinite;
     }
 
-    /* Input focus effekti */
+    /* Maxsus input uslubi */
     .custom-input {
       background-color: #FFFFFF;
       border: 1px solid rgba(197, 160, 89, 0.4);
@@ -166,33 +166,33 @@
 <body class="wedding-pattern-bg min-h-screen">
 
   <!-- ==========================================================
-       TOP STATUSBOR (REJIMLARNI O'ZGARTIRISH VA HARAKATLAR)
+       SUZUVCHI TEPA PANEL (TOP FLOATING BAR - TAKLIFNOMA REJIMI)
        ========================================================== -->
-  <aside id="topFloatingBar" class="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-lg hidden" aria-label="Taklifnoma boshqaruv paneli">
-    <div class="bg-white/95 backdrop-blur-md border border-gold/50 rounded-full px-4 py-2 shadow-xl flex items-center justify-between gap-2 text-xs">
+  <aside id="topFloatingBar" class="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-lg hidden" aria-label="Taklifnoma boshqaruv paneli">
+    <div class="bg-white/95 backdrop-blur-md border border-gold/50 rounded-full px-3.5 py-2 shadow-xl flex items-center justify-between gap-2 text-xs">
       <div class="flex items-center gap-2 overflow-hidden">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0 animate-pulse"></span>
-        <span class="font-semibold text-espresso truncate" id="topBarTitle">Taklifnoma Rejimi</span>
+        <span class="font-semibold text-espresso truncate" id="topBarTitle">Shaxsiy Taklifnoma</span>
       </div>
       <div class="flex items-center gap-1.5 shrink-0">
-        <button id="topBarEditBtn" class="px-3 py-1.5 rounded-full bg-cream-soft hover:bg-gold/20 text-gold-dark font-medium transition-colors flex items-center gap-1">
+        <button id="topBarShareBtn" class="px-3 py-1.5 rounded-full bg-cream-soft hover:bg-gold/20 text-gold-dark font-medium transition-colors flex items-center gap-1">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
           </svg>
-          <span>Tahrirlash</span>
+          <span id="topBarShareText">Havolani Nusxalash</span>
         </button>
-        <button id="topBarShareBtn" class="px-3 py-1.5 rounded-full bg-gold text-white font-medium hover:bg-gold-dark transition-colors flex items-center gap-1">
+        <button id="topBarCreateNewBtn" class="px-3 py-1.5 rounded-full bg-gold text-white font-medium hover:bg-gold-dark transition-colors flex items-center gap-1">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
           </svg>
-          <span>Ulashish</span>
+          <span>Yangi Yaratish</span>
         </button>
       </div>
     </div>
   </aside>
 
   <!-- ==========================================================
-       1. ADMIN / SOZLASH PANELI (BOSHIDA KO'RINADI)
+       1. ADMIN / FORMA PANELI (URL'DA DATA BO'LMAGANDA KO'RINADI)
        ========================================================== -->
   <section id="generatorSection" class="py-10 px-4 min-h-screen flex items-center justify-center">
     <div class="max-w-xl w-full mx-auto luxury-box p-6 sm:p-10">
@@ -202,39 +202,32 @@
       <span class="corner-decor corner-br"></span>
 
       <!-- Generator Sarlavhasi -->
-      <div class="text-center mb-8">
+      <div class="text-center mb-6">
         <div class="w-16 h-16 mx-auto mb-3 rounded-full border-2 border-gold flex items-center justify-center bg-cream-soft shadow-inner">
           <span class="font-script text-3xl text-gold-dark pt-1">💍</span>
         </div>
         <h1 class="font-serif text-3xl sm:text-4xl font-bold text-espresso">
           To'y Taklifnomasi Generatori
         </h1>
-        <p class="text-xs uppercase tracking-widest text-gold-dark mt-2">
-          O'z ma'lumotlaringizni kiriting va hashamatli taklifnoma yarating
+        <p class="text-xs uppercase tracking-widest text-gold-dark mt-2 font-medium">
+          Ma'lumotlaringizni kiriting va doimiy unikal havola (Link) oling
         </p>
-        
-        <!-- Oldingi saqlangan ma'lumot tugmasi (agar mavjud bo'lsa) -->
-        <div id="savedDataNotice" class="mt-4 hidden">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-medium">
-            <span>💾 Saqlangan taklifnomangiz mavjud</span>
-            <button type="button" id="quickViewSavedBtn" class="underline font-bold hover:text-emerald-950">
-              Ko'rish 👉
-            </button>
-          </div>
-        </div>
+        <p class="text-[12px] text-espresso-light mt-1">
+          Har bir taklifnoma o'zining xavfsiz havolasiga ega bo'ladi. Hech qanday ma'lumot yo'qolmaydi!
+        </p>
       </div>
 
       <!-- Tezkor Namuna Tugmalari (Preset / Demo) -->
       <div class="mb-6 p-3 rounded-xl bg-cream-soft/60 border border-gold/30 flex flex-wrap items-center justify-between gap-2">
         <span class="text-xs text-espresso-light font-medium flex items-center gap-1">
           <span>✨</span>
-          <span>Tezkor to'ldirish uchun:</span>
+          <span>Tezkor to'ldirish:</span>
         </span>
         <div class="flex items-center gap-2">
-          <button type="button" id="loadSampleDataBtn" class="text-xs px-3 py-1 rounded-lg bg-white border border-gold/50 text-gold-dark font-medium hover:bg-gold hover:text-white transition-colors">
-            Namuna ma'lumotlar
+          <button type="button" id="loadSampleDataBtn" class="text-xs px-3 py-1 rounded-lg bg-white border border-gold/50 text-gold-dark font-medium hover:bg-gold hover:text-white transition-colors cursor-pointer">
+            Namuna yuklash
           </button>
-          <button type="button" id="clearFormBtn" class="text-xs px-2.5 py-1 rounded-lg text-espresso-light hover:text-red-600 transition-colors">
+          <button type="button" id="clearFormBtn" class="text-xs px-2.5 py-1 rounded-lg text-espresso-light hover:text-red-600 transition-colors cursor-pointer">
             Tozalash
           </button>
         </div>
@@ -265,7 +258,7 @@
             To'y Sanasi va Vaqti *
           </label>
           <input type="datetime-local" id="inputDate" required class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
-          <p class="text-[11px] text-espresso-light mt-1">Ushbu vaqtga asosan avtomatik orqaga sanash taymeri ishlaydi.</p>
+          <p class="text-[11px] text-espresso-light mt-1">Ushbu vaqtga asosan jonli orqaga sanash taymeri ishlaydi.</p>
         </div>
 
         <!-- To'yxona Nomi -->
@@ -279,9 +272,9 @@
         <!-- To'yxona Manzili -->
         <div>
           <label for="inputAddress" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5">
-            Aniq Manzili va Mo'ljali *
+            To'yxona Manzili va Mo'ljali *
           </label>
-          <input type="text" id="inputAddress" required placeholder="Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi 42-uy" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
+          <input type="text" id="inputAddress" required placeholder="Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi, 42-uy" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
         </div>
 
         <!-- Yandex / Google Maps Havolasi -->
@@ -293,7 +286,7 @@
             <input type="url" id="inputMapUrl" placeholder="https://yandex.uz/maps/... yoki https://maps.google.com/..." class="custom-input w-full px-4 py-2.5 rounded-xl text-sm pr-9" />
             <span class="absolute right-3 top-2.5 text-gold-dark text-base">📍</span>
           </div>
-          <p class="text-[11px] text-espresso-light mt-1">Mehmonlar ushbu havola orqali bir bosishda to'yxonagacha yo'nalish olishadi.</p>
+          <p class="text-[11px] text-espresso-light mt-1">Mehmonlar xarita tugmasi orqali to'yxonagacha yo'l xaritasini ochishadi.</p>
         </div>
 
         <!-- Fon Musiqasi (Audio MP3 URL) -->
@@ -303,16 +296,16 @@
           </label>
           <input type="url" id="inputMusicUrl" placeholder="https://.../music.mp3" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
           
-          <!-- Tayyor musiqa namunalarini tanlash -->
+          <!-- Namuna musiqa kuylari -->
           <div class="mt-2 flex flex-wrap gap-2 items-center">
             <span class="text-[11px] text-espresso-light font-medium">Namuna kuylar:</span>
-            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all" data-url="https://assets.mixkit.co/music/preview/mixkit-wedding-piano-walk-537.mp3">
+            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer" data-url="https://assets.mixkit.co/music/preview/mixkit-wedding-piano-walk-537.mp3">
               🎹 Romantik Piano
             </button>
-            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all" data-url="https://assets.mixkit.co/music/preview/mixkit-love-story-piano-solo-543.mp3">
+            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer" data-url="https://assets.mixkit.co/music/preview/mixkit-love-story-piano-solo-543.mp3">
               🎻 Mayin Melodiya
             </button>
-            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all" data-url="https://assets.mixkit.co/music/preview/mixkit-inspiring-cinematic-ambient-1162.mp3">
+            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer" data-url="https://assets.mixkit.co/music/preview/mixkit-inspiring-cinematic-ambient-1162.mp3">
               ✨ Lirik Oqshom
             </button>
           </div>
@@ -324,25 +317,62 @@
             Samimiy Taklifnoma Matni *
           </label>
           <textarea id="inputMessage" rows="4" required placeholder="Hayotimizdagi eng unutilmas va quvonchli kunimizda biz bilan birga bo'lishingizni chin yurakdan istaymiz..." class="custom-input w-full px-4 py-2.5 rounded-xl text-sm"></textarea>
-          <p class="text-[11px] text-espresso-light mt-1">Mehmonlar taklifnomani ochganda ushbu ezgu jumlalarni o'qishadi.</p>
         </div>
 
-        <!-- Generatsiya Tugmasi -->
-        <div class="pt-3">
-          <button type="submit" id="generateBtn" class="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-widest shadow-lg shadow-gold/30 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer">
-            <span>✨ Taklifnomani Generatsiya Qilish</span>
+        <!-- GENERATSIYA VA HAVOLA OLISH TUGMASI -->
+        <div class="pt-2 space-y-3">
+          <button type="submit" id="generateLinkBtn" class="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-widest shadow-lg shadow-gold/30 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>✨ Taklifnoma Havolasini Olish va Ko'rish</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>
           </button>
+
+          <!-- Havolani Nusxalash (Quick Copy) -->
+          <button type="button" id="quickCopyLinkBtn" class="w-full py-3 rounded-full bg-white border border-gold/60 text-gold-dark hover:bg-cream-soft font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span id="quickCopyBtnText">Doimiy Havolani Nusxalash (Copy Link)</span>
+          </button>
         </div>
 
       </form>
+
+      <!-- HAVOLA GENERATSIYA QILINGANIDA PAYDO BO'LADIGAN QUTI -->
+      <div id="generatedLinkBox" class="mt-8 p-5 rounded-2xl bg-white border-2 border-gold/60 shadow-md hidden">
+        <div class="flex items-center gap-2 text-gold-dark font-semibold text-xs uppercase tracking-wider mb-2">
+          <span>🎉</span>
+          <span>Sizning Unikal Taklifnoma Havolangiz Tayyor!</span>
+        </div>
+        <p class="text-[12px] text-espresso-light mb-3">
+          Ushbu havolani nusxalang va mehmonlarga Telegram yoki SMS orqali yuboring:
+        </p>
+
+        <div class="flex items-center gap-2 mb-3">
+          <input type="text" id="generatedLinkInput" readonly class="w-full px-3 py-2 text-xs rounded-lg bg-cream/70 border border-gold/40 text-espresso font-mono truncate select-all" />
+          <button type="button" id="copyGeneratedLinkBtn" class="px-4 py-2 rounded-lg bg-gold text-white text-xs font-semibold hover:bg-gold-dark shrink-0 transition-colors cursor-pointer">
+            Nusxalash
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-gold/20">
+          <button type="button" id="openGeneratedPreviewBtn" class="flex-1 py-2 px-3 rounded-lg bg-cream-soft border border-gold/40 text-gold-dark font-semibold text-xs hover:bg-gold/20 transition-colors flex items-center justify-center gap-1 cursor-pointer">
+            <span>Taklifnomani Ochish</span>
+            <span>👉</span>
+          </button>
+          <button type="button" id="shareTelegramDirectBtn" class="py-2 px-4 rounded-lg bg-[#2AABEE] text-white font-semibold text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 cursor-pointer">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            Telegramda Ulashish
+          </button>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ==========================================================
-       2. TAKLIFNOMA REJIMI (TAYYOR TAKLIFNOMA SAYTI - GENERATED INVITATION)
+       2. TAKLIFNOMA REJIMI (URL'DA DATA BO'LGANDA BIRINCHI OCHILADI)
        ========================================================== -->
   <div id="invitationView" class="hidden">
 
@@ -384,7 +414,7 @@
       <!-- Markaziy qism -->
       <div class="relative z-10 max-w-xl mx-auto pt-16 pb-12 flex flex-col items-center">
         
-        <!-- Monogramma Muhri (Avtomatik bosh harflar) -->
+        <!-- Monogramma Muhri (Ismlarning bosh harflari) -->
         <div data-aos="zoom-in" data-aos-duration="1000" class="w-20 h-20 mb-6 rounded-full border-2 border-gold flex items-center justify-center bg-white/80 backdrop-blur-md shadow-lg shadow-gold/20 relative">
           <span class="absolute inset-1 rounded-full border border-dashed border-gold/60"></span>
           <span id="previewMonogram" class="font-script text-3xl text-gold-dark pt-1">A&M</span>
@@ -432,7 +462,7 @@
           <span id="previewDateBadge">24 · OKTABR · 2026</span>
         </div>
 
-        <!-- Pastga surilish tugmasi -->
+        <!-- Pastga surilish ko'rsatkichi -->
         <a href="#about" data-aos="fade-up" data-aos-delay="800" class="mt-12 flex flex-col items-center text-xs uppercase tracking-widest text-espresso-light hover:text-gold transition-colors duration-300">
           <span class="mb-2">Taklifnoma</span>
           <svg class="w-5 h-5 animate-float-down text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -465,7 +495,7 @@
           <span class="w-12 h-[1px] bg-gold/50"></span>
         </div>
 
-        <!-- Dinamik kiritilgan taklif matni -->
+        <!-- Havoladan olingan taklif matni -->
         <div id="previewMessage" class="font-serif text-lg sm:text-xl text-espresso/85 space-y-4 leading-relaxed whitespace-pre-line">
           Hayotimizdagi eng unutilmas, hayajonli va quvonchli kun — yangi oila rishtalari bog'lanayotgan ushbu tantanali onlarda biz bilan birga bo'lishingizni chin yurakdan istaymiz.
         </div>
@@ -605,9 +635,8 @@
             Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi, 42-uy
           </p>
 
-          <!-- XARITA TUGMALARI -->
+          <!-- XARITA TUGMASI -->
           <div class="flex flex-col sm:flex-row gap-3 justify-center">
-            <!-- Foydalanuvchi kiritgan xarita linki -->
             <a id="previewMapLinkBtn" href="https://yandex.uz/maps/?text=Versal+Restaurant+Tashkent" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md hover:brightness-105">
               <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -720,7 +749,7 @@
             <textarea id="guestRsvpNote" rows="3" placeholder="Ezgu tilaklaringizni qoldiring..." class="custom-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
           </div>
 
-          <button type="submit" class="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-widest shadow-lg shadow-gold/25 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+          <button type="submit" class="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-widest shadow-lg shadow-gold/25 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer">
             <span>Javobni Yuborish</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -748,7 +777,7 @@
           <div class="space-y-3">
             <input type="text" id="wishAuthor" required placeholder="Ismingiz..." class="w-full px-3 py-2 text-sm rounded-lg bg-cream/60 border border-gold/30 focus:outline-none focus:ring-2 focus:ring-gold/40" />
             <textarea id="wishMessage" required rows="2" placeholder="Kelin va kuyovga samimiy baxt tilaklaringiz..." class="w-full px-3 py-2 text-sm rounded-lg bg-cream/60 border border-gold/30 focus:outline-none focus:ring-2 focus:ring-gold/40"></textarea>
-            <button type="submit" class="w-full py-2.5 rounded-lg bg-gold text-white font-medium text-xs uppercase tracking-wider hover:bg-gold-dark transition-colors flex items-center justify-center gap-1.5">
+            <button type="submit" class="w-full py-2.5 rounded-lg bg-gold text-white font-medium text-xs uppercase tracking-wider hover:bg-gold-dark transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
               <span>Tilakni Chop Etish</span>
               <span>✍️</span>
             </button>
@@ -756,21 +785,19 @@
         </form>
 
         <!-- Tilaklar ro'yxati -->
-        <div id="wishesFeed" class="space-y-3 max-h-80 overflow-y-auto pr-1">
-          <!-- JS orqali kiritiladi -->
-        </div>
+        <div id="wishesFeed" class="space-y-3 max-h-80 overflow-y-auto pr-1"></div>
       </section>
 
-      <!-- 7. TAKLIFNOMANI ULASHISH TUGMASI -->
+      <!-- 7. TAKLIFNOMANI ULASHISH VA YUKLAB OLISH -->
       <section data-aos="fade-up" class="text-center py-4">
-        <p class="text-xs uppercase tracking-widest text-espresso-light mb-3">Taklifnomani yaqinlaringizga ulashing</p>
+        <p class="text-xs uppercase tracking-widest text-espresso-light mb-3">Ushbu taklifnomani yaqinlaringizga yuboring</p>
         <div class="flex flex-wrap justify-center gap-3">
-          <button id="shareTelegramBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2AABEE] text-white text-xs font-semibold tracking-wide shadow-sm hover:opacity-90 transition-opacity">
+          <button id="shareTelegramBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2AABEE] text-white text-xs font-semibold tracking-wide shadow-sm hover:opacity-90 transition-opacity cursor-pointer">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
             Telegram orqali yuborish
           </button>
 
-          <button id="copyLinkBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-gold/50 text-espresso text-xs font-semibold tracking-wide shadow-sm hover:bg-cream-soft transition-all">
+          <button id="copyLinkBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-gold/50 text-espresso text-xs font-semibold tracking-wide shadow-sm hover:bg-cream-soft transition-all cursor-pointer">
             <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
             <span id="copyLinkText">Havolani Nusxalash</span>
           </button>
@@ -780,9 +807,9 @@
     </main>
 
     <!-- ==========================================================
-         FOOTER (PASTKI QISM)
+         FOOTER (PASTKI QISM VA YANGI YARATISH TUGMASI)
          ========================================================== -->
-    <footer class="text-center py-16 px-4 bg-gradient-to-b from-transparent to-cream-soft/60">
+    <footer class="text-center py-16 px-4 bg-gradient-to-b from-transparent to-cream-soft/70">
       <div class="max-w-md mx-auto space-y-4">
         <div class="flex items-center justify-center gap-4 text-gold">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
@@ -808,12 +835,14 @@
         <p id="footerCoupleSign" class="font-script text-4xl text-gold-dark">Alijon & Madina</p>
         <p id="footerDateSign" class="text-xs uppercase tracking-widest text-espresso-light">2026</p>
 
-        <div class="pt-6">
-          <button id="footerEditBtn" class="inline-flex items-center gap-1.5 text-xs text-gold-dark hover:text-espresso font-medium underline underline-offset-4">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+        <!-- Yangi taklifnoma yaratish tugmasi -->
+        <div class="pt-8 border-t border-gold/20 mt-6">
+          <p class="text-xs text-espresso-light mb-2">Siz ham o'z to'yingiz uchun bunday zamonaviy taklifnoma yaratmoqchimisiz?</p>
+          <button id="footerCreateNewBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold hover:bg-gold-dark text-white font-semibold text-xs tracking-wider uppercase transition-colors shadow-sm cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
             </svg>
-            <span>Taklifnoma ma'lumotlarini o'zgartirish</span>
+            <span>O'z Taklifnomangizni Yarating</span>
           </button>
         </div>
       </div>
@@ -840,17 +869,25 @@
   </div>
 
   <!-- ==========================================================
+       TOAST HABAR (LINK NUSXALANGANDA KO'RINADI)
+       ========================================================== -->
+  <div id="toastNotification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-espresso text-white px-5 py-2.5 rounded-full text-xs font-semibold shadow-2xl border border-gold/40 flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <span class="text-gold">✓</span>
+    <span id="toastText">Havola xotiraga nusxalandi!</span>
+  </div>
+
+  <!-- ==========================================================
        JAVASCRIPT KUTUBXONALARI (CDN)
        ========================================================== -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <!-- ==========================================================
-       INTERAKTIV DASTUR MANTIQI (FULL GENERATOR & VIEWER ENGINE)
+       INTERAKTIV DASTUR MANTIQI (PERMANENT URL ENCODING ENGINE)
        ========================================================== -->
   <script>
     // =========================================================================
-    // 1. STANDART VA NAMUNA MA'LUMOTLAR (DEFAULT STATE)
+    // 1. STANDART NAMUNA MA'LUMOTLAR (DEFAULT STATE)
     // =========================================================================
     const DEFAULT_DATA = {
       groom: "Alijon",
@@ -863,9 +900,6 @@
       message: "Hayotimizdagi eng unutilmas, hayajonli va quvonchli kun — yangi oila rishtalari bog'lanayotgan ushbu tantanali onlarda biz bilan birga bo'lishingizni chin yurakdan istaymiz.\n\nSizning samimiy tabassumingiz, ezgu duolaringiz va mehr to'la tilaklaringiz bizning xonadonimizga fayz, qalbimizga cheksiz quvonch bag'ishlaydi."
     };
 
-    const STORAGE_KEY = "my_custom_wedding_invitation";
-    const WISHES_STORAGE_KEY = "wedding_guest_wishes";
-
     // Holat o'zgaruvchilari
     let currentWedding = { ...DEFAULT_DATA };
     let countdownInterval = null;
@@ -874,16 +908,94 @@
     let userHasInteractedWithAudio = false;
 
     // =========================================================================
-    // 2. DOM ELEMENTLARINI BOG'LASH
+    // 2. URL BASE64 ENCODING / DECODING FUNKSIYALARI (UTF-8 XAVFSIZ)
+    // =========================================================================
+    /**
+     * Obyektni URL-xavfsiz Base64 matniga o'giradi (o'zbekcha harflar va belgilar bilan xatosiz ishlaydi).
+     */
+    function encodeWeddingData(data) {
+      try {
+        const json = JSON.stringify(data);
+        const utf8Bytes = new TextEncoder().encode(json);
+        let binary = '';
+        for (let i = 0; i < utf8Bytes.length; i++) {
+          binary += String.fromCharCode(utf8Bytes[i]);
+        }
+        return btoa(binary)
+          .replace(/\+/g, '-')
+          .replace(/\//g, '_')
+          .replace(/=+$/, '');
+      } catch (err) {
+        console.error("Encoding error:", err);
+        return "";
+      }
+    }
+
+    /**
+     * URL-xavfsiz Base64 matnidan obyektni qayta tiklaydi.
+     */
+    function decodeWeddingData(str) {
+      try {
+        if (!str) return null;
+        let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+        while (base64.length % 4) {
+          base64 += '=';
+        }
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+          bytes[i] = binary.charCodeAt(i);
+        }
+        const json = new TextDecoder().decode(bytes);
+        return JSON.parse(json);
+      } catch (err) {
+        console.warn("Decoding error:", err);
+        return null;
+      }
+    }
+
+    /**
+     * URL'ning hash (#data=...) yoki query param (?data=...) qismidan ma'lumotni ajratib oladi.
+     */
+    function extractDataFromCurrentUrl() {
+      // 1. Hash qismini tekshiramiz: #data=eyJrZX...
+      const hash = window.location.hash;
+      if (hash && hash.includes("data=")) {
+        const match = hash.match(/data=([^&]+)/);
+        if (match && match[1]) {
+          return decodeWeddingData(match[1]);
+        }
+      }
+
+      // 2. Query param qismini tekshiramiz: ?data=eyJrZX...
+      const searchParams = new URLSearchParams(window.location.search);
+      const queryData = searchParams.get("data");
+      if (queryData) {
+        return decodeWeddingData(queryData);
+      }
+
+      return null;
+    }
+
+    /**
+     * Ma'lumot asosida to'liq unikal URL hosil qiladi
+     */
+    function generatePermanentUrl(data) {
+      const encoded = encodeWeddingData(data);
+      const baseUrl = window.location.origin + window.location.pathname;
+      return `${baseUrl}#data=${encoded}`;
+    }
+
+    // =========================================================================
+    // 3. DOM ELEMENTLARINI BOG'LASH
     // =========================================================================
     const generatorSection = document.getElementById("generatorSection");
     const invitationView = document.getElementById("invitationView");
     const topFloatingBar = document.getElementById("topFloatingBar");
-    const topBarEditBtn = document.getElementById("topBarEditBtn");
     const topBarShareBtn = document.getElementById("topBarShareBtn");
-    const footerEditBtn = document.getElementById("footerEditBtn");
-    const savedDataNotice = document.getElementById("savedDataNotice");
-    const quickViewSavedBtn = document.getElementById("quickViewSavedBtn");
+    const topBarShareText = document.getElementById("topBarShareText");
+    const topBarCreateNewBtn = document.getElementById("topBarCreateNewBtn");
+    const footerCreateNewBtn = document.getElementById("footerCreateNewBtn");
 
     // Form inputs
     const invitationSetupForm = document.getElementById("invitationSetupForm");
@@ -897,6 +1009,15 @@
     const inputMessage = document.getElementById("inputMessage");
     const loadSampleDataBtn = document.getElementById("loadSampleDataBtn");
     const clearFormBtn = document.getElementById("clearFormBtn");
+    const quickCopyLinkBtn = document.getElementById("quickCopyLinkBtn");
+    const quickCopyBtnText = document.getElementById("quickCopyBtnText");
+
+    // Generated Link Box
+    const generatedLinkBox = document.getElementById("generatedLinkBox");
+    const generatedLinkInput = document.getElementById("generatedLinkInput");
+    const copyGeneratedLinkBtn = document.getElementById("copyGeneratedLinkBtn");
+    const openGeneratedPreviewBtn = document.getElementById("openGeneratedPreviewBtn");
+    const shareTelegramDirectBtn = document.getElementById("shareTelegramDirectBtn");
 
     // Preview elementlari
     const previewMonogram = document.getElementById("previewMonogram");
@@ -928,13 +1049,15 @@
     const soundPing = document.getElementById("soundPing");
     const musicStatusText = document.getElementById("musicStatusText");
 
-    // Modal
+    // Modal va Toast
     const rsvpSuccessModal = document.getElementById("rsvpSuccessModal");
     const closeModalBtn = document.getElementById("closeModalBtn");
     const modalFeedbackText = document.getElementById("modalFeedbackText");
+    const toastNotification = document.getElementById("toastNotification");
+    const toastText = document.getElementById("toastText");
 
     // =========================================================================
-    // 3. YORDAMCHI SANANI FORMATLASH FUNKSIYALARI
+    // 4. SANANI FORMATLASH VA YORDAMCHI FUNKSIYALAR
     // =========================================================================
     const OYZLAR_UZ = [
       "Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun",
@@ -969,8 +1092,18 @@
       return `${gInitial}&${bInitial}`;
     }
 
+    function showToast(message) {
+      toastText.innerText = message || "Muvaffaqiyatli bajarildi!";
+      toastNotification.classList.remove("translate-y-20", "opacity-0");
+      toastNotification.classList.add("translate-y-0", "opacity-100");
+      setTimeout(() => {
+        toastNotification.classList.add("translate-y-20", "opacity-0");
+        toastNotification.classList.remove("translate-y-0", "opacity-100");
+      }, 2500);
+    }
+
     // =========================================================================
-    // 4. FORMANI MA'LUMOTLAR BILAN TO'LDIRISH VA SAQLASH
+    // 5. FORMANI TO'LDIRISH VA O'QISH
     // =========================================================================
     function populateForm(data) {
       inputGroom.value = data.groom || "";
@@ -997,7 +1130,7 @@
     }
 
     // =========================================================================
-    // 5. TAKLIFNOMA SHABLONIGA MA'LUMOTLARNI JOYLASH (RENDER)
+    // 6. TAKLIFNOMA SHABLONIGA MA'LUMOTLARNI CHOP ETISH
     // =========================================================================
     function applyDataToInvitation(data) {
       currentWedding = { ...data };
@@ -1025,7 +1158,6 @@
 
       if (data.mapUrl && data.mapUrl.startsWith("http")) {
         previewMapLinkBtn.href = data.mapUrl;
-        previewMapLinkBtn.classList.remove("pointer-events-none", "opacity-50");
       } else {
         previewMapLinkBtn.href = `https://yandex.uz/maps/?text=${encodeURIComponent(data.venue + " " + data.address)}`;
       }
@@ -1053,7 +1185,7 @@
     }
 
     // =========================================================================
-    // 6. COUNTDOWN TIMER MANTIQI
+    // 7. COUNTDOWN TIMER MANTIQI
     // =========================================================================
     function startCountdown(dateString) {
       if (countdownInterval) {
@@ -1098,16 +1230,17 @@
     }
 
     // =========================================================================
-    // 7. REJIMLARNI ALMASHTIRISH (ADMIN / TAKLIFNOMA)
+    // 8. REJIMLARNI BOSHQARISH (ADMIN / TAKLIFNOMA)
     // =========================================================================
-    function showInvitationMode() {
+    function showInvitationMode(data) {
+      applyDataToInvitation(data);
+
       generatorSection.classList.add("hidden");
       invitationView.classList.remove("hidden");
       topFloatingBar.classList.remove("hidden");
 
       window.scrollTo({ top: 0, behavior: "smooth" });
 
-      // AOS va Swiper qayta ishga tushirish
       setTimeout(() => {
         AOS.refresh();
         initSwiperIfNeeded();
@@ -1119,7 +1252,6 @@
       topFloatingBar.classList.add("hidden");
       generatorSection.classList.remove("hidden");
 
-      // Musiqa yangrayotgan bo'lsa to'xtatamiz
       if (isAudioPlaying) {
         pauseAudio();
       }
@@ -1155,7 +1287,7 @@
     }
 
     // =========================================================================
-    // 8. AUDIO PLAYER NAZORATI
+    // 9. AUDIO PLAYER NAZORATI
     // =========================================================================
     function playAudio() {
       if (!weddingAudio.src || weddingAudio.src === window.location.href) {
@@ -1206,33 +1338,64 @@
     window.addEventListener('touchstart', initialUserGesture, { passive: true });
 
     // =========================================================================
-    // 9. FORM HODISALARI (SUBMIT, PRESETS, RESET)
+    // 10. GENERATSIYA VA HAVOLA YARATISH HODISALARI
     // =========================================================================
     invitationSetupForm.addEventListener("submit", function (e) {
       e.preventDefault();
       const data = readFormData();
+      const permUrl = generatePermanentUrl(data);
 
-      // LocalStorage ga saqlaymiz
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      } catch (err) {
-        console.warn("LocalStorage saqlashda xatolik:", err);
-      }
+      // Link qutisini ko'rsatamiz
+      generatedLinkInput.value = permUrl;
+      generatedLinkBox.classList.remove("hidden");
 
-      applyDataToInvitation(data);
-      showInvitationMode();
+      // Sahifa URL hash'ini o'zgartiramiz va taklifnomani ochamiz
+      window.location.hash = `data=${encodeWeddingData(data)}`;
+      showInvitationMode(data);
+      showToast("Taklifnoma havolasi tayyorlandi!");
     });
 
-    // Namuna ma'lumotlarni yuklash tugmasi
-    loadSampleDataBtn.addEventListener("click", () => {
-      populateForm(DEFAULT_DATA);
+    // Tezkor "Havolani Nusxalash" tugmasi (Form ichidagi)
+    quickCopyLinkBtn.addEventListener("click", () => {
+      const data = readFormData();
+      const permUrl = generatePermanentUrl(data);
+
+      navigator.clipboard.writeText(permUrl).then(() => {
+        quickCopyBtnText.innerText = "Havola Nusxalandi! ✓";
+        showToast("Doimiy havola xotiraga nusxalandi!");
+        setTimeout(() => {
+          quickCopyBtnText.innerText = "Doimiy Havolani Nusxalash (Copy Link)";
+        }, 3000);
+      }).catch(() => {
+        prompt("Doimiy taklifnoma havolasi:", permUrl);
+      });
     });
 
-    // Formani tozalash tugmasi
-    clearFormBtn.addEventListener("click", () => {
-      if (confirm("Hamma maydonlar tozalansinmi?")) {
-        invitationSetupForm.reset();
-      }
+    // Link qutisidagi "Nusxalash" tugmasi
+    copyGeneratedLinkBtn.addEventListener("click", () => {
+      const url = generatedLinkInput.value;
+      navigator.clipboard.writeText(url).then(() => {
+        copyGeneratedLinkBtn.innerText = "Nusxalandi! ✓";
+        showToast("Havola nusxalandi!");
+        setTimeout(() => {
+          copyGeneratedLinkBtn.innerText = "Nusxalash";
+        }, 2500);
+      });
+    });
+
+    // Link qutisidagi "Taklifnomani ochish" tugmasi
+    openGeneratedPreviewBtn.addEventListener("click", () => {
+      const data = readFormData();
+      window.location.hash = `data=${encodeWeddingData(data)}`;
+      showInvitationMode(data);
+    });
+
+    // Telegramda to'g'ridan-to'g'ri ulashish (Link qutisidan)
+    shareTelegramDirectBtn.addEventListener("click", () => {
+      const data = readFormData();
+      const url = generatePermanentUrl(data);
+      const text = encodeURIComponent(`💍 ${data.groom} va ${data.bride}ning to'y taklifnomasi! Sizni lutfan taklif etamiz:\n`);
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${text}`, '_blank');
     });
 
     // Preset musiqa tugmalari
@@ -1241,50 +1404,63 @@
         const url = btn.getAttribute("data-url");
         if (url) {
           inputMusicUrl.value = url;
+          showToast("Kuy tanlandi!");
         }
       });
     });
 
-    // Tahrirlash tugmalari
-    topBarEditBtn.addEventListener("click", showAdminMode);
-    footerEditBtn.addEventListener("click", showAdminMode);
+    // Namuna yuklash
+    loadSampleDataBtn.addEventListener("click", () => {
+      populateForm(DEFAULT_DATA);
+      showToast("Namuna ma'lumotlar yuklandi!");
+    });
 
-    if (quickViewSavedBtn) {
-      quickViewSavedBtn.addEventListener("click", () => {
-        showInvitationMode();
-      });
+    // Tozalash
+    clearFormBtn.addEventListener("click", () => {
+      if (confirm("Hamma maydonlar tozalansinmi?")) {
+        invitationSetupForm.reset();
+        generatedLinkBox.classList.add("hidden");
+      }
+    });
+
+    // "Yangi Yaratish" tugmalari (Formaga qaytish)
+    function resetToCreateMode() {
+      // Hashni tozalaymiz
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+      showAdminMode();
     }
+    topBarCreateNewBtn.addEventListener("click", resetToCreateMode);
+    footerCreateNewBtn.addEventListener("click", resetToCreateMode);
 
-    // Ulashish / Nusxalash
-    const copyLinkBtn = document.getElementById("copyLinkBtn");
-    const copyLinkText = document.getElementById("copyLinkText");
-    const shareTelegramBtn = document.getElementById("shareTelegramBtn");
-
-    function copyInvitationUrl() {
-      const url = window.location.href.split('#')[0];
-      navigator.clipboard.writeText(url).then(() => {
+    // Havolani nusxalash (Taklifnoma sahifasidagi tugmalar)
+    function copyCurrentPermanentUrl() {
+      const permUrl = generatePermanentUrl(currentWedding);
+      navigator.clipboard.writeText(permUrl).then(() => {
+        const copyLinkText = document.getElementById("copyLinkText");
         if (copyLinkText) copyLinkText.innerText = "Nusxalandi! ✓";
+        if (topBarShareText) topBarShareText.innerText = "Nusxalandi! ✓";
+        showToast("Taklifnoma havolasi nusxalandi!");
         setTimeout(() => {
           if (copyLinkText) copyLinkText.innerText = "Havolani Nusxalash";
-        }, 2500);
+          if (topBarShareText) topBarShareText.innerText = "Havolani Nusxalash";
+        }, 3000);
       }).catch(() => {
-        alert("Havola: " + url);
+        prompt("Taklifnoma havolasi:", permUrl);
       });
     }
 
-    if (copyLinkBtn) copyLinkBtn.addEventListener("click", copyInvitationUrl);
-    if (topBarShareBtn) topBarShareBtn.addEventListener("click", copyInvitationUrl);
+    document.getElementById("copyLinkBtn").addEventListener("click", copyCurrentPermanentUrl);
+    topBarShareBtn.addEventListener("click", copyCurrentPermanentUrl);
 
-    if (shareTelegramBtn) {
-      shareTelegramBtn.addEventListener("click", () => {
-        const text = encodeURIComponent(`${currentWedding.groom} va ${currentWedding.bride}ning to'y taklifnomasi! Sizni lutfan taklif etamiz:`);
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-        window.open(`https://t.me/share/url?url=${url}&text=${text}`, '_blank');
-      });
-    }
+    // Telegram orqali ulashish
+    document.getElementById("shareTelegramBtn").addEventListener("click", () => {
+      const url = generatePermanentUrl(currentWedding);
+      const text = encodeURIComponent(`💍 ${currentWedding.groom} va ${currentWedding.bride}ning to'y taklifnomasi! Sizni lutfan taklif etamiz:`);
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${text}`, '_blank');
+    });
 
     // =========================================================================
-    // 10. GUEST RSVP VA TILAKLAR DEVORI (LOCALSTORAGE)
+    // 11. GUEST RSVP VA TILAKLAR DEVORI
     // =========================================================================
     const guestRsvpForm = document.getElementById("guestRsvpForm");
     if (guestRsvpForm) {
@@ -1324,13 +1500,18 @@
       if (e.target === rsvpSuccessModal) closeSuccessModal();
     });
 
-    // Tezkor tilak yozish
+    // Tilaklar devori
     const quickGuestWishForm = document.getElementById("quickGuestWishForm");
     const wishesFeed = document.getElementById("wishesFeed");
 
+    function getStorageKeyForWishes() {
+      return `wishes_${currentWedding.groom}_${currentWedding.bride}`.replace(/\s+/g, '_').toLowerCase();
+    }
+
     function loadSavedWishes() {
       try {
-        const stored = localStorage.getItem(WISHES_STORAGE_KEY);
+        const key = getStorageKeyForWishes();
+        const stored = localStorage.getItem(key);
         if (stored) {
           return JSON.parse(stored);
         }
@@ -1339,7 +1520,7 @@
       }
       return [
         { author: "Davron va Nilufar", text: "Baxtingizga ko'z tegmasin! Bir umr baxtli va saodatli oilalardan bo'linglar!", time: "Bugun, 10:20" },
-        { author: "Anvar aka", text: "Alijon do'stim, uylanish muborak bo'lsin! Yangi xonadoningizga tinchlik va fayz-baraka tilayman!", time: "Kecha, 19:45" },
+        { author: "Anvar aka", text: "Uylanish muborak bo'lsin! Yangi xonadoningizga tinchlik va fayz-baraka tilayman!", time: "Kecha, 19:45" },
       ];
     }
 
@@ -1370,7 +1551,7 @@
         time: `Bugun, ${timeStr}`
       });
       try {
-        localStorage.setItem(WISHES_STORAGE_KEY, JSON.stringify(list));
+        localStorage.setItem(getStorageKeyForWishes(), JSON.stringify(list));
       } catch (e) {}
       renderWishes();
     }
@@ -1394,8 +1575,24 @@
     }
 
     // =========================================================================
-    // 11. DASTUR YUKLANISHI (INITIALIZATION)
+    // 12. DASTUR ISHGA TUSHISHI VA URL ROUTER (HASH ROUTING)
     // =========================================================================
+    function checkUrlAndRoute() {
+      const urlData = extractDataFromCurrentUrl();
+
+      if (urlData && urlData.groom && urlData.bride) {
+        // URL da to'y ma'lumotlari mavjud -> To'g'ridan-to'g'ri Taklifnoma sahifasini ochamiz!
+        currentWedding = { ...urlData };
+        populateForm(currentWedding);
+        showInvitationMode(currentWedding);
+        renderWishes();
+      } else {
+        // URL toza bo'lsa -> Yangi taklifnoma yaratish formasini ko'rsatamiz!
+        populateForm(DEFAULT_DATA);
+        showAdminMode();
+      }
+    }
+
     window.addEventListener("DOMContentLoaded", () => {
       AOS.init({
         once: true,
@@ -1404,32 +1601,12 @@
         offset: 40
       });
 
-      renderWishes();
+      checkUrlAndRoute();
+    });
 
-      // LocalStorage tekshirish
-      let savedData = null;
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-          savedData = JSON.parse(raw);
-        }
-      } catch (err) {
-        console.warn("LocalStorage o'qishda xatolik:", err);
-      }
-
-      if (savedData && savedData.groom && savedData.bride) {
-        currentWedding = { ...savedData };
-        populateForm(currentWedding);
-        applyDataToInvitation(currentWedding);
-        
-        // Agar foydalanuvchi avval ma'lumot saqlagan bo'lsa, bildirishnoma ko'rsatamiz
-        if (savedDataNotice) {
-          savedDataNotice.classList.remove("hidden");
-        }
-      } else {
-        populateForm(DEFAULT_DATA);
-        applyDataToInvitation(DEFAULT_DATA);
-      }
+    // Agar URL hash'i o'zgarsa (masalan, foydalanuvchi yangi link ochsa yoki orqaga qaytsa)
+    window.addEventListener("hashchange", () => {
+      checkUrlAndRoute();
     });
   </script>
 </body>
