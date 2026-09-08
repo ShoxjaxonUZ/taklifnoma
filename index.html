@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>To'y Taklifnomasi Generatori — Zamonaviy va Hashamatli</title>
-  <meta name="description" content="Kelin-kuyovlar uchun onlayn taklifnoma generatori: UZ/RU/EN ko'p tillilik, plastik karta va telefon raqamidan nusxa olish, LocalStorage saqlash hamda hashamatli dizayn." />
-  <meta property="og:title" content="To'y Taklifnomasi Generatori" />
-  <meta property="og:description" content="Kelin-kuyovlar uchun shaxsiy hashamatli to'y taklifnomasi!" />
+  <meta name="description" content="Kelin-kuyovlar uchun hashamatli to'y taklifnomasi generatori: tahrirlash imkoniyatisiz mehmon havolasi (link-based read-only mode), UZ/RU/EN tillar, onlayn to'yona karta raqami, audio musiqa va taymer." />
+  <meta property="og:title" content="To'y Taklifnomasi Generatori — Zamonaviy va Hashamatli" />
+  <meta property="og:description" content="Kelin-kuyovlar uchun hashamatli to'y taklifnomasi generatori: tahrirlash imkoniyatisiz mehmon havolasi (link-based read-only mode), UZ/RU/EN tillar, onlayn to'yona karta raqami, audio musiqa va taymer." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#FAF7F2" />
 
@@ -218,7 +218,7 @@
           Ma'lumotlaringizni kiriting va hashamatli taklifnoma yarating
         </p>
         <p class="text-[12px] text-espresso-light mt-1">
-          Barcha ma'lumotlar avtomatik tarzda brauzer xotirasida (LocalStorage) saqlanib qoladi.
+          Mehmonlar uchun faqat ko'rish rejimiga ega (Read-Only) unikal havola generatsiya qilinadi.
         </p>
       </div>
 
@@ -389,12 +389,16 @@
           <textarea id="inputMessage" rows="4" required placeholder="Hayotimizdagi eng unutilmas va quvonchli kunimizda biz bilan birga bo'lishingizni chin yurakdan istaymiz..." class="custom-input w-full px-4 py-2.5 rounded-xl text-sm"></textarea>
         </div>
 
-        <!-- GENERATSIYA TUGMASI -->
-        <div class="pt-2">
-          <button type="submit" id="generateBtn" class="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-widest shadow-lg shadow-gold/30 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer">
-            <i class="fa-solid fa-wand-magic-sparkles text-base"></i>
-            <span>Taklifnomani Generatsiya Qilish</span>
-            <i class="fa-solid fa-arrow-right text-sm"></i>
+        <!-- GENERATSIYA VA HAVOLA YARATISH TUGMALARI -->
+        <div class="pt-2 flex flex-col sm:flex-row gap-3">
+          <button type="submit" id="generateBtn" class="flex-1 py-4 px-6 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-sm uppercase tracking-wider shadow-lg shadow-gold/30 hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer">
+            <i class="fa-solid fa-link text-base"></i>
+            <span>Nusxalash uchun Havola Yaratish</span>
+          </button>
+          
+          <button type="button" id="previewBtn" class="py-4 px-6 rounded-full bg-white hover:bg-cream-soft text-gold-dark border border-gold/60 font-semibold text-sm tracking-wider uppercase transition-all shadow-xs hover:border-gold flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]">
+            <i class="fa-regular fa-eye text-base"></i>
+            <span>Oldindan Ko'rish</span>
           </button>
         </div>
 
@@ -427,11 +431,20 @@
           </button>
         </div>
 
-        <!-- Tahrirlash Tugmasi (Nafis va bejirim) -->
-        <button type="button" id="navEditBtn" class="px-3.5 py-1.5 rounded-full bg-cream-soft hover:bg-gold/20 text-gold-dark border border-gold/40 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95">
-          <i class="fa-solid fa-pen-to-square text-[11px]"></i>
-          <span data-i18n="editBtn">Tahrirlash</span>
-        </button>
+        <!-- Admin Boshqaruv Tugmalari (Mehmon rejimida butunlay yashirin bo'ladi) -->
+        <div id="navAdminControls" class="flex items-center gap-2">
+          <!-- Havolani Olish tugmasi -->
+          <button type="button" id="navGetLinkBtn" class="px-3.5 py-1.5 rounded-full bg-gold hover:bg-gold-dark text-white text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="Mehmonlar havolasini olish">
+            <i class="fa-solid fa-link text-[11px]"></i>
+            <span class="hidden sm:inline">Havolani Olish</span>
+          </button>
+
+          <!-- Tahrirlash Tugmasi (Nafis va bejirim) -->
+          <button type="button" id="navEditBtn" class="px-3.5 py-1.5 rounded-full bg-cream-soft hover:bg-gold/20 text-gold-dark border border-gold/40 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95">
+            <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+            <span data-i18n="editBtn">Tahrirlash</span>
+          </button>
+        </div>
 
       </div>
     </header>
@@ -952,8 +965,8 @@
         <p id="footerCoupleSign" class="font-script text-4xl text-gold-dark">Alijon & Madina</p>
         <p id="footerDateSign" class="text-xs uppercase tracking-widest text-espresso-light">2026</p>
 
-        <!-- Tahrirlash / Ma'lumotlarni o'zgartirish tugmasi -->
-        <div class="pt-8 border-t border-gold/20 mt-6">
+        <!-- Tahrirlash / Ma'lumotlarni o'zgartirish tugmasi (Admin rejimida ko'rinadi, Mehmon rejimida yashiriladi) -->
+        <div id="footerEditContainer" class="pt-8 border-t border-gold/20 mt-6">
           <p data-i18n="footerEditPrompt" class="text-xs text-espresso-light mb-2">Ma'lumotlarni o'zgartirmoqchimisiz yoki yangi taklifnoma yaratmoqchimisiz?</p>
           <button type="button" id="footerEditBtn" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gold hover:bg-gold-dark text-white font-semibold text-xs tracking-wider uppercase transition-colors shadow-sm cursor-pointer active:scale-95">
             <i class="fa-solid fa-pen-to-square text-xs"></i>
@@ -979,6 +992,60 @@
       </p>
       <button type="button" id="closeModalBtn" class="w-full py-3 rounded-full bg-gold text-white font-semibold text-xs uppercase tracking-wider hover:bg-gold-dark transition-colors cursor-pointer">
         Tushunarli
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       MODAL OYNA (MEHMONLAR UCHUN UNIKAL HAVOLA)
+       ========================================================== -->
+  <div id="shareLinkModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 border-2 border-gold/40 shadow-2xl relative text-center transform scale-95 transition-transform duration-300">
+      <button type="button" id="closeShareModalBtn" aria-label="Yopish" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-cream-soft hover:bg-gold/20 text-espresso-light hover:text-espresso flex items-center justify-center transition-colors cursor-pointer">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="w-14 h-14 rounded-full bg-gold/15 text-gold-dark mx-auto flex items-center justify-center mb-3 text-xl border border-gold/30 shadow-inner">
+        <i class="fa-solid fa-envelope-open-text"></i>
+      </div>
+
+      <h3 class="font-serif text-2xl font-bold text-espresso mb-1">Mehmon Havolasi Tayyor!</h3>
+      <p class="text-[11px] text-gold-dark font-medium tracking-wide uppercase mb-3">Tahrirlash imkoniyatisiz (Read-Only Mode)</p>
+      
+      <div class="bg-cream-soft/80 border border-gold/30 rounded-2xl p-3 mb-4 text-left">
+        <p class="text-[12px] text-espresso leading-relaxed">
+          <i class="fa-solid fa-shield-halved text-gold-dark mr-1"></i>
+          <strong>Ushbu havola orqali kirgan mehmonlar</strong> faqat taklifnomani ko'ra oladilar. Tahrirlash tugmalari va admin paneli ularga mutlaqo ko'rinmaydi!
+        </p>
+      </div>
+
+      <!-- Havola maydoni va nusxalash -->
+      <div class="mb-4 text-left">
+        <label for="modalGeneratedLinkInput" class="block text-[10px] font-semibold text-espresso uppercase tracking-wider mb-1">Havola (Nusxalash uchun bosing):</label>
+        <div class="flex items-stretch gap-2">
+          <input type="text" id="modalGeneratedLinkInput" readonly class="w-full px-3 py-2 rounded-xl text-xs font-mono bg-cream-soft border border-gold/40 text-espresso select-all focus:outline-none focus:border-gold" />
+          <button type="button" id="modalCopyLinkBtn" class="px-3.5 py-2 rounded-xl bg-gold hover:bg-gold-dark text-white text-xs font-semibold whitespace-nowrap transition-all shadow-xs flex items-center gap-1 cursor-pointer active:scale-95">
+            <i class="fa-regular fa-copy"></i>
+            <span id="modalCopyBtnText">Nusxa</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tezkor harakatlar -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+        <button type="button" id="modalTelegramShareBtn" class="w-full py-2.5 px-3 rounded-xl bg-[#24A1DE] hover:bg-[#2092ca] text-white text-xs font-semibold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-95">
+          <i class="fa-brands fa-telegram text-sm"></i>
+          <span>Telegramda Yuborish</span>
+        </button>
+
+        <button type="button" id="modalOpenGuestViewBtn" class="w-full py-2.5 px-3 rounded-xl bg-espresso hover:bg-black text-white text-xs font-semibold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-95">
+          <i class="fa-solid fa-eye text-xs"></i>
+          <span>Mehmon Ko'rinishi</span>
+        </button>
+      </div>
+
+      <button type="button" id="modalDoneBtn" class="text-xs text-espresso-light hover:text-gold-dark transition-colors cursor-pointer">
+        Yopish
       </button>
     </div>
   </div>
@@ -1232,12 +1299,28 @@
 
     let currentWeddingData = { ...defaultWeddingData };
     let countdownInterval = null;
+    let isGuestMode = false;
 
     // DOM Elementlari
     const generatorSection = document.getElementById("generatorSection");
     const invitationView = document.getElementById("invitationView");
     const invitationSetupForm = document.getElementById("invitationSetupForm");
     const savedDataAlert = document.getElementById("savedDataAlert");
+    const navAdminControls = document.getElementById("navAdminControls");
+    const navGetLinkBtn = document.getElementById("navGetLinkBtn");
+    const navEditBtn = document.getElementById("navEditBtn");
+    const footerEditContainer = document.getElementById("footerEditContainer");
+    const footerEditBtn = document.getElementById("footerEditBtn");
+
+    // Modal elements for Share Link
+    const shareLinkModal = document.getElementById("shareLinkModal");
+    const modalGeneratedLinkInput = document.getElementById("modalGeneratedLinkInput");
+    const modalCopyLinkBtn = document.getElementById("modalCopyLinkBtn");
+    const modalCopyBtnText = document.getElementById("modalCopyBtnText");
+    const modalTelegramShareBtn = document.getElementById("modalTelegramShareBtn");
+    const modalOpenGuestViewBtn = document.getElementById("modalOpenGuestViewBtn");
+    const closeShareModalBtn = document.getElementById("closeShareModalBtn");
+    const modalDoneBtn = document.getElementById("modalDoneBtn");
 
     // Form inputs
     const inputGroom = document.getElementById("inputGroom");
@@ -1263,6 +1346,192 @@
     const musicStatusText = document.getElementById("musicStatusText");
     let isAudioPlaying = false;
     let audioInitialized = false;
+
+    // =========================================================================
+    // BASE64 URL-SAFE ENCODING & DECODING (UTF-8 SUPPORT)
+    // =========================================================================
+    function encodeDataBase64(data) {
+      try {
+        const jsonStr = JSON.stringify(data);
+        const bytes = new TextEncoder().encode(jsonStr);
+        let binString = "";
+        bytes.forEach((b) => {
+          binString += String.fromCharCode(b);
+        });
+        return btoa(binString)
+          .replace(/\+/g, "-")
+          .replace(/\//g, "_")
+          .replace(/=+$/, "");
+      } catch (err) {
+        console.error("Base64 kodlashda xatolik:", err);
+        return "";
+      }
+    }
+
+    function decodeDataBase64(base64Str) {
+      try {
+        let str = base64Str.replace(/-/g, "+").replace(/_/g, "/");
+        while (str.length % 4) {
+          str += "=";
+        }
+        const binString = atob(str);
+        const bytes = new Uint8Array(binString.length);
+        for (let i = 0; i < binString.length; i++) {
+          bytes[i] = binString.charCodeAt(i);
+        }
+        const jsonStr = new TextDecoder().decode(bytes);
+        return JSON.parse(jsonStr);
+      } catch (err) {
+        console.error("Base64 dekodlashda xatolik:", err);
+        try {
+          return JSON.parse(decodeURIComponent(escape(atob(base64Str))));
+        } catch (e2) {
+          return null;
+        }
+      }
+    }
+
+    function generateGuestUrl(data) {
+      const base = window.location.origin + window.location.pathname;
+      const encoded = encodeDataBase64(data || currentWeddingData);
+      return `${base}#data=${encoded}`;
+    }
+
+    function applyGuestModeUI() {
+      // Mehmon rejimi: admin va tahrirlash elementlarini BUTUNLAY yashirish
+      if (generatorSection) {
+        generatorSection.classList.add("hidden");
+        generatorSection.style.display = "none";
+      }
+      if (navAdminControls) {
+        navAdminControls.classList.add("hidden");
+        navAdminControls.style.display = "none";
+      }
+      if (navEditBtn) {
+        navEditBtn.classList.add("hidden");
+        navEditBtn.style.display = "none";
+      }
+      if (footerEditContainer) {
+        footerEditContainer.classList.add("hidden");
+        footerEditContainer.style.display = "none";
+      }
+      if (footerEditBtn) {
+        footerEditBtn.classList.add("hidden");
+        footerEditBtn.style.display = "none";
+      }
+    }
+
+    function applyAdminModeUI() {
+      if (generatorSection) {
+        generatorSection.style.display = "";
+      }
+      if (navAdminControls) {
+        navAdminControls.classList.remove("hidden");
+        navAdminControls.style.display = "";
+      }
+      if (navEditBtn) {
+        navEditBtn.classList.remove("hidden");
+        navEditBtn.style.display = "";
+      }
+      if (footerEditContainer) {
+        footerEditContainer.classList.remove("hidden");
+        footerEditContainer.style.display = "";
+      }
+      if (footerEditBtn) {
+        footerEditBtn.classList.remove("hidden");
+        footerEditBtn.style.display = "";
+      }
+    }
+
+    function checkUrlMode() {
+      const hash = window.location.hash;
+      if (hash && hash.includes("data=")) {
+        const rawDataParam = hash.split("data=")[1]?.split("&")[0];
+        if (rawDataParam) {
+          const decodedData = decodeDataBase64(rawDataParam);
+          if (decodedData && (decodedData.groom || decodedData.bride || decodedData.venue)) {
+            currentWeddingData = { ...defaultWeddingData, ...decodedData };
+            isGuestMode = true;
+            applyGuestModeUI();
+            updateInvitationDOM(currentWeddingData);
+            showInvitationMode();
+            return;
+          }
+        }
+      }
+
+      // Toza havola (Admin rejimi)
+      isGuestMode = false;
+      applyAdminModeUI();
+      const saved = loadSavedDataFromStorage();
+      if (saved) {
+        currentWeddingData = saved;
+        populateFormFields(saved);
+        savedDataAlert.classList.remove("hidden");
+      } else {
+        populateFormFields(defaultWeddingData);
+      }
+      showAdminMode();
+    }
+
+    // Modal funksiyalari
+    function openShareModal(guestUrl) {
+      if (!shareLinkModal) return;
+      modalGeneratedLinkInput.value = guestUrl;
+      modalCopyBtnText.innerText = "Nusxa";
+
+      const groom = currentWeddingData.groom || "Kelin-kuyov";
+      const bride = currentWeddingData.bride || "";
+      const coupleNames = bride ? `${groom} & ${bride}` : groom;
+      const tgText = `${coupleNames} nikoh to'yi tantanasiga taklif etamiz! To'liq taklifnomani ko'rish uchun quyidagi havolaga kiring:`;
+
+      modalTelegramShareBtn.onclick = () => {
+        const tgUrl = `https://t.me/share/url?url=${encodeURIComponent(guestUrl)}&text=${encodeURIComponent(tgText)}`;
+        window.open(tgUrl, "_blank");
+      };
+
+      modalOpenGuestViewBtn.onclick = () => {
+        closeShareModal();
+        window.location.hash = `data=${encodeDataBase64(currentWeddingData)}`;
+        checkUrlMode();
+      };
+
+      shareLinkModal.classList.remove("hidden");
+      setTimeout(() => {
+        shareLinkModal.classList.remove("opacity-0");
+        shareLinkModal.querySelector("div").classList.remove("scale-95");
+      }, 10);
+    }
+
+    function closeShareModal() {
+      if (!shareLinkModal) return;
+      shareLinkModal.classList.add("opacity-0");
+      shareLinkModal.querySelector("div").classList.add("scale-95");
+      setTimeout(() => {
+        shareLinkModal.classList.add("hidden");
+      }, 300);
+    }
+
+    if (closeShareModalBtn) closeShareModalBtn.addEventListener("click", closeShareModal);
+    if (modalDoneBtn) modalDoneBtn.addEventListener("click", closeShareModal);
+
+    if (modalCopyLinkBtn) {
+      modalCopyLinkBtn.addEventListener("click", () => {
+        const url = modalGeneratedLinkInput.value;
+        navigator.clipboard.writeText(url).then(() => {
+          modalCopyBtnText.innerText = "Nusxalandi! ✓";
+          showToast("Havola nusxalandi!");
+          setTimeout(() => {
+            modalCopyBtnText.innerText = "Nusxa";
+          }, 2000);
+        }).catch(() => {
+          modalGeneratedLinkInput.select();
+          document.execCommand("copy");
+          modalCopyBtnText.innerText = "Nusxalandi! ✓";
+          showToast("Havola nusxalandi!");
+        });
+      });
+    }
 
     // =========================================================================
     // 3. TOAST NOTIFICATION UTILITY
@@ -1511,29 +1780,75 @@
       e.preventDefault();
 
       const updatedData = {
-        groom: inputGroom.value.trim(),
-        bride: inputBride.value.trim(),
-        weddingDate: inputDate.value,
-        venue: inputVenue.value.trim(),
-        address: inputAddress.value.trim(),
-        mapUrl: inputMapUrl.value.trim(),
-        phone: inputPhone.value.trim(),
-        cardNumber: inputCardNumber.value.trim(),
-        cardHolder: inputCardHolder.value.trim(),
-        musicUrl: inputMusicUrl.value.trim(),
-        message: inputMessage.value.trim(),
+        groom: inputGroom.value.trim() || defaultWeddingData.groom,
+        bride: inputBride.value.trim() || defaultWeddingData.bride,
+        weddingDate: inputDate.value || defaultWeddingData.weddingDate,
+        venue: inputVenue.value.trim() || defaultWeddingData.venue,
+        address: inputAddress.value.trim() || defaultWeddingData.address,
+        mapUrl: inputMapUrl.value.trim() || defaultWeddingData.mapUrl,
+        phone: inputPhone.value.trim() || defaultWeddingData.phone,
+        cardNumber: inputCardNumber.value.trim() || defaultWeddingData.cardNumber,
+        cardHolder: inputCardHolder.value.trim() || defaultWeddingData.cardHolder,
+        musicUrl: inputMusicUrl.value.trim() || defaultWeddingData.musicUrl,
+        message: inputMessage.value.trim() || defaultWeddingData.message,
       };
 
       currentWeddingData = updatedData;
 
-      // LocalStorage ga saqlaymiz
+      // Brauzer xotirasiga saqlaymiz (kelgusida admin yana kirsa qulay bo'lishi uchun)
       saveCurrentDataToStorage(updatedData);
 
-      // DOM ni yangilaymiz va ochamiz
+      // DOM ni yangilaymiz
       updateInvitationDOM(updatedData);
-      showInvitationMode();
-      showToast("Taklifnoma muvaffaqiyatli yaratildi va saqlandi!");
+
+      // Unikal havola yaratamiz va xotiraga nusxalaymiz
+      const guestUrl = generateGuestUrl(updatedData);
+      navigator.clipboard.writeText(guestUrl).then(() => {
+        showToast("Unikal havola yaratildi va nusxalandi! 💌");
+      }).catch(() => {
+        showToast("Unikal havola yaratildi! 💌");
+      });
+
+      // Havola modal oynasini ochamiz
+      openShareModal(guestUrl);
     });
+
+    // "Oldindan Ko'rish" tugmasi (Admin rejimida taklifnoma ko'rinishini tekshirish)
+    const previewBtn = document.getElementById("previewBtn");
+    if (previewBtn) {
+      previewBtn.addEventListener("click", () => {
+        const previewData = {
+          groom: inputGroom.value.trim() || defaultWeddingData.groom,
+          bride: inputBride.value.trim() || defaultWeddingData.bride,
+          weddingDate: inputDate.value || defaultWeddingData.weddingDate,
+          venue: inputVenue.value.trim() || defaultWeddingData.venue,
+          address: inputAddress.value.trim() || defaultWeddingData.address,
+          mapUrl: inputMapUrl.value.trim() || defaultWeddingData.mapUrl,
+          phone: inputPhone.value.trim() || defaultWeddingData.phone,
+          cardNumber: inputCardNumber.value.trim() || defaultWeddingData.cardNumber,
+          cardHolder: inputCardHolder.value.trim() || defaultWeddingData.cardHolder,
+          musicUrl: inputMusicUrl.value.trim() || defaultWeddingData.musicUrl,
+          message: inputMessage.value.trim() || defaultWeddingData.message,
+        };
+
+        currentWeddingData = previewData;
+        updateInvitationDOM(previewData);
+        applyAdminModeUI();
+        showInvitationMode();
+        showToast("Oldindan ko'rish rejimi ochildi!");
+      });
+    }
+
+    // Navbar "Havolani Olish" tugmasi
+    if (navGetLinkBtn) {
+      navGetLinkBtn.addEventListener("click", () => {
+        const guestUrl = generateGuestUrl(currentWeddingData);
+        navigator.clipboard.writeText(guestUrl).then(() => {
+          showToast("Mehmon havolasi nusxalandi! 💌");
+        }).catch(() => {});
+        openShareModal(guestUrl);
+      });
+    }
 
     // Namuna ma'lumotlarni yuklash tugmasi
     document.getElementById("loadSampleDataBtn").addEventListener("click", () => {
@@ -1553,20 +1868,28 @@
       if (saved) {
         currentWeddingData = saved;
         updateInvitationDOM(saved);
+        applyAdminModeUI();
         showInvitationMode();
+        showToast("Saqlangan taklifnoma ochildi!");
       }
     });
 
-    // Tahrirlash tugmalari (Navbardagi va Footerdagi)
-    document.getElementById("navEditBtn").addEventListener("click", () => {
-      populateFormFields(currentWeddingData);
-      showAdminMode();
-    });
+    // Tahrirlash tugmalari (Navbardagi va Footerdagi - faqat Admin uchun)
+    if (navEditBtn) {
+      navEditBtn.addEventListener("click", () => {
+        if (isGuestMode) return;
+        populateFormFields(currentWeddingData);
+        showAdminMode();
+      });
+    }
 
-    document.getElementById("footerEditBtn").addEventListener("click", () => {
-      populateFormFields(currentWeddingData);
-      showAdminMode();
-    });
+    if (footerEditBtn) {
+      footerEditBtn.addEventListener("click", () => {
+        if (isGuestMode) return;
+        populateFormFields(currentWeddingData);
+        showAdminMode();
+      });
+    }
 
     // Namuna musiqa kuylari tugmalari
     document.querySelectorAll(".preset-music-btn").forEach(btn => {
@@ -1612,8 +1935,8 @@
 
     // Taklifnoma havolasini nusxalash
     document.getElementById("copyShareLinkBtn").addEventListener("click", () => {
-      const url = window.location.href;
-      navigator.clipboard.writeText(url).then(() => {
+      const guestUrl = generateGuestUrl(currentWeddingData);
+      navigator.clipboard.writeText(guestUrl).then(() => {
         const copyShareLinkText = document.getElementById("copyShareLinkText");
         copyShareLinkText.innerText = "Nusxalandi! ✓";
         showToast("Taklifnoma havolasi nusxalandi!");
@@ -1621,7 +1944,7 @@
           copyShareLinkText.innerText = translations[currentLang].copyLink;
         }, 2500);
       }).catch(() => {
-        prompt("Taklifnoma havolasi:", url);
+        prompt("Taklifnoma havolasi:", guestUrl);
       });
     });
 
@@ -1629,8 +1952,9 @@
     document.getElementById("shareTelegramBtn").addEventListener("click", () => {
       const groom = currentWeddingData.groom || "Alijon";
       const bride = currentWeddingData.bride || "Madina";
+      const guestUrl = generateGuestUrl(currentWeddingData);
       const text = `${groom} & ${bride} nikoh to'yi tantanasiga taklif etamiz! To'liq taklifnomani ko'rish uchun havolaga kiring:`;
-      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(text)}`;
+      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(guestUrl)}&text=${encodeURIComponent(text)}`;
       window.open(shareUrl, "_blank");
     });
 
@@ -1840,15 +2164,11 @@
       // 3. Tilaklarni chizamiz
       renderWishes(loadWishes());
 
-      // 4. Saqlangan ma'lumotlarni tekshiramiz
-      const saved = loadSavedDataFromStorage();
-      if (saved) {
-        currentWeddingData = saved;
-        populateFormFields(saved);
-        savedDataAlert.classList.remove("hidden");
-      } else {
-        populateFormFields(defaultWeddingData);
-      }
+      // 4. Havola (URL) holatini tekshirish: Mehmon (Hash/Data) yoki Admin (Toza havola)
+      checkUrlMode();
+
+      // Hash o'zgarganda (masalan, foydalanuvchi orqaga qaytganda yoki yangi havola bosilganda)
+      window.addEventListener("hashchange", checkUrlMode);
     });
   </script>
 

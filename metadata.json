@@ -1,6 +1,6 @@
 {
   "name": "To'y Taklifnomasi Generatori",
-  "description": "Kelin-kuyovlar uchun onlayn taklifnoma generatori: UZ/RU/EN ko'p tillilik, plastik karta va telefon raqamidan nusxa olish, LocalStorage saqlash hamda hashamatli dizayn.",
+  "description": "Kelin-kuyovlar uchun hashamatli to'y taklifnomasi generatori: tahrirlash imkoniyatisiz mehmon havolasi (link-based read-only mode), UZ/RU/EN tillar, onlayn to'yona karta raqami, audio musiqa va taymer.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
