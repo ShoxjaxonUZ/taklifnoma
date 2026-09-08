@@ -1,0 +1,6 @@
+{
+  "name": "To'y Taklifnomasi",
+  "description": "Kelin-kuyovlar uchun mo'ljallangan zamonaviy, nafis va mobil qurilmalarga to'liq moslashuvchan to'y taklifnomasi veb-sayti.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
