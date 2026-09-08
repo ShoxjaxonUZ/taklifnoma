@@ -1,6 +1,6 @@
 {
   "name": "To'y Taklifnomasi Generatori",
-  "description": "Har bir to'y uchun unikal va doimiy havola (URL Base64) generatsiya qiladigan interaktiv Taklifnoma Generator sayti.",
+  "description": "Kelin-kuyovlar uchun onlayn taklifnoma generatori: UZ/RU/EN ko'p tillilik, plastik karta va telefon raqamidan nusxa olish, LocalStorage saqlash hamda hashamatli dizayn.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
