@@ -15,7 +15,7 @@
        ========================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <!-- ==========================================================
        FONT AWESOME 6 (ICONS) CDN
@@ -50,6 +50,8 @@
             serif: ['"Cormorant Garamond"', 'serif'],
             display: ['"Playfair Display"', 'serif'],
             script: ['"Great Vibes"', 'cursive'],
+            brush: ['"Alex Brush"', 'cursive'],
+            cinzel: ['"Cinzel"', 'serif'],
             sans: ['"Montserrat"', 'sans-serif'],
           }
         }
@@ -64,7 +66,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <!-- ==========================================================
-       CUSTOM LUXURY STYLES
+       CUSTOM LUXURY THEMES & STYLES (8 TA NAFIS DIZAYN)
        ========================================================== -->
   <style>
     :root {
@@ -73,6 +75,105 @@
       --gold-primary: #C5A059;
       --gold-gradient: linear-gradient(135deg, #E4C988 0%, #C5A059 50%, #9A7836 100%);
       --text-dark: #2B211E;
+      --pattern-dot: rgba(197, 160, 89, 0.12);
+      --badge-accent: #C5A059;
+      --card-bg-gradient: linear-gradient(135deg, #2B211E 0%, #44342F 50%, #201715 100%);
+    }
+
+    /* 1. SHOHONA OLTIN & KREM */
+    .theme-royal-gold {
+      --bg-cream: #FAF7F2;
+      --bg-card: #FDFBF7;
+      --gold-primary: #C5A059;
+      --gold-gradient: linear-gradient(135deg, #E4C988 0%, #C5A059 50%, #9A7836 100%);
+      --text-dark: #2B211E;
+      --pattern-dot: rgba(197, 160, 89, 0.12);
+      --badge-accent: #C5A059;
+      --card-bg-gradient: linear-gradient(135deg, #2B211E 0%, #44342F 50%, #201715 100%);
+    }
+
+    /* 2. ZUMRAD & SHOHONA OLTIN */
+    .theme-emerald {
+      --bg-cream: #F2F7F4;
+      --bg-card: #FCFDFD;
+      --gold-primary: #0D5C3A;
+      --gold-gradient: linear-gradient(135deg, #1B7850 0%, #0D5C3A 55%, #073822 100%);
+      --text-dark: #0E241A;
+      --pattern-dot: rgba(13, 92, 58, 0.14);
+      --badge-accent: #0D5C3A;
+      --card-bg-gradient: linear-gradient(135deg, #09281B 0%, #124B32 50%, #051A11 100%);
+    }
+
+    /* 3. SAFSAR & NILUFAR */
+    .theme-amethyst {
+      --bg-cream: #F8F5FA;
+      --bg-card: #FDFCFF;
+      --gold-primary: #6E2D6E;
+      --gold-gradient: linear-gradient(135deg, #914391 0%, #6E2D6E 55%, #4B194B 100%);
+      --text-dark: #281328;
+      --pattern-dot: rgba(110, 45, 110, 0.12);
+      --badge-accent: #6E2D6E;
+      --card-bg-gradient: linear-gradient(135deg, #2B102B 0%, #4B1E4B 50%, #1A071A 100%);
+    }
+
+    /* 4. PUSHTI MARVARID & ATIRGUL */
+    .theme-blush-pearl {
+      --bg-cream: #FFF7F6;
+      --bg-card: #FFFCFC;
+      --gold-primary: #B76572;
+      --gold-gradient: linear-gradient(135deg, #D98895 0%, #B76572 55%, #8C3E4B 100%);
+      --text-dark: #371D22;
+      --pattern-dot: rgba(183, 101, 114, 0.13);
+      --badge-accent: #B76572;
+      --card-bg-gradient: linear-gradient(135deg, #381920 0%, #5E2C36 50%, #260E14 100%);
+    }
+
+    /* 5. OQQUSH NAFISLIGI (MINIMALIST IVORY) */
+    .theme-pure-silk {
+      --bg-cream: #F9F9F8;
+      --bg-card: #FFFFFF;
+      --gold-primary: #4A4643;
+      --gold-gradient: linear-gradient(135deg, #706B66 0%, #4A4643 55%, #242220 100%);
+      --text-dark: #1A1A1A;
+      --pattern-dot: rgba(40, 38, 36, 0.08);
+      --badge-accent: #4A4643;
+      --card-bg-gradient: linear-gradient(135deg, #1C1B1A 0%, #302E2B 50%, #121110 100%);
+    }
+
+    /* 6. OSMON & FERUZA (SAPPHIRE) */
+    .theme-sapphire {
+      --bg-cream: #F2F5F9;
+      --bg-card: #FAFBFD;
+      --gold-primary: #1C3D68;
+      --gold-gradient: linear-gradient(135deg, #2C578F 0%, #1C3D68 55%, #0F233E 100%);
+      --text-dark: #0F1C2B;
+      --pattern-dot: rgba(28, 61, 104, 0.12);
+      --badge-accent: #1C3D68;
+      --card-bg-gradient: linear-gradient(135deg, #0C1A2B 0%, #1A3452 50%, #07111D 100%);
+    }
+
+    /* 7. SHARQONA NAQSH (SAMARQAND FIRUZA) */
+    .theme-oriental {
+      --bg-cream: #FCF9F2;
+      --bg-card: #FFFEFA;
+      --gold-primary: #088395;
+      --gold-gradient: linear-gradient(135deg, #0A9EAF 0%, #088395 55%, #055966 100%);
+      --text-dark: #0A262C;
+      --pattern-dot: rgba(8, 131, 149, 0.14);
+      --badge-accent: #088395;
+      --card-bg-gradient: linear-gradient(135deg, #06282E 0%, #0D4954 50%, #041B1F 100%);
+    }
+
+    /* 8. RUSTIK & TERRACOTTA */
+    .theme-rustic {
+      --bg-cream: #FCF6F0;
+      --bg-card: #FFFAF5;
+      --gold-primary: #A24E2D;
+      --gold-gradient: linear-gradient(135deg, #C46742 0%, #A24E2D 55%, #783319 100%);
+      --text-dark: #321B13;
+      --pattern-dot: rgba(162, 78, 45, 0.13);
+      --badge-accent: #A24E2D;
+      --card-bg-gradient: linear-gradient(135deg, #30170F 0%, #52291B 50%, #200E08 100%);
     }
 
     body {
@@ -81,15 +182,16 @@
       font-family: 'Montserrat', sans-serif;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     /* Naqshli fon */
     .wedding-pattern-bg {
-      background-image: radial-gradient(rgba(197, 160, 89, 0.12) 1px, transparent 1px);
+      background-image: radial-gradient(var(--pattern-dot) 1px, transparent 1px);
       background-size: 24px 24px;
     }
 
-    /* Oltin gradient matn */
+    /* Oltin/accent gradient matn */
     .text-gold-gradient {
       background: var(--gold-gradient);
       -webkit-background-clip: text;
@@ -101,11 +203,12 @@
       background: var(--bg-card);
       border: 1px solid rgba(197, 160, 89, 0.35);
       border-radius: 1.25rem;
-      box-shadow: 0 15px 35px -5px rgba(92, 78, 72, 0.08);
+      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.06);
       position: relative;
+      transition: all 0.3s ease;
     }
 
-    /* Oltin burchak bezaklari */
+    /* Burchak bezaklari */
     .corner-decor {
       position: absolute;
       width: 22px;
@@ -126,12 +229,13 @@
       animation: spinVinyl 3.5s linear infinite;
     }
 
-    /* Bank karta oltin uslubi */
+    /* Bank karta hashamatli uslubi */
     .luxury-card-bg {
-      background: linear-gradient(135deg, #2B211E 0%, #44342F 50%, #201715 100%);
+      background: var(--card-bg-gradient);
       border: 1.5px solid rgba(228, 201, 136, 0.4);
       position: relative;
       overflow: hidden;
+      transition: background 0.4s ease;
     }
     .luxury-card-bg::before {
       content: '';
@@ -140,7 +244,7 @@
       right: -20%;
       width: 260px;
       height: 260px;
-      background: radial-gradient(circle, rgba(197, 160, 89, 0.18) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -159,7 +263,7 @@
       box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
     }
     .swiper-pagination-bullet-active {
-      background-color: #C5A059 !important;
+      background-color: var(--gold-primary) !important;
       width: 22px !important;
       border-radius: 6px !important;
     }
@@ -177,20 +281,33 @@
     .custom-input {
       background-color: #FFFFFF;
       border: 1px solid rgba(197, 160, 89, 0.4);
-      color: #2B211E;
+      color: var(--text-dark);
       transition: all 0.2s ease-in-out;
     }
     .custom-input:focus {
       outline: none;
-      border-color: #C5A059;
+      border-color: var(--gold-primary);
       box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
     }
 
     /* Til tugmasi faol holati */
     .lang-btn.active {
-      background-color: #C5A059;
+      background-color: var(--gold-primary);
       color: #FFFFFF;
       font-weight: 700;
+    }
+
+    /* Dizayn tanlov kartasi */
+    .theme-card {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .theme-card:hover {
+      transform: translateY(-2px);
+    }
+    .theme-card.active {
+      border-color: var(--gold-primary) !important;
+      box-shadow: 0 0 0 2px var(--gold-primary), 0 8px 18px -4px rgba(0,0,0,0.12) !important;
     }
   </style>
 </head>
@@ -233,6 +350,26 @@
         </button>
       </div>
 
+      <!-- TASHRIF BUYURUVCHI MEHMONLAR (RSVP) BOSHQARUV PANELI -->
+      <div class="mb-6 p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 border border-emerald-600/30 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg shadow-sm shrink-0">
+            <i class="fa-solid fa-clipboard-user"></i>
+          </div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-950 flex items-center gap-1.5">
+              <span>Tashrifingizni Tasdiqlang (RSVP)</span>
+              <span id="adminRsvpCountBadge" class="px-2 py-0.5 rounded-full bg-emerald-700 text-white text-[10px] font-bold">0 kishi</span>
+            </span>
+            <p class="text-[11px] text-emerald-800/80">To'yga kelishini tasdiqlagan mehmonlar to'liq ro'yxati</p>
+          </div>
+        </div>
+        <button type="button" id="openRsvpListBtn" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold tracking-wide transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer active:scale-95">
+          <i class="fa-solid fa-list-check text-xs"></i>
+          <span>Mehmonlar Ro'yxati</span>
+        </button>
+      </div>
+
       <!-- Tezkor Namuna Tugmalari (Preset / Demo) -->
       <div class="mb-6 p-3 rounded-xl bg-cream-soft/60 border border-gold/30 flex flex-wrap items-center justify-between gap-2">
         <span class="text-xs text-espresso-light font-medium flex items-center gap-1.5">
@@ -253,6 +390,95 @@
 
       <!-- ASOSIY GENERATOR FORMASI -->
       <form id="invitationSetupForm" class="space-y-5">
+
+        <!-- 8 TA ELEGANT DIZAYN TANLOVI (HAR BIRINING O'Z AURASI BILAN) -->
+        <div class="p-4 rounded-2xl bg-cream-soft/80 border border-gold/40">
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-espresso flex items-center gap-1.5">
+              <i class="fa-solid fa-palette text-gold-dark text-xs"></i>
+              <span>Taklifnoma Dizayni (8 ta Elegant Uslub) *</span>
+            </label>
+            <span id="selectedThemeLabel" class="text-[11px] font-bold text-gold-dark px-2.5 py-0.5 rounded-full bg-white border border-gold/40 shadow-2xs">
+              Shohona Oltin & Krem
+            </span>
+          </div>
+          <p class="text-[11px] text-espresso-light mb-3">Har bir dizayn o'zining betakror aurasi, ranglar jilosi va nafis bezaklariga ega:</p>
+          
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="themePickerGrid">
+            <!-- 1. Shohona Oltin -->
+            <div class="theme-card active p-2.5 rounded-xl border border-gold/40 bg-white flex flex-col items-center text-center shadow-xs" data-theme="royal-gold">
+              <div class="w-8 h-8 rounded-full mb-1.5 flex items-center justify-center text-sm shadow-inner" style="background: linear-gradient(135deg, #E6CF9B, #C5A059); color: #fff;">
+                <i class="fa-solid fa-crown text-xs"></i>
+              </div>
+              <span class="text-[11px] font-bold text-espresso leading-tight">Shohona Oltin</span>
+              <span class="text-[9px] text-espresso-light mt-0.5">Klassik krem & oltin</span>
+            </div>
+
+            <!-- 2. Zumrad Oqshom -->
+            <div class="theme-card p-2.5 rounded-xl border border-gold/30 bg-white flex flex-col items-center text-center shadow-xs" data-theme="emerald">
+              <div class="w-8 h-8 rounded-full mb-1.5 flex items-center justify-center text-sm shadow-inner" style="background: linear-gradient(135deg, #1B7850, #0D5C3A); color: #fff;">
+                <i class="fa-solid fa-gem text-xs"></i>
+              </div>
+              <span class="text-[11px] font-bold text-espresso leading-tight">Zumrad Oqshom</span>
+              <span class="text-[9px] text-espresso-light mt-0.5">Xonadon & zumrad</span>
+            </div>
+
+            <!-- 3. Safsar & Nilufar -->
+            <div class="theme-card p-2.5 rounded-xl border border-gold/30 bg-white flex flex-col items-center text-center shadow-xs" data-theme="amethyst">
+              <div class="w-8 h-8 rounded-full mb-1.5 flex items-center justify-center text-sm shadow-inner" style="background: linear-gradient(135deg, #914391, #6E2D6E); color: #fff;">
+                <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+              </div>
+              <span class="text-[11px] font-bold text-espresso leading-tight">Safsar Nilufar</span>
+              <span class="text-[9px] text-espresso-light mt-0.5">Lirik binafsha shukuh</span>
+            </div>
+
+            <!-- 4. Pushti Marvarid -->
+            <div class="theme-card p-2.5 rounded-xl border border-gold/30 bg-white flex flex-col items-center text-center shadow-xs" data-theme="blush-pearl">
+              <div class="w-8 h-8 rounded-full mb-1.5 flex items-center justify-center text-sm shadow-inner" style="background: linear-gradient(135deg, #D98895, #B76572); color: #fff;">
+                <i class="fa-solid fa-heart text-xs"></i>
+              </div>
+              <span class="text-[11px] font-bold text-espresso leading-tight">Pushti Marvarid</span>
+              <span class="text-[9px] text-espresso-light mt-0.5">Mayin atirgul nafasi</span>
+            </div>
+
+            <!-- 5. Oqqush Nafisligi -->
+            <div class="theme-card p-2.5 rounded-xl border border-gold/30 bg-white flex flex-col items-center text-center shadow-xs" data-theme="pure-silk">
+              <div class="w-8 h-8 rounded-full mb-1.5 flex items-center justify-center text-sm shadow-inner" style="background: linear-gradient(135deg, #5A5653, #2B2928); color: #fff;">
+                <i class="fa-solid fa-feather text-xs"></i>
+              </div>
+              <span class="text-[11px] font-bold text-espresso leading-tight">Oqqush Ipak</span>
+              <span class="text-[9px] text-espresso-light mt-0.5">Monoxrom minimalizm</span>
+            </div>
+
+            <!-- 6. Osmon & Feruza -->
+            <div class="theme-card p-2.5 rounded-xl border border-gold/30 bg-white flex flex-col items-center text-center shadow-xs" data-theme="sapphire">
+              <div class="w-8 h-8 rounded-full mb-1.5 flex items-center justify-center text-sm shadow-inner" style="background: linear-gradient(135deg, #2C578F, #1C3D68); color: #fff;">
+                <i class="fa-solid fa-moon text-xs"></i>
+              </div>
+              <span class="text-[11px] font-bold text-espresso leading-tight">Osmon Feruza</span>
+              <span class="text-[9px] text-espresso-light mt-0.5">Yulduzli moviy atlas</span>
+            </div>
+
+            <!-- 7. Sharqona Naqsh -->
+            <div class="theme-card p-2.5 rounded-xl border border-gold/30 bg-white flex flex-col items-center text-center shadow-xs" data-theme="oriental">
+              <div class="w-8 h-8 rounded-full mb-1.5 flex items-center justify-center text-sm shadow-inner" style="background: linear-gradient(135deg, #0A9EAF, #088395); color: #fff;">
+                <i class="fa-solid fa-mosque text-xs"></i>
+              </div>
+              <span class="text-[11px] font-bold text-espresso leading-tight">Sharqona Naqsh</span>
+              <span class="text-[9px] text-espresso-light mt-0.5">Samarqand firuzasi</span>
+            </div>
+
+            <!-- 8. Rustik & Terracotta -->
+            <div class="theme-card p-2.5 rounded-xl border border-gold/30 bg-white flex flex-col items-center text-center shadow-xs" data-theme="rustic">
+              <div class="w-8 h-8 rounded-full mb-1.5 flex items-center justify-center text-sm shadow-inner" style="background: linear-gradient(135deg, #C46742, #A24E2D); color: #fff;">
+                <i class="fa-solid fa-wheat-awn text-xs"></i>
+              </div>
+              <span class="text-[11px] font-bold text-espresso leading-tight">Rustik Zaytun</span>
+              <span class="text-[9px] text-espresso-light mt-0.5">Iliq terracotta & tabiat</span>
+            </div>
+          </div>
+          <input type="hidden" id="inputTheme" value="royal-gold" />
+        </div>
         
         <!-- Kuyov va Kelin Ismlari -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -315,40 +541,56 @@
           <p class="text-[11px] text-espresso-light mt-1">Mehmonlar xarita tugmasi orqali to'yxonagacha yo'nalish olishadi.</p>
         </div>
 
-        <!-- TELEFON RAQAM VA ONLAYN TO'YONA UCHUN KARTA RAQAMI -->
+        <!-- TELEFON RAQAM VA ONLAYN TO'YONA UCHUN KARTA RAQAMI (IXTIYORIY) -->
         <div class="p-4 rounded-2xl bg-cream-soft/70 border border-gold/40 space-y-4">
-          <div class="flex items-center gap-2 pb-2 border-b border-gold/20">
-            <i class="fa-solid fa-gift text-gold-dark text-sm"></i>
-            <span class="text-xs font-bold uppercase tracking-wider text-espresso">Bog'lanish va Onlayn To'yona (Karta)</span>
+          <div class="flex items-center justify-between pb-2 border-b border-gold/20">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-gift text-gold-dark text-sm"></i>
+              <span class="text-xs font-bold uppercase tracking-wider text-espresso">Bog'lanish va Onlayn To'yona</span>
+            </div>
+            <span class="text-[10px] text-espresso-light font-medium bg-white px-2 py-0.5 rounded-md border border-gold/30">Ixtiyoriy bo'lim</span>
           </div>
 
+          <p class="text-[11px] text-espresso-light">
+            Ushbu maydonlar ixtiyoriy — xohlasangiz to'ldirasiz, xohlamasangiz bo'sh qoldirishingiz mumkin. Bo'sh qoldirilsa, taklifnomada bu bo'lim avtomatik ravishda ko'rsatilmaydi.
+          </p>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- Telefon raqam -->
+            <!-- Telefon raqam (Ixtiyoriy) -->
             <div>
-              <label for="inputPhone" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5 flex items-center gap-1">
-                <i class="fa-solid fa-phone text-gold-dark text-[10px]"></i>
-                <span>Telefon Raqami *</span>
+              <label for="inputPhone" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5 flex items-center justify-between">
+                <span class="flex items-center gap-1">
+                  <i class="fa-solid fa-phone text-gold-dark text-[10px]"></i>
+                  <span>Telefon Raqami</span>
+                </span>
+                <span class="text-[10px] font-normal text-espresso-light lowercase">(ixtiyoriy)</span>
               </label>
-              <input type="tel" id="inputPhone" required placeholder="+998 90 123 45 67" class="custom-input w-full px-3.5 py-2 rounded-xl text-sm" />
-              <p class="text-[10px] text-espresso-light mt-1">Mehmonlar qo'ng'iroq qilishi yoki raqamni nusxalashi mumkin.</p>
+              <input type="tel" id="inputPhone" placeholder="+998 90 123 45 67" class="custom-input w-full px-3.5 py-2 rounded-xl text-sm" />
+              <p class="text-[10px] text-espresso-light mt-1">Mehmonlar qo'ng'iroq qilishi yoki raqamni nusxalashi uchun.</p>
             </div>
 
-            <!-- Plastik karta raqami -->
+            <!-- Plastik karta raqami (Ixtiyoriy) -->
             <div>
-              <label for="inputCardNumber" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5 flex items-center gap-1">
-                <i class="fa-regular fa-credit-card text-gold-dark text-[10px]"></i>
-                <span>Plastik Karta Raqami</span>
+              <label for="inputCardNumber" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5 flex items-center justify-between">
+                <span class="flex items-center gap-1">
+                  <i class="fa-regular fa-credit-card text-gold-dark text-[10px]"></i>
+                  <span>Plastik Karta Raqami</span>
+                </span>
+                <span class="text-[10px] font-normal text-espresso-light lowercase">(ixtiyoriy)</span>
               </label>
               <input type="text" id="inputCardNumber" placeholder="8600 1234 5678 9012" maxlength="19" class="custom-input w-full px-3.5 py-2 rounded-xl text-sm font-mono" />
               <p class="text-[10px] text-espresso-light mt-1">Onlayn to'yona va qutlovlar uchun (Humo / Uzcard / Visa).</p>
             </div>
           </div>
 
-          <!-- Karta egasining ismi / bank -->
+          <!-- Karta egasining ismi / bank (Ixtiyoriy) -->
           <div>
-            <label for="inputCardHolder" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5 flex items-center gap-1">
-              <i class="fa-solid fa-signature text-gold-dark text-[10px]"></i>
-              <span>Karta Egasi (F.I.O yoki Bank nomi)</span>
+            <label for="inputCardHolder" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5 flex items-center justify-between">
+              <span class="flex items-center gap-1">
+                <i class="fa-solid fa-signature text-gold-dark text-[10px]"></i>
+                <span>Karta Egasi (F.I.O yoki Bank nomi)</span>
+              </span>
+              <span class="text-[10px] font-normal text-espresso-light lowercase">(ixtiyoriy)</span>
             </label>
             <input type="text" id="inputCardHolder" placeholder="Masalan: Madina X. (Uzcard/Humo)" class="custom-input w-full px-3.5 py-2 rounded-xl text-sm" />
           </div>
@@ -433,6 +675,18 @@
 
         <!-- Admin Boshqaruv Tugmalari (Mehmon rejimida butunlay yashirin bo'ladi) -->
         <div id="navAdminControls" class="flex items-center gap-2">
+          <!-- Mehmonlar (RSVP) Ro'yxati tugmasi -->
+          <button type="button" id="navRsvpBtn" class="px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="Tashrifni tasdiqlagan mehmonlar ro'yxati">
+            <i class="fa-solid fa-clipboard-user text-[11px]"></i>
+            <span class="hidden sm:inline">Mehmonlar</span> (<span id="navRsvpBadgeCount">0</span>)
+          </button>
+
+          <!-- Dizayn Almashtirish tugmasi -->
+          <button type="button" id="navThemeToggleBtn" class="px-3 py-1.5 rounded-full bg-white hover:bg-cream-soft text-espresso border border-gold/40 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="Dizaynni tanlash">
+            <i class="fa-solid fa-palette text-gold-dark text-[11px]"></i>
+            <span class="hidden sm:inline">Dizayn</span>
+          </button>
+
           <!-- Havolani Olish tugmasi -->
           <button type="button" id="navGetLinkBtn" class="px-3.5 py-1.5 rounded-full bg-gold hover:bg-gold-dark text-white text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="Mehmonlar havolasini olish">
             <i class="fa-solid fa-link text-[11px]"></i>
@@ -756,7 +1010,7 @@
         <div class="space-y-6">
 
           <!-- TELEFON RAQAM BO'LIMI -->
-          <div class="bg-white p-5 rounded-2xl border border-gold/30 shadow-xs">
+          <div id="previewPhoneBox" class="bg-white p-5 rounded-2xl border border-gold/30 shadow-xs">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div class="flex items-center gap-3.5 text-center sm:text-left">
                 <div class="w-12 h-12 rounded-xl bg-cream-soft border border-gold/40 flex items-center justify-center text-gold-dark shrink-0">
@@ -843,6 +1097,18 @@
           <p data-i18n="rsvpSubtitle" class="text-xs uppercase tracking-widest text-gold-dark mt-1">
             Dasturxonimizni rejalashtirishimiz uchun javobingiz muhim
           </p>
+        </div>
+
+        <!-- To'y egalari uchun mehmonlar ro'yxatini ko'rish bloki -->
+        <div id="rsvpHostNotice" class="hidden mb-6 p-3.5 rounded-2xl bg-emerald-50/90 border border-emerald-300 flex items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2 text-emerald-950 font-medium">
+            <i class="fa-solid fa-clipboard-user text-emerald-700 text-sm"></i>
+            <span>Tasdiqlangan mehmonlar: <strong id="rsvpSectionHostCount" class="text-emerald-700 font-bold">0 kishi</strong></span>
+          </div>
+          <button type="button" id="rsvpOpenListFromSectionBtn" class="px-3 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-[11px] transition-colors cursor-pointer flex items-center gap-1 shadow-2xs">
+            <i class="fa-solid fa-list-check text-[10px]"></i>
+            <span>Ro'yxatni ochish</span>
+          </button>
         </div>
 
         <form id="guestRsvpForm" class="space-y-5">
@@ -982,16 +1248,23 @@
        MODAL OYNA (RSVP TASDIQLASH XABARI)
        ========================================================== -->
   <div id="rsvpSuccessModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-    <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center border-2 border-gold shadow-2xl relative transform scale-95 transition-transform duration-300">
-      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-cream-soft border-2 border-gold flex items-center justify-center text-gold-dark text-2xl shadow-inner">
-        <i class="fa-solid fa-check"></i>
+    <div class="bg-white rounded-3xl p-7 max-w-sm w-full text-center border-2 border-gold shadow-2xl relative transform scale-95 transition-transform duration-300">
+      <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-cream-soft border-2 border-gold flex items-center justify-center text-gold-dark text-2xl shadow-inner">
+        <i class="fa-solid fa-circle-check text-emerald-600"></i>
       </div>
-      <h3 class="font-serif text-2xl font-bold text-espresso mb-2">Katta Rahmat!</h3>
-      <p id="modalConfirmText" class="text-xs text-espresso-light mb-6 leading-relaxed">
+      <h3 class="font-serif text-2xl font-bold text-espresso mb-1">Katta Rahmat!</h3>
+      <p id="modalConfirmText" class="text-xs text-espresso-light mb-4 leading-relaxed">
         Javobingiz muvaffaqiyatli qabul qilindi. Sizni to'yimizda ko'rishdan behad xursand bo'lamiz!
       </p>
-      <button type="button" id="closeModalBtn" class="w-full py-3 rounded-full bg-gold text-white font-semibold text-xs uppercase tracking-wider hover:bg-gold-dark transition-colors cursor-pointer">
-        Tushunarli
+
+      <!-- Telegram orqali to'y egalariga bevosita xabar berish tugmasi -->
+      <a id="rsvpSendTelegramBtn" target="_blank" href="#" class="w-full py-3 px-4 mb-2.5 rounded-full bg-[#24A1DE] hover:bg-[#1f8cc2] text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer">
+        <i class="fa-brands fa-telegram text-base"></i>
+        <span>Telegramda to'y egalariga yuborish</span>
+      </a>
+
+      <button type="button" id="closeModalBtn" class="w-full py-2.5 rounded-full bg-cream-soft hover:bg-gold/20 text-espresso font-semibold text-xs uppercase tracking-wider transition-colors cursor-pointer">
+        Yopish
       </button>
     </div>
   </div>
@@ -1047,6 +1320,125 @@
       <button type="button" id="modalDoneBtn" class="text-xs text-espresso-light hover:text-gold-dark transition-colors cursor-pointer">
         Yopish
       </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       MODAL OYNA (TASHRIFNI TASDIQLAGAN MEHMONLAR RO'YXATI - RSVP DASHBOARD)
+       ========================================================== -->
+  <div id="rsvpListModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-5 sm:p-7 border-2 border-gold/40 shadow-2xl relative flex flex-col max-h-[90vh] transform scale-95 transition-transform duration-300">
+      
+      <!-- Modal Bosh Qismi -->
+      <div class="flex items-center justify-between pb-3 border-b border-gold/20">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg shadow-inner">
+            <i class="fa-solid fa-clipboard-user"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso">Tashrifni Tasdiqlaganlar (RSVP)</h3>
+            <p class="text-[11px] text-espresso-light">To'yga keladigan va javob bergan mehmonlar to'liq ro'yxati</p>
+          </div>
+        </div>
+        <button type="button" id="closeRsvpListModalBtn" aria-label="Yopish" class="w-8 h-8 rounded-full bg-cream-soft hover:bg-gold/20 text-espresso-light hover:text-espresso flex items-center justify-center transition-colors cursor-pointer">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Statistika ko'rsatkichlari -->
+      <div class="grid grid-cols-3 gap-2 my-3">
+        <div class="p-2.5 rounded-xl bg-cream-soft/80 border border-gold/30 text-center">
+          <span class="block text-[10px] uppercase font-bold text-espresso-light">Jami Javoblar</span>
+          <span id="rsvpStatTotal" class="text-base sm:text-lg font-bold text-espresso">0 ta</span>
+        </div>
+        <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 text-center">
+          <span class="block text-[10px] uppercase font-bold text-emerald-800">Boraman</span>
+          <span id="rsvpStatYes" class="text-base sm:text-lg font-bold text-emerald-700">0 kishi</span>
+        </div>
+        <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-300 text-center">
+          <span class="block text-[10px] uppercase font-bold text-rose-800">Kelolmaydi</span>
+          <span id="rsvpStatNo" class="text-base sm:text-lg font-bold text-rose-700">0 ta</span>
+        </div>
+      </div>
+
+      <!-- Filterlar va Qidiruv -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 mb-3">
+        <div class="flex items-center gap-1 p-1 rounded-xl bg-cream-soft border border-gold/30 text-xs">
+          <button type="button" class="rsvp-filter-btn px-2.5 py-1 rounded-lg font-semibold transition-all active bg-gold text-white" data-filter="all">
+            Barchasi (<span id="rsvpFilterAllCount">0</span>)
+          </button>
+          <button type="button" class="rsvp-filter-btn px-2.5 py-1 rounded-lg font-semibold transition-all text-espresso-light hover:text-emerald-700" data-filter="yes">
+            Keluvchilar (<span id="rsvpFilterYesCount">0</span>)
+          </button>
+          <button type="button" class="rsvp-filter-btn px-2.5 py-1 rounded-lg font-semibold transition-all text-espresso-light hover:text-rose-700" data-filter="no">
+            Kelolmaydi (<span id="rsvpFilterNoCount">0</span>)
+          </button>
+        </div>
+        
+        <div class="relative flex-1 sm:max-w-xs">
+          <input type="text" id="rsvpSearchInput" placeholder="Ism yoki telefon qidirish..." class="w-full px-3 py-1.5 pl-8 text-xs rounded-xl bg-white border border-gold/30 focus:outline-none focus:ring-1 focus:ring-gold" />
+          <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-xs text-gold-dark"></i>
+        </div>
+      </div>
+
+      <!-- Mehmonlar ro'yxati -->
+      <div id="rsvpGuestsListContainer" class="flex-1 overflow-y-auto space-y-2 pr-1 min-h-[160px] max-h-[300px]">
+        <!-- JS orqali kartalar chiziladi -->
+      </div>
+
+      <!-- Pastki boshqaruv tugmalari -->
+      <div class="pt-3 border-t border-gold/20 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5">
+          <button type="button" id="copyRsvpListBtn" class="px-3 py-1.5 rounded-xl bg-cream-soft hover:bg-gold/20 border border-gold/40 text-gold-dark text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer" title="Ro'yxatni nusxalash">
+            <i class="fa-regular fa-copy"></i>
+            <span id="copyRsvpBtnText">Nusxalash</span>
+          </button>
+          <button type="button" id="exportRsvpCsvBtn" class="px-3 py-1.5 rounded-xl bg-cream-soft hover:bg-gold/20 border border-gold/40 text-gold-dark text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer" title="Excel CSV formatida saqlash">
+            <i class="fa-solid fa-file-excel"></i>
+            <span>Excel (CSV)</span>
+          </button>
+          <button type="button" id="seedSampleGuestsBtn" class="px-2.5 py-1.5 rounded-xl text-espresso-light hover:text-gold-dark text-[11px] font-medium flex items-center gap-1 transition-colors cursor-pointer" title="Sinash uchun namuna kiritish">
+            <i class="fa-solid fa-user-plus text-[10px]"></i>
+            <span>Namuna</span>
+          </button>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <button type="button" id="clearRsvpListBtn" class="text-rose-600 hover:text-rose-700 text-xs font-semibold px-2 py-1 transition-colors cursor-pointer">
+            <i class="fa-regular fa-trash-can mr-1"></i>Tozalash
+          </button>
+          <button type="button" id="doneRsvpModalBtn" class="px-4 py-1.5 rounded-xl bg-espresso text-white text-xs font-semibold hover:bg-black transition-colors cursor-pointer">
+            Yopish
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       MODAL OYNA (TEZKOR DIZAYN ALMASHTIRGICH)
+       ========================================================== -->
+  <div id="themeSwitcherModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 border-2 border-gold/40 shadow-2xl relative flex flex-col transform scale-95 transition-transform duration-300">
+      <div class="flex items-center justify-between pb-3 border-b border-gold/20 mb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gold/15 text-gold-dark flex items-center justify-center text-base">
+            <i class="fa-solid fa-palette"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl font-bold text-espresso">Taklifnoma Dizaynini Tanlang</h3>
+            <p class="text-[11px] text-espresso-light">8 ta betakror nafis uslubdan birini tanlang</p>
+          </div>
+        </div>
+        <button type="button" id="closeThemeModalBtn" class="w-8 h-8 rounded-full bg-cream-soft hover:bg-gold/20 text-espresso-light hover:text-espresso flex items-center justify-center transition-colors cursor-pointer">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2.5 max-h-[60vh] overflow-y-auto pr-1" id="modalThemeGrid">
+        <!-- JS orqali 8 ta dizayn yuklanadi -->
+      </div>
     </div>
   </div>
 
@@ -1282,6 +1674,83 @@
     // =========================================================================
     const STORAGE_KEY = "my_custom_wedding_invitation";
     const WISHES_STORAGE_KEY = "wedding_guest_wishes";
+    const RSVP_STORAGE_KEY = "wedding_rsvp_guests_v1";
+
+    // 8 TA HASHAMATLI DIZAYN METADATASI
+    const THEMES = [
+      {
+        id: "royal-gold",
+        name: "Shohona Oltin & Krem",
+        shortName: "Shohona Oltin",
+        aura: "Klassik shohona saroy va oltin jilosi",
+        icon: "fa-crown",
+        gradient: "linear-gradient(135deg, #E6CF9B, #C5A059)",
+        badgeBg: "#C5A059",
+      },
+      {
+        id: "emerald",
+        name: "Zumrad & Shohona Oltin",
+        shortName: "Zumrad Oqshom",
+        aura: "Sirli zumrad o'rmoni va shohona kadife",
+        icon: "fa-gem",
+        gradient: "linear-gradient(135deg, #1B7850, #0D5C3A)",
+        badgeBg: "#0D5C3A",
+      },
+      {
+        id: "amethyst",
+        name: "Safsar & Nilufar Shukuhi",
+        shortName: "Safsar Nilufar",
+        aura: "Lirik binafsha va nafis oqshom siri",
+        icon: "fa-wand-magic-sparkles",
+        gradient: "linear-gradient(135deg, #914391, #6E2D6E)",
+        badgeBg: "#6E2D6E",
+      },
+      {
+        id: "blush-pearl",
+        name: "Pushti Marvarid & Atirgul",
+        shortName: "Pushti Marvarid",
+        aura: "Mayin sevgi, atirgul nafasi va marvarid",
+        icon: "fa-heart",
+        gradient: "linear-gradient(135deg, #D98895, #B76572)",
+        badgeBg: "#B76572",
+      },
+      {
+        id: "pure-silk",
+        name: "Oqqush Nafisligi (Minimalist)",
+        shortName: "Oqqush Ipak",
+        aura: "Yevropa aristokratiyasi, sof oq ipak",
+        icon: "fa-feather",
+        gradient: "linear-gradient(135deg, #5A5653, #2B2928)",
+        badgeBg: "#4A4643",
+      },
+      {
+        id: "sapphire",
+        name: "Osmon & Feruza (Sapphire)",
+        shortName: "Osmon Feruza",
+        aura: "Yulduzli moviy tun va oltin zar",
+        icon: "fa-moon",
+        gradient: "linear-gradient(135deg, #2C578F, #1C3D68)",
+        badgeBg: "#1C3D68",
+      },
+      {
+        id: "oriental",
+        name: "Sharqona Naqsh (Firuza)",
+        shortName: "Sharqona Naqsh",
+        aura: "Samarqand Registon firuzasi va islimiy naqsh",
+        icon: "fa-mosque",
+        gradient: "linear-gradient(135deg, #0A9EAF, #088395)",
+        badgeBg: "#088395",
+      },
+      {
+        id: "rustic",
+        name: "Rustik & Terracotta Zaytun",
+        shortName: "Rustik Zaytun",
+        aura: "Iliq pishiq tuproq, zaytun yaprog'i va tabiat",
+        icon: "fa-wheat-awn",
+        gradient: "linear-gradient(135deg, #C46742, #A24E2D)",
+        badgeBg: "#A24E2D",
+      }
+    ];
 
     const defaultWeddingData = {
       groom: "Alijon",
@@ -1294,12 +1763,15 @@
       cardNumber: "8600 1234 5678 9012",
       cardHolder: "Madina X. (Uzcard/Humo)",
       musicUrl: "https://assets.mixkit.co/music/preview/mixkit-wedding-piano-walk-537.mp3",
-      message: "Hayotimizdagi eng unutilmas, hayajonli va quvonchli kun — yangi oila rishtalari bog'lanayotgan ushbu tantanali onlarda biz bilan birga bo'lishingizni chin yurakdan istaymiz.\n\nSizning tashrifingiz va samimiy duolaringiz biz uchun cheksiz quvonchdir!"
+      message: "Hayotimizdagi eng unutilmas, hayajonli va quvonchli kun — yangi oila rishtalari bog'lanayotgan ushbu tantanali onlarda biz bilan birga bo'lishingizni chin yurakdan istaymiz.\n\nSizning tashrifingiz va samimiy duolaringiz biz uchun cheksiz quvonchdir!",
+      theme: "royal-gold"
     };
 
     let currentWeddingData = { ...defaultWeddingData };
     let countdownInterval = null;
     let isGuestMode = false;
+    let currentRsvpFilter = "all";
+    let currentRsvpSearch = "";
 
     // DOM Elementlari
     const generatorSection = document.getElementById("generatorSection");
@@ -1309,6 +1781,8 @@
     const navAdminControls = document.getElementById("navAdminControls");
     const navGetLinkBtn = document.getElementById("navGetLinkBtn");
     const navEditBtn = document.getElementById("navEditBtn");
+    const navRsvpBtn = document.getElementById("navRsvpBtn");
+    const navThemeToggleBtn = document.getElementById("navThemeToggleBtn");
     const footerEditContainer = document.getElementById("footerEditContainer");
     const footerEditBtn = document.getElementById("footerEditBtn");
 
@@ -1322,6 +1796,24 @@
     const closeShareModalBtn = document.getElementById("closeShareModalBtn");
     const modalDoneBtn = document.getElementById("modalDoneBtn");
 
+    // Modal elements for RSVP Dashboard
+    const rsvpListModal = document.getElementById("rsvpListModal");
+    const closeRsvpListModalBtn = document.getElementById("closeRsvpListModalBtn");
+    const doneRsvpModalBtn = document.getElementById("doneRsvpModalBtn");
+    const openRsvpListBtn = document.getElementById("openRsvpListBtn");
+    const rsvpOpenListFromSectionBtn = document.getElementById("rsvpOpenListFromSectionBtn");
+    const rsvpSearchInput = document.getElementById("rsvpSearchInput");
+    const rsvpGuestsListContainer = document.getElementById("rsvpGuestsListContainer");
+    const copyRsvpListBtn = document.getElementById("copyRsvpListBtn");
+    const exportRsvpCsvBtn = document.getElementById("exportRsvpCsvBtn");
+    const seedSampleGuestsBtn = document.getElementById("seedSampleGuestsBtn");
+    const clearRsvpListBtn = document.getElementById("clearRsvpListBtn");
+
+    // Modal elements for Theme Switcher
+    const themeSwitcherModal = document.getElementById("themeSwitcherModal");
+    const closeThemeModalBtn = document.getElementById("closeThemeModalBtn");
+    const modalThemeGrid = document.getElementById("modalThemeGrid");
+
     // Form inputs
     const inputGroom = document.getElementById("inputGroom");
     const inputBride = document.getElementById("inputBride");
@@ -1334,6 +1826,7 @@
     const inputCardHolder = document.getElementById("inputCardHolder");
     const inputMusicUrl = document.getElementById("inputMusicUrl");
     const inputMessage = document.getElementById("inputMessage");
+    const inputTheme = document.getElementById("inputTheme");
 
     // Audio elements
     const weddingAudio = document.getElementById("weddingAudio");
@@ -1397,6 +1890,43 @@
       return `${base}#data=${encoded}`;
     }
 
+    // 8 TA DIZAYNNI QO'LLASH (THEME ENGINE)
+    function applyTheme(themeId) {
+      const validTheme = THEMES.find(t => t.id === themeId) ? themeId : "royal-gold";
+      currentWeddingData.theme = validTheme;
+
+      // Body dan eski theme-* klasslarni olib tashlash
+      THEMES.forEach(t => document.body.classList.remove(`theme-${t.id}`));
+      document.body.classList.add(`theme-${validTheme}`);
+
+      // Hidden inputni yangilash
+      if (inputTheme) inputTheme.value = validTheme;
+
+      // Formadagi kartalarni yangilash
+      document.querySelectorAll("#themePickerGrid .theme-card").forEach(card => {
+        if (card.dataset.theme === validTheme) {
+          card.classList.add("active");
+        } else {
+          card.classList.remove("active");
+        }
+      });
+
+      // Modaldagi kartalarni yangilash
+      document.querySelectorAll("#modalThemeGrid .theme-card").forEach(card => {
+        if (card.dataset.theme === validTheme) {
+          card.classList.add("active");
+        } else {
+          card.classList.remove("active");
+        }
+      });
+
+      const selectedThemeObj = THEMES.find(t => t.id === validTheme);
+      const selectedThemeLabel = document.getElementById("selectedThemeLabel");
+      if (selectedThemeLabel && selectedThemeObj) {
+        selectedThemeLabel.innerText = selectedThemeObj.name;
+      }
+    }
+
     function applyGuestModeUI() {
       // Mehmon rejimi: admin va tahrirlash elementlarini BUTUNLAY yashirish
       if (generatorSection) {
@@ -1419,6 +1949,8 @@
         footerEditBtn.classList.add("hidden");
         footerEditBtn.style.display = "none";
       }
+      const rsvpHostNotice = document.getElementById("rsvpHostNotice");
+      if (rsvpHostNotice) rsvpHostNotice.classList.add("hidden");
     }
 
     function applyAdminModeUI() {
@@ -1441,6 +1973,8 @@
         footerEditBtn.classList.remove("hidden");
         footerEditBtn.style.display = "";
       }
+      const rsvpHostNotice = document.getElementById("rsvpHostNotice");
+      if (rsvpHostNotice) rsvpHostNotice.classList.remove("hidden");
     }
 
     function checkUrlMode() {
@@ -1598,6 +2132,10 @@
       inputCardHolder.value = data.cardHolder || "";
       inputMusicUrl.value = data.musicUrl || "";
       inputMessage.value = data.message || "";
+
+      const theme = data.theme || "royal-gold";
+      if (inputTheme) inputTheme.value = theme;
+      applyTheme(theme);
     }
 
     // =========================================================================
@@ -1665,35 +2203,50 @@
         mapBtn.classList.remove("hidden");
       }
 
-      // 5. Telefon raqami
+      // 5. Telefon va Plastik Karta (Ixtiyoriy bloklar)
+      const giftSection = document.getElementById("giftSection");
+      const phoneBox = document.getElementById("previewPhoneBox");
       const phoneDisplay = document.getElementById("previewPhoneDisplay");
       const phoneCallLink = document.getElementById("previewPhoneCallLink");
       const cleanPhone = (data.phone || "").trim();
 
-      if (cleanPhone) {
-        phoneDisplay.innerText = cleanPhone;
-        phoneCallLink.href = `tel:${cleanPhone.replace(/\s+/g, "")}`;
-      } else {
-        phoneDisplay.innerText = "+998 90 123 45 67";
-        phoneCallLink.href = "tel:+998901234567";
-      }
-
-      // 6. Plastik karta
       const cardContainer = document.getElementById("previewCardContainer");
       const cardNumberDisplay = document.getElementById("previewCardNumberDisplay");
       const cardHolderDisplay = document.getElementById("previewCardHolderDisplay");
       const cleanCard = (data.cardNumber || "").trim();
 
+      let hasPhone = false;
+      let hasCard = false;
+
+      if (cleanPhone) {
+        phoneDisplay.innerText = cleanPhone;
+        phoneCallLink.href = `tel:${cleanPhone.replace(/\s+/g, "")}`;
+        if (phoneBox) phoneBox.classList.remove("hidden");
+        hasPhone = true;
+      } else {
+        if (phoneBox) phoneBox.classList.add("hidden");
+      }
+
       if (cleanCard) {
         cardNumberDisplay.innerText = cleanCard;
         cardHolderDisplay.innerText = (data.cardHolder || `${groom} & ${bride}`).trim();
         cardContainer.classList.remove("hidden");
+        hasCard = true;
       } else {
-        // Agar kiritilmagan bo'lsa ham nafis namuna ko'rsatiladi
-        cardNumberDisplay.innerText = "8600 1234 5678 9012";
-        cardHolderDisplay.innerText = `${groom} & ${bride}`;
-        cardContainer.classList.remove("hidden");
+        cardContainer.classList.add("hidden");
       }
+
+      // Agar ikkalasi ham bo'sh bo'lsa, butun bo'limni yashirish
+      if (giftSection) {
+        if (!hasPhone && !hasCard) {
+          giftSection.classList.add("hidden");
+        } else {
+          giftSection.classList.remove("hidden");
+        }
+      }
+
+      // 6. Tanlangan Dizayn (8 ta Elegant Uslub)
+      applyTheme(data.theme || "royal-gold");
 
       // 7. Musiqa URL
       if (data.musicUrl && data.musicUrl.trim()) {
@@ -1779,6 +2332,8 @@
     invitationSetupForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      const chosenTheme = (inputTheme ? inputTheme.value : "") || currentWeddingData.theme || "royal-gold";
+
       const updatedData = {
         groom: inputGroom.value.trim() || defaultWeddingData.groom,
         bride: inputBride.value.trim() || defaultWeddingData.bride,
@@ -1786,11 +2341,12 @@
         venue: inputVenue.value.trim() || defaultWeddingData.venue,
         address: inputAddress.value.trim() || defaultWeddingData.address,
         mapUrl: inputMapUrl.value.trim() || defaultWeddingData.mapUrl,
-        phone: inputPhone.value.trim() || defaultWeddingData.phone,
-        cardNumber: inputCardNumber.value.trim() || defaultWeddingData.cardNumber,
-        cardHolder: inputCardHolder.value.trim() || defaultWeddingData.cardHolder,
+        phone: inputPhone.value.trim(),
+        cardNumber: inputCardNumber.value.trim(),
+        cardHolder: inputCardHolder.value.trim(),
         musicUrl: inputMusicUrl.value.trim() || defaultWeddingData.musicUrl,
         message: inputMessage.value.trim() || defaultWeddingData.message,
+        theme: chosenTheme
       };
 
       currentWeddingData = updatedData;
@@ -1817,6 +2373,8 @@
     const previewBtn = document.getElementById("previewBtn");
     if (previewBtn) {
       previewBtn.addEventListener("click", () => {
+        const chosenTheme = (inputTheme ? inputTheme.value : "") || currentWeddingData.theme || "royal-gold";
+
         const previewData = {
           groom: inputGroom.value.trim() || defaultWeddingData.groom,
           bride: inputBride.value.trim() || defaultWeddingData.bride,
@@ -1824,11 +2382,12 @@
           venue: inputVenue.value.trim() || defaultWeddingData.venue,
           address: inputAddress.value.trim() || defaultWeddingData.address,
           mapUrl: inputMapUrl.value.trim() || defaultWeddingData.mapUrl,
-          phone: inputPhone.value.trim() || defaultWeddingData.phone,
-          cardNumber: inputCardNumber.value.trim() || defaultWeddingData.cardNumber,
-          cardHolder: inputCardHolder.value.trim() || defaultWeddingData.cardHolder,
+          phone: inputPhone.value.trim(),
+          cardNumber: inputCardNumber.value.trim(),
+          cardHolder: inputCardHolder.value.trim(),
           musicUrl: inputMusicUrl.value.trim() || defaultWeddingData.musicUrl,
           message: inputMessage.value.trim() || defaultWeddingData.message,
+          theme: chosenTheme
         };
 
         currentWeddingData = previewData;
@@ -1859,6 +2418,7 @@
     // Tozalash tugmasi
     document.getElementById("clearFormBtn").addEventListener("click", () => {
       invitationSetupForm.reset();
+      applyTheme("royal-gold");
       showToast("Forma tozalandi!");
     });
 
@@ -2028,43 +2588,519 @@
     window.addEventListener("scroll", attemptAutoPlayOnInteraction);
 
     // =========================================================================
-    // 13. RSVP FORMA & TILAKLAR DEVORI
+    // 13. RSVP TASHRIFNI TASDIQLASH VA MEHMONLAR RO'YXATI BOSHQARUVI
     // =========================================================================
+    function loadRsvpGuests() {
+      try {
+        const saved = localStorage.getItem(RSVP_STORAGE_KEY);
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        console.error("RSVP o'qishda xatolik:", e);
+      }
+      return [];
+    }
+
+    function saveRsvpGuests(guests) {
+      try {
+        localStorage.setItem(RSVP_STORAGE_KEY, JSON.stringify(guests));
+      } catch (e) {
+        console.error("RSVP saqlashda xatolik:", e);
+      }
+      updateRsvpUI();
+    }
+
+    function addRsvpGuest(guest) {
+      const guests = loadRsvpGuests();
+      guests.unshift(guest);
+      saveRsvpGuests(guests);
+    }
+
+    function deleteRsvpGuest(id) {
+      if (confirm("Ushbu mehmonni ro'yxatdan o'chirmoqchimisiz?")) {
+        let guests = loadRsvpGuests();
+        guests = guests.filter(g => g.id !== id);
+        saveRsvpGuests(guests);
+        showToast("Mehmon o'chirildi");
+      }
+    }
+
+    function getRsvpStats() {
+      const guests = loadRsvpGuests();
+      let totalResponses = guests.length;
+      let yesCount = 0;
+      let totalPeopleAttending = 0;
+      let noCount = 0;
+
+      guests.forEach(g => {
+        const isYes = (g.decision || "").toLowerCase().includes("boraman");
+        if (isYes) {
+          yesCount++;
+          let num = 1;
+          const countStr = (g.count || "").toLowerCase();
+          if (countStr.includes("2")) num = 2;
+          else if (countStr.includes("3") || countStr.includes("oila")) num = 3;
+          totalPeopleAttending += num;
+        } else {
+          noCount++;
+        }
+      });
+
+      return { totalResponses, yesCount, totalPeopleAttending, noCount, guests };
+    }
+
+    function updateRsvpUI() {
+      const stats = getRsvpStats();
+
+      const adminRsvpCountBadge = document.getElementById("adminRsvpCountBadge");
+      if (adminRsvpCountBadge) {
+        adminRsvpCountBadge.innerText = `${stats.totalPeopleAttending} kishi (${stats.yesCount} ta tasdiq)`;
+      }
+
+      const navRsvpBadgeCount = document.getElementById("navRsvpBadgeCount");
+      if (navRsvpBadgeCount) {
+        navRsvpBadgeCount.innerText = stats.totalPeopleAttending;
+      }
+
+      const rsvpSectionHostCount = document.getElementById("rsvpSectionHostCount");
+      if (rsvpSectionHostCount) {
+        rsvpSectionHostCount.innerText = `${stats.totalPeopleAttending} kishi (${stats.yesCount} ta)`;
+      }
+
+      const rsvpStatTotal = document.getElementById("rsvpStatTotal");
+      if (rsvpStatTotal) rsvpStatTotal.innerText = `${stats.totalResponses} ta`;
+
+      const rsvpStatYes = document.getElementById("rsvpStatYes");
+      if (rsvpStatYes) rsvpStatYes.innerText = `${stats.totalPeopleAttending} kishi (${stats.yesCount} ta)`;
+
+      const rsvpStatNo = document.getElementById("rsvpStatNo");
+      if (rsvpStatNo) rsvpStatNo.innerText = `${stats.noCount} ta`;
+
+      const rsvpFilterAllCount = document.getElementById("rsvpFilterAllCount");
+      if (rsvpFilterAllCount) rsvpFilterAllCount.innerText = stats.totalResponses;
+
+      const rsvpFilterYesCount = document.getElementById("rsvpFilterYesCount");
+      if (rsvpFilterYesCount) rsvpFilterYesCount.innerText = stats.yesCount;
+
+      const rsvpFilterNoCount = document.getElementById("rsvpFilterNoCount");
+      if (rsvpFilterNoCount) rsvpFilterNoCount.innerText = stats.noCount;
+
+      renderRsvpGuestsList(currentRsvpFilter, currentRsvpSearch);
+    }
+
+    function renderRsvpGuestsList(filter = "all", searchQuery = "") {
+      if (!rsvpGuestsListContainer) return;
+      const guests = loadRsvpGuests();
+      const q = (searchQuery || "").toLowerCase().trim();
+
+      let filtered = guests.filter(g => {
+        const isYes = (g.decision || "").toLowerCase().includes("boraman");
+        if (filter === "yes" && !isYes) return false;
+        if (filter === "no" && isYes) return false;
+        if (q) {
+          const matchName = (g.name || "").toLowerCase().includes(q);
+          const matchPhone = (g.phone || "").toLowerCase().includes(q);
+          const matchNote = (g.note || "").toLowerCase().includes(q);
+          return matchName || matchPhone || matchNote;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        rsvpGuestsListContainer.innerHTML = `
+          <div class="text-center py-8 px-4 bg-cream-soft/50 rounded-2xl border border-dashed border-gold/40">
+            <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-cream-soft text-gold-dark flex items-center justify-center text-xl">
+              <i class="fa-regular fa-clipboard"></i>
+            </div>
+            <p class="text-xs font-semibold text-espresso">Hech qanday mehmon topilmadi</p>
+            <p class="text-[11px] text-espresso-light mt-1">Mehmonlar "Tashrifingizni Tasdiqlang" formasini to'ldirishganda bu yerda ko'rinadi.</p>
+            <button type="button" id="innerSeedBtn" class="mt-3 text-xs px-3 py-1.5 rounded-xl bg-gold text-white font-medium hover:bg-gold-dark transition-colors cursor-pointer">
+              <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Sinash uchun namuna qo'shish
+            </button>
+          </div>
+        `;
+        const innerSeedBtn = document.getElementById("innerSeedBtn");
+        if (innerSeedBtn) innerSeedBtn.addEventListener("click", seedSampleGuests);
+        return;
+      }
+
+      rsvpGuestsListContainer.innerHTML = "";
+      filtered.forEach(g => {
+        const isYes = (g.decision || "").toLowerCase().includes("boraman");
+        const card = document.createElement("div");
+        card.className = "p-3 rounded-2xl border transition-all bg-white shadow-2xs hover:shadow-xs " + 
+          (isYes ? "border-emerald-200 hover:border-emerald-400" : "border-rose-200 hover:border-rose-400");
+        
+        const safeName = escapeHtml(g.name || "Noma'lum");
+        const safePhone = escapeHtml(g.phone || "");
+        const safeNote = escapeHtml(g.note || "");
+        const safeDate = escapeHtml(g.date || "Yaqinda");
+        const safeCount = escapeHtml(g.count || "1 kishi");
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-2 mb-1.5">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs shrink-0 ${isYes ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                <i class="fa-solid ${isYes ? 'fa-user-check' : 'fa-user-xmark'}"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-espresso leading-tight">${safeName}</h4>
+                <div class="flex items-center gap-1.5 text-[10px] text-espresso-light">
+                  <span>${safeDate}</span>
+                  <span>•</span>
+                  <span class="font-medium ${isYes ? 'text-emerald-700' : 'text-rose-700'}">${safeCount}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${isYes ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                ${isYes ? '💍 Boraman' : '🌸 Kelolmaydi'}
+              </span>
+              <button type="button" class="del-guest-btn w-6 h-6 rounded-full hover:bg-rose-100 text-espresso-light hover:text-rose-600 flex items-center justify-center transition-colors cursor-pointer" data-id="${g.id}" title="O'chirish">
+                <i class="fa-regular fa-trash-can text-[11px]"></i>
+              </button>
+            </div>
+          </div>
+
+          ${safePhone ? `
+            <div class="flex items-center gap-2 mb-1 pl-10 text-[11px]">
+              <i class="fa-solid fa-phone text-[9px] text-gold-dark"></i>
+              <a href="tel:${safePhone.replace(/\s+/g, '')}" class="font-mono text-espresso hover:text-gold-dark font-medium">${safePhone}</a>
+              <a href="https://t.me/${safePhone.replace(/[\s\+]/g, '')}" target="_blank" class="text-[#24A1DE] hover:underline text-[10px] flex items-center gap-0.5 ml-1">
+                <i class="fa-brands fa-telegram"></i> Telegram
+              </a>
+            </div>
+          ` : ''}
+
+          ${safeNote ? `
+            <div class="mt-1 pl-10">
+              <p class="text-[11px] text-espresso/85 italic bg-cream-soft/60 px-2.5 py-1.5 rounded-lg border border-gold/20 leading-relaxed">
+                "${safeNote}"
+              </p>
+            </div>
+          ` : ''}
+        `;
+
+        card.querySelector(".del-guest-btn")?.addEventListener("click", () => {
+          deleteRsvpGuest(g.id);
+        });
+
+        rsvpGuestsListContainer.appendChild(card);
+      });
+    }
+
+    function openRsvpListModal() {
+      if (!rsvpListModal) return;
+      updateRsvpUI();
+      rsvpListModal.classList.remove("hidden");
+      setTimeout(() => {
+        rsvpListModal.classList.remove("opacity-0");
+        rsvpListModal.querySelector("div").classList.remove("scale-95");
+      }, 10);
+    }
+
+    function closeRsvpListModal() {
+      if (!rsvpListModal) return;
+      rsvpListModal.classList.add("opacity-0");
+      rsvpListModal.querySelector("div").classList.add("scale-95");
+      setTimeout(() => {
+        rsvpListModal.classList.add("hidden");
+      }, 300);
+    }
+
+    if (openRsvpListBtn) openRsvpListBtn.addEventListener("click", openRsvpListModal);
+    if (navRsvpBtn) navRsvpBtn.addEventListener("click", openRsvpListModal);
+    if (rsvpOpenListFromSectionBtn) rsvpOpenListFromSectionBtn.addEventListener("click", openRsvpListModal);
+    if (closeRsvpListModalBtn) closeRsvpListModalBtn.addEventListener("click", closeRsvpListModal);
+    if (doneRsvpModalBtn) doneRsvpModalBtn.addEventListener("click", closeRsvpListModal);
+
+    // RSVP Filter tugmalari
+    document.querySelectorAll(".rsvp-filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".rsvp-filter-btn").forEach(b => {
+          b.classList.remove("active", "bg-gold", "text-white");
+          b.classList.add("text-espresso-light");
+        });
+        btn.classList.add("active", "bg-gold", "text-white");
+        btn.classList.remove("text-espresso-light");
+        currentRsvpFilter = btn.dataset.filter || "all";
+        renderRsvpGuestsList(currentRsvpFilter, currentRsvpSearch);
+      });
+    });
+
+    if (rsvpSearchInput) {
+      rsvpSearchInput.addEventListener("input", (e) => {
+        currentRsvpSearch = e.target.value;
+        renderRsvpGuestsList(currentRsvpFilter, currentRsvpSearch);
+      });
+    }
+
+    // Ro'yxatni nusxalash
+    if (copyRsvpListBtn) {
+      copyRsvpListBtn.addEventListener("click", () => {
+        const guests = loadRsvpGuests();
+        if (guests.length === 0) {
+          showToast("Hozircha mehmonlar yo'q!");
+          return;
+        }
+        const stats = getRsvpStats();
+        let txt = `💍 TO'Y TASHRIFNI TASDIQLAGAN MEHMONLAR RO'YXATI (RSVP)\n`;
+        txt += `Jami tasdiqlar: ${stats.totalResponses} ta\n`;
+        txt += `Keluvchilar soni: ${stats.totalPeopleAttending} kishi (${stats.yesCount} ta)\n`;
+        txt += `Kelolmaydiganlar: ${stats.noCount} ta\n\n`;
+
+        guests.forEach((g, idx) => {
+          txt += `${idx + 1}. ${g.name} — ${g.decision} (${g.count || '1 kishi'})`;
+          if (g.phone) txt += ` | Tel: ${g.phone}`;
+          if (g.note) txt += ` | Tilak: "${g.note}"`;
+          txt += `\n`;
+        });
+
+        navigator.clipboard.writeText(txt).then(() => {
+          const btnText = document.getElementById("copyRsvpBtnText");
+          if (btnText) btnText.innerText = "Nusxalandi! ✓";
+          showToast("Mehmonlar ro'yxati nusxalandi!");
+          setTimeout(() => {
+            if (btnText) btnText.innerText = "Nusxalash";
+          }, 2000);
+        }).catch(() => {
+          prompt("Ro'yxat:", txt);
+        });
+      });
+    }
+
+    // Excel CSV yuklab olish
+    if (exportRsvpCsvBtn) {
+      exportRsvpCsvBtn.addEventListener("click", () => {
+        const guests = loadRsvpGuests();
+        if (guests.length === 0) {
+          showToast("Yuklab olish uchun mehmonlar mavjud emas!");
+          return;
+        }
+        let csvContent = "\uFEFF" + "T/r;Ism-Familiya;Qaror;Kishi soni;Telefon;Tilak / Qayd;Sana\n";
+        guests.forEach((g, idx) => {
+          const row = [
+            idx + 1,
+            `"${(g.name || '').replace(/"/g, '""')}"`,
+            `"${(g.decision || '').replace(/"/g, '""')}"`,
+            `"${(g.count || '').replace(/"/g, '""')}"`,
+            `"${(g.phone || '').replace(/"/g, '""')}"`,
+            `"${(g.note || '').replace(/"/g, '""')}"`,
+            `"${(g.date || '').replace(/"/g, '""')}"`
+          ].join(";");
+          csvContent += row + "\n";
+        });
+
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", `toy_mehmonlari_rsvp_${Date.now()}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast("CSV fayl yuklab olindi! 📊");
+      });
+    }
+
+    // Namuna mehmonlar qo'shish
+    function seedSampleGuests() {
+      const samples = [
+        {
+          id: "guest_s1",
+          name: "Jamshid va Nilufar Karimovlar",
+          phone: "+998 90 123 45 67",
+          decision: "Ha, albatta boraman",
+          count: "2 kishi (Juftlik bilan)",
+          note: "Baxtingizga ko'z tegmasin! Bir umr qo'sha qaringlar!",
+          date: "Bugun 10:20",
+          timestamp: Date.now() - 3600000
+        },
+        {
+          id: "guest_s2",
+          name: "Azizbek Qosimov (Do'st)",
+          phone: "+998 93 555 44 33",
+          decision: "Ha, albatta boraman",
+          count: "1 kishi (Yolg'iz)",
+          note: "Do'stim Alijon, oq yo'l! Albatta boramiz va to'yni qizitamiz!",
+          date: "Bugun 11:45",
+          timestamp: Date.now() - 1800000
+        },
+        {
+          id: "guest_s3",
+          name: "Mavjuda xola oilasi bilan",
+          phone: "+998 97 777 88 99",
+          decision: "Ha, albatta boraman",
+          count: "Oilaviy (3+ kishi)",
+          note: "Ilohim Madinaxon qizimiz borgan xonadonida unib-o'ssin, baxtli bo'linglar!",
+          date: "Bugun 12:10",
+          timestamp: Date.now() - 600000
+        },
+        {
+          id: "guest_s4",
+          name: "Otabek Rahimberdiyev",
+          phone: "+998 91 333 22 11",
+          decision: "Afsuski, bora olmayman",
+          count: "1 kishi",
+          note: "Afsuski safarda bo'laman, lekin dilim sizlar bilan. Baxt tilayman!",
+          date: "Bugun 12:30",
+          timestamp: Date.now() - 300000
+        }
+      ];
+
+      const current = loadRsvpGuests();
+      const merged = [...samples.filter(s => !current.some(c => c.id === s.id)), ...current];
+      saveRsvpGuests(merged);
+      showToast("Namuna mehmonlar ro'yxatga qo'shildi!");
+    }
+    if (seedSampleGuestsBtn) seedSampleGuestsBtn.addEventListener("click", seedSampleGuests);
+
+    // Ro'yxatni tozalash
+    if (clearRsvpListBtn) {
+      clearRsvpListBtn.addEventListener("click", () => {
+        if (confirm("Haqiqatan ham barcha RSVP mehmonlar ro'yxatini tozalab yubormoqchimisiz?")) {
+          localStorage.removeItem(RSVP_STORAGE_KEY);
+          updateRsvpUI();
+          showToast("Mehmonlar ro'yxati tozalandi");
+        }
+      });
+    }
+
+    // Mehmon RSVP formasi submit handler
     const guestRsvpForm = document.getElementById("guestRsvpForm");
     const rsvpSuccessModal = document.getElementById("rsvpSuccessModal");
     const closeModalBtn = document.getElementById("closeModalBtn");
     const modalConfirmText = document.getElementById("modalConfirmText");
 
-    guestRsvpForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = document.getElementById("guestRsvpName").value.trim();
-      const decision = document.querySelector('input[name="rsvpDecision"]:checked')?.value || "Ha, albatta boraman";
-      const count = document.getElementById("guestCountSelect").value;
-      const note = document.getElementById("guestRsvpNote").value.trim();
+    if (guestRsvpForm) {
+      guestRsvpForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("guestRsvpName").value.trim();
+        const phone = document.getElementById("guestRsvpPhone")?.value.trim() || "";
+        const decision = document.querySelector('input[name="rsvpDecision"]:checked')?.value || "Ha, albatta boraman";
+        const count = document.getElementById("guestCountSelect").value;
+        const note = document.getElementById("guestRsvpNote").value.trim();
 
-      modalConfirmText.innerText = `Hurmatli ${name}! Sizning javobingiz ("${decision}", ${count}) qabul qilindi. Sizni oramizda ko'rishdan behad mamnunmiz!`;
+        // 1. Yangi mehmonni saqlaymiz
+        const newGuest = {
+          id: "guest_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5),
+          name: name,
+          phone: phone,
+          decision: decision,
+          count: count,
+          note: note,
+          date: new Date().toLocaleDateString("uz-UZ", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }),
+          timestamp: Date.now()
+        };
+        addRsvpGuest(newGuest);
 
-      // Agar tilak yozgan bo'lsa, tilaklar devoriga ham qo'shamiz
-      if (note) {
-        addWishToFeed(name, note);
-      }
+        // 2. Xabar matni
+        modalConfirmText.innerText = `Hurmatli ${name}! Sizning javobingiz ("${decision}", ${count}) muvaffaqiyatli qabul qilindi. Sizni oramizda ko'rishdan behad mamnunmiz!`;
 
-      rsvpSuccessModal.classList.remove("hidden");
+        // 3. Telegram orqali to'y egalariga yuborish havolasi
+        const hostGroom = currentWeddingData.groom || "Alijon";
+        const hostBride = currentWeddingData.bride || "Madina";
+        const tgText = encodeURIComponent(
+          `💍 TO'Y TASHRIFNI TASDIQLASH (RSVP)\n` +
+          `Assalomu alaykum ${hostGroom} & ${hostBride}!\n\n` +
+          `Men to'yingizga taklifnomangiz orqali javobimni tasdiqladim:\n` +
+          `👤 Ism: ${name}\n` +
+          (phone ? `📞 Telefon: ${phone}\n` : "") +
+          `✨ Qaror: ${decision}\n` +
+          `👥 Kishi soni: ${count}\n` +
+          (note ? `💌 Tilak: "${note}"\n` : "") +
+          `\nTo'yingiz qutlug' bo'lsin!`
+        );
+
+        const rsvpSendTelegramBtn = document.getElementById("rsvpSendTelegramBtn");
+        if (rsvpSendTelegramBtn) {
+          rsvpSendTelegramBtn.href = `https://t.me/share/url?text=${tgText}`;
+        }
+
+        // 4. Agar tilak bo'lsa, tilaklar devoriga ham qo'shish
+        if (note) {
+          addWishToFeed(name, note);
+        }
+
+        rsvpSuccessModal.classList.remove("hidden");
+        setTimeout(() => {
+          rsvpSuccessModal.classList.remove("opacity-0");
+          rsvpSuccessModal.querySelector("div").classList.remove("scale-95");
+        }, 10);
+
+        guestRsvpForm.reset();
+      });
+    }
+
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener("click", () => {
+        rsvpSuccessModal.classList.add("opacity-0");
+        rsvpSuccessModal.querySelector("div").classList.add("scale-95");
+        setTimeout(() => {
+          rsvpSuccessModal.classList.add("hidden");
+        }, 300);
+      });
+    }
+
+    // =========================================================================
+    // 14. 8 TA DIZAYN (THEME) BOSHQARUV TUGMALARI
+    // =========================================================================
+    // Formadagi kartalarni bosganda dizaynni o'zgartirish
+    document.querySelectorAll("#themePickerGrid .theme-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const tId = card.dataset.theme;
+        applyTheme(tId);
+        showToast(`Dizayn tanlandi: ${card.querySelector("span").innerText}`);
+      });
+    });
+
+    // Modal ichida 8 ta kartani generatsiya qilish
+    function populateThemeModal() {
+      if (!modalThemeGrid) return;
+      modalThemeGrid.innerHTML = "";
+      THEMES.forEach(theme => {
+        const card = document.createElement("div");
+        card.className = "theme-card p-3 rounded-2xl border border-gold/30 bg-cream-soft/40 flex flex-col items-center text-center shadow-xs cursor-pointer hover:border-gold transition-all " +
+          (currentWeddingData.theme === theme.id ? "active border-gold" : "");
+        card.dataset.theme = theme.id;
+        card.innerHTML = `
+          <div class="w-10 h-10 rounded-full mb-2 flex items-center justify-center text-white text-base shadow-sm" style="background: ${theme.gradient};">
+            <i class="fa-solid ${theme.icon}"></i>
+          </div>
+          <span class="text-xs font-bold text-espresso leading-tight">${theme.name}</span>
+          <span class="text-[10px] text-espresso-light mt-1">${theme.aura}</span>
+        `;
+        card.addEventListener("click", () => {
+          applyTheme(theme.id);
+          saveCurrentDataToStorage(currentWeddingData);
+          closeThemeModal();
+          showToast(`Dizayn o'rnatildi: ${theme.name}`);
+        });
+        modalThemeGrid.appendChild(card);
+      });
+    }
+
+    function openThemeModal() {
+      if (!themeSwitcherModal) return;
+      populateThemeModal();
+      themeSwitcherModal.classList.remove("hidden");
       setTimeout(() => {
-        rsvpSuccessModal.classList.remove("opacity-0");
-        rsvpSuccessModal.querySelector("div").classList.remove("scale-95");
+        themeSwitcherModal.classList.remove("opacity-0");
+        themeSwitcherModal.querySelector("div").classList.remove("scale-95");
       }, 10);
+    }
 
-      guestRsvpForm.reset();
-    });
-
-    closeModalBtn.addEventListener("click", () => {
-      rsvpSuccessModal.classList.add("opacity-0");
-      rsvpSuccessModal.querySelector("div").classList.add("scale-95");
+    function closeThemeModal() {
+      if (!themeSwitcherModal) return;
+      themeSwitcherModal.classList.add("opacity-0");
+      themeSwitcherModal.querySelector("div").classList.add("scale-95");
       setTimeout(() => {
-        rsvpSuccessModal.classList.add("hidden");
+        themeSwitcherModal.classList.add("hidden");
       }, 300);
-    });
+    }
+
+    if (navThemeToggleBtn) navThemeToggleBtn.addEventListener("click", openThemeModal);
+    if (closeThemeModalBtn) closeThemeModalBtn.addEventListener("click", closeThemeModal);
 
     // Tilaklar devori
     const wishesFeed = document.getElementById("wishesFeed");
@@ -2085,6 +3121,7 @@
     }
 
     function renderWishes(wishes) {
+      if (!wishesFeed) return;
       wishesFeed.innerHTML = "";
       wishes.forEach(w => {
         const card = document.createElement("div");
@@ -2114,16 +3151,18 @@
       renderWishes(wishes);
     }
 
-    quickGuestWishForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const author = document.getElementById("wishAuthor").value.trim();
-      const message = document.getElementById("wishMessage").value.trim();
-      if (author && message) {
-        addWishToFeed(author, message);
-        quickGuestWishForm.reset();
-        showToast("Samimiy tilagingiz chop etildi!");
-      }
-    });
+    if (quickGuestWishForm) {
+      quickGuestWishForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const author = document.getElementById("wishAuthor").value.trim();
+        const message = document.getElementById("wishMessage").value.trim();
+        if (author && message) {
+          addWishToFeed(author, message);
+          quickGuestWishForm.reset();
+          showToast("Samimiy tilagingiz chop etildi!");
+        }
+      });
+    }
 
     function escapeHtml(text) {
       const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
@@ -2131,7 +3170,7 @@
     }
 
     // =========================================================================
-    // 14. INITIALIZATION (Dastlabki yuklash)
+    // 15. INITIALIZATION (Dastlabki yuklash)
     // =========================================================================
     document.addEventListener("DOMContentLoaded", () => {
       // 1. AOS va Swiper ni ishga tushiramiz
@@ -2164,7 +3203,10 @@
       // 3. Tilaklarni chizamiz
       renderWishes(loadWishes());
 
-      // 4. Havola (URL) holatini tekshirish: Mehmon (Hash/Data) yoki Admin (Toza havola)
+      // 4. RSVP ma'lumotlarini yuklaymiz
+      updateRsvpUI();
+
+      // 5. Havola (URL) holatini tekshirish: Mehmon (Hash/Data) yoki Admin (Toza havola)
       checkUrlMode();
 
       // Hash o'zgarganda (masalan, foydalanuvchi orqaga qaytganda yoki yangi havola bosilganda)
