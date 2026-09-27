@@ -361,6 +361,37 @@
     .corner-bl { bottom: 10px; left: 10px; border-bottom: 1.5px solid var(--gold-primary); border-left: 1.5px solid var(--gold-primary); }
     .corner-br { bottom: 10px; right: 10px; border-bottom: 1.5px solid var(--gold-primary); border-right: 1.5px solid var(--gold-primary); }
 
+    /* Musiqa ekvalayzer to'lqin animatsiyasi */
+    @keyframes eqWave {
+      0%, 100% { height: 4px; }
+      50% { height: 16px; }
+    }
+    .eq-bar {
+      display: inline-block;
+      width: 3px;
+      background-color: var(--gold-primary);
+      border-radius: 9999px;
+      margin: 0 1px;
+    }
+    .eq-bar-1 { height: 6px; animation: eqWave 0.7s ease-in-out infinite; }
+    .eq-bar-2 { height: 14px; animation: eqWave 0.9s ease-in-out infinite 0.2s; }
+    .eq-bar-3 { height: 8px; animation: eqWave 0.6s ease-in-out infinite 0.4s; }
+    .eq-bar-4 { height: 12px; animation: eqWave 0.8s ease-in-out infinite 0.1s; }
+
+    /* Musiqa tanlov kartasi */
+    .music-preset-card {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .music-preset-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-1px);
+    }
+    .music-preset-card.active-music {
+      border-color: var(--gold-primary) !important;
+      background-color: rgba(197, 160, 89, 0.08) !important;
+      box-shadow: 0 0 0 1.5px var(--gold-primary);
+    }
+
     /* ==========================================================
        8 TA DIZAYNNING TURLICHA ARXITEKTURASI, BURCHAKLARI VA STRUKTURASI
        ========================================================== */
@@ -1513,29 +1544,90 @@
           </div>
         </div>
 
-        <!-- Fon Musiqasi (Audio MP3 URL) -->
-        <div>
-          <label for="inputMusicUrl" class="block text-xs font-semibold uppercase tracking-wider text-espresso mb-1.5 flex items-center gap-1">
-            <i class="fa-solid fa-music text-gold-dark text-[11px]"></i>
-            <span>Fon Musiqasi uchun MP3 Havolasi</span>
-          </label>
-          <input type="text" id="inputMusicUrl" placeholder="preset:canon yoki https://.../musiqa.mp3" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
-          
-          <!-- Namuna musiqa kuylari -->
-          <div class="mt-2 flex flex-wrap gap-2 items-center">
-            <span class="text-[11px] text-espresso-light font-medium">Namuna kuylar:</span>
-            <button type="button" class="preset-music-btn text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1.5" data-url="preset:canon">
-              <i class="fa-solid fa-music text-[9px]"></i>
-              <span>Romantik Piano</span>
+        <!-- Fon Musiqasi (To'y Kuylari & Yuklash) -->
+        <div class="p-4 rounded-2xl bg-cream-soft/70 border border-gold/40 space-y-3" id="musicConfigBlock">
+          <div class="flex items-center justify-between pb-2 border-b border-gold/20">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-music text-gold-dark text-sm"></i>
+              <span class="text-xs font-bold uppercase tracking-wider text-espresso">To'y Fon Musiqasi</span>
+            </div>
+            <span id="activeMusicBadge" class="text-[10px] text-gold-dark font-semibold bg-white px-2.5 py-0.5 rounded-full border border-gold/30 flex items-center gap-1.5 shadow-2xs">
+              <span class="inline-flex items-center gap-0.5">
+                <span class="eq-bar eq-bar-1"></span>
+                <span class="eq-bar eq-bar-2"></span>
+                <span class="eq-bar eq-bar-3"></span>
+              </span>
+              <span id="activeMusicBadgeTitle">Romantik Piano</span>
+            </span>
+          </div>
+
+          <p class="text-[11px] text-espresso-light">
+            Mehmonlar taklifnomani ochganida avtomatik ravishda mayin va romantik to'y musiqasi yangraydi. O'zingizga yoqqan tayyor kuyni tanlang yoki shaxsiy audio faylingizni yuklang!
+          </p>
+
+          <!-- Tanlangan musiqa ko'rinishi va boshqaruv kartasi -->
+          <div class="p-3 bg-white rounded-xl border border-gold/40 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-xl bg-gold/15 border border-gold/30 text-gold-dark flex items-center justify-center shrink-0 text-lg shadow-inner">
+                <i id="formMusicCardIcon" class="fa-solid fa-music"></i>
+              </div>
+              <div>
+                <h4 id="formCurrentMusicTitle" class="text-xs font-bold text-espresso leading-snug">Pachelbel: Canon in D</h4>
+                <p id="formCurrentMusicSubtitle" class="text-[10px] text-espresso-light">Nafis klassik fortepiano va to'y marosimi kuylari</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <!-- Eshitib ko'rish tugmasi -->
+              <button type="button" id="formPreviewMusicBtn" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-cream-soft hover:bg-gold/20 text-gold-dark border border-gold/40 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95" title="Musiqani eshitib ko'rish">
+                <i class="fa-solid fa-play text-[10px]" id="formPreviewPlayIcon"></i>
+                <span id="formPreviewBtnText">Tinglash</span>
+              </button>
+
+              <!-- Musiqani almashtirish modali tugmasi -->
+              <button type="button" id="openMusicModalBtn" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-gold hover:bg-gold-dark text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer active:scale-95">
+                <i class="fa-solid fa-sliders text-[10px]"></i>
+                <span>Musiqani Tanlash</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tezkor tayyor kuylar tugmalari -->
+          <div class="space-y-1.5">
+            <span class="text-[10px] text-espresso-light font-medium uppercase tracking-wider block">Tezkor tanlov:</span>
+            <div class="flex flex-wrap gap-1.5 items-center" id="formQuickMusicPills">
+              <button type="button" class="form-quick-music-pill text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-espresso hover:border-gold transition-all cursor-pointer flex items-center gap-1.5 active" data-music-id="preset:canon">
+                <span>🎹 Romantik Piano</span>
+              </button>
+              <button type="button" class="form-quick-music-pill text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-espresso hover:border-gold transition-all cursor-pointer flex items-center gap-1.5" data-music-id="preset:march">
+                <span>👑 Shohona Vals</span>
+              </button>
+              <button type="button" class="form-quick-music-pill text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-espresso hover:border-gold transition-all cursor-pointer flex items-center gap-1.5" data-music-id="preset:waltz">
+                <span>💖 Mayin Melodiya</span>
+              </button>
+              <button type="button" class="form-quick-music-pill text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-espresso hover:border-gold transition-all cursor-pointer flex items-center gap-1.5" data-music-id="preset:oriental">
+                <span>🌙 Sharqona To'y</span>
+              </button>
+              <button type="button" class="form-quick-music-pill text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-espresso hover:border-gold transition-all cursor-pointer flex items-center gap-1.5" data-music-id="preset:starlight">
+                <span>✨ Yulduzli Shom</span>
+              </button>
+              <button type="button" id="formUploadTriggerBtn" class="text-[11px] px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 hover:bg-emerald-100 transition-all cursor-pointer flex items-center gap-1.5 font-medium">
+                <i class="fa-solid fa-cloud-arrow-up text-[10px]"></i>
+                <span>+ Fayl yuklash</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Yashirin / Kengaytirilgan link kiritish (Ixtiyoriy) -->
+          <div class="pt-1">
+            <button type="button" id="toggleAdvancedMusicLinkBtn" class="text-[10px] text-espresso-light hover:text-gold-dark flex items-center gap-1 cursor-pointer">
+              <i class="fa-solid fa-chevron-down text-[8px] transition-transform duration-200" id="advancedLinkChevron"></i>
+              <span>Qo'lda MP3 link kiritish (Kengaytirilgan)</span>
             </button>
-            <button type="button" class="preset-music-btn text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1.5" data-url="preset:march">
-              <i class="fa-solid fa-crown text-[9px]"></i>
-              <span>Shohona Vals</span>
-            </button>
-            <button type="button" class="preset-music-btn text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1.5" data-url="preset:waltz">
-              <i class="fa-solid fa-heart text-[9px]"></i>
-              <span>Mayin Melodiya</span>
-            </button>
+            <div id="advancedMusicLinkBlock" class="hidden mt-2 space-y-1">
+              <input type="text" id="inputMusicUrl" placeholder="preset:canon yoki https://.../musiqa.mp3" class="custom-input w-full px-3 py-2 rounded-xl text-xs font-mono" />
+              <p class="text-[10px] text-espresso-light">To'g'ridan-to'g'ri .mp3 audio URL kiritishingiz mumkin.</p>
+            </div>
           </div>
         </div>
 
@@ -1608,6 +1700,12 @@
           <button type="button" id="navThemeToggleBtn" class="px-3 py-1.5 rounded-full bg-white hover:bg-cream-soft text-espresso border border-gold/40 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="Dizaynni tanlash">
             <i class="fa-solid fa-palette text-gold-dark text-[11px]"></i>
             <span class="hidden sm:inline">Dizayn</span>
+          </button>
+
+          <!-- Fon Musiqasi tugmasi -->
+          <button type="button" id="navMusicBtn" class="px-3 py-1.5 rounded-full bg-white hover:bg-cream-soft text-espresso border border-gold/40 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="To'y musiqasini sozlash">
+            <i class="fa-solid fa-music text-gold-dark text-[11px]"></i>
+            <span class="hidden sm:inline" data-i18n="navMusic">Musiqa</span>
           </button>
 
           <!-- QR Kod tugmasi -->
@@ -2488,6 +2586,141 @@
   </div>
 
   <!-- ==========================================================
+       MODAL OYNA (TO'Y FON MUSIQASINI TANLASH VA YUKLASH)
+       ========================================================== -->
+  <div id="musicSelectorModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-6 border-2 border-gold/40 shadow-2xl relative flex flex-col max-h-[92vh] transform scale-95 transition-transform duration-300">
+      
+      <!-- Modal Sarlavhasi -->
+      <div class="flex items-center justify-between pb-3 border-b border-gold/20 mb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-gold/15 text-gold-dark flex items-center justify-center text-base shadow-inner">
+            <i class="fa-solid fa-music"></i>
+          </div>
+          <div>
+            <h3 data-i18n="musicModalTitle" class="font-serif text-lg sm:text-xl font-bold text-espresso">To'y Fon Musiqasini Tanlash</h3>
+            <p data-i18n="musicModalSubtitle" class="text-[11px] text-espresso-light">Taklifnomangiz ochilganda yangraydigan romantik kuy</p>
+          </div>
+        </div>
+        <button type="button" id="closeMusicModalBtn" aria-label="Yopish" class="w-8 h-8 rounded-full bg-cream-soft hover:bg-gold/20 text-espresso-light hover:text-espresso flex items-center justify-center transition-colors cursor-pointer">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Tab tugmalari -->
+      <div class="flex items-center p-1 rounded-2xl bg-cream-soft border border-gold/30 mb-3 text-xs">
+        <button type="button" class="music-tab-btn flex-1 py-1.5 px-2 rounded-xl font-semibold transition-all active bg-gold text-white shadow-2xs text-center cursor-pointer" data-tab="presets">
+          <i class="fa-solid fa-compact-disc mr-1 text-[10px]"></i>
+          <span data-i18n="musicTabPresets">Tayyor Kuylar</span>
+        </button>
+        <button type="button" class="music-tab-btn flex-1 py-1.5 px-2 rounded-xl font-semibold transition-all text-espresso-light hover:text-espresso text-center cursor-pointer" data-tab="upload">
+          <i class="fa-solid fa-cloud-arrow-up mr-1 text-[10px]"></i>
+          <span data-i18n="musicTabUpload">O'z Musiqangiz</span>
+        </button>
+        <button type="button" class="music-tab-btn flex-1 py-1.5 px-2 rounded-xl font-semibold transition-all text-espresso-light hover:text-espresso text-center cursor-pointer" data-tab="link">
+          <i class="fa-solid fa-link mr-1 text-[10px]"></i>
+          <span data-i18n="musicTabLink">Havola</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Tayyor To'y Kuylari (Presets) -->
+      <div id="musicTabPresetsContent" class="space-y-2 overflow-y-auto pr-1 flex-1 max-h-[50vh]">
+        <!-- JS orqali 6 ta hashamatli musiqa kartasi chiziladi -->
+      </div>
+
+      <!-- Tab 2: O'z Musiqangizni Yuklash (Upload Audio File) -->
+      <div id="musicTabUploadContent" class="hidden space-y-3 overflow-y-auto pr-1 flex-1 max-h-[50vh]">
+        <div id="musicDropZone" class="p-6 border-2 border-dashed border-gold/50 rounded-2xl bg-cream-soft/50 hover:bg-cream-soft text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-2 group">
+          <div class="w-14 h-14 rounded-full bg-gold/15 text-gold-dark flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-file-audio"></i>
+          </div>
+          <p data-i18n="musicUploadDrop" class="text-xs sm:text-sm font-bold text-espresso">Musiqa faylini tanlang yoki shu yerga tashlang</p>
+          <p data-i18n="musicUploadHint" class="text-[11px] text-espresso-light">MP3, M4A, WAV formatlari (Telefon yoki Kompyuterdan)</p>
+          <button type="button" id="browseMusicFileBtn" class="mt-2 px-4 py-2 rounded-full bg-gold hover:bg-gold-dark text-white text-xs font-semibold shadow-xs cursor-pointer active:scale-95">
+            <i class="fa-solid fa-folder-open mr-1.5"></i> Faylni Tanlash
+          </button>
+          <input type="file" id="musicFileInput" accept="audio/*,.mp3,.m4a,.wav,.aac,.ogg" class="hidden" />
+        </div>
+
+        <!-- Yuklangan fayl ko'rinishi -->
+        <div id="uploadedFilePreview" class="hidden p-3.5 rounded-2xl bg-white border border-gold/40 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-music text-xs"></i>
+              </div>
+              <div class="truncate">
+                <p id="uploadedFileName" class="text-xs font-bold text-espresso truncate">musiqa.mp3</p>
+                <p id="uploadedFileSize" class="text-[10px] text-espresso-light">0.0 MB</p>
+              </div>
+            </div>
+            <button type="button" id="removeUploadedMusicBtn" class="text-rose-500 hover:text-rose-700 text-xs p-1 cursor-pointer" title="Faylni o'chirish">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+
+          <!-- Yuklangan faylni tinglash pleyeri -->
+          <div class="flex items-center gap-2 pt-1">
+            <button type="button" id="playUploadedPreviewBtn" class="px-3 py-1.5 rounded-xl bg-cream-soft hover:bg-gold/20 text-gold-dark text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+              <i class="fa-solid fa-play text-[10px]" id="uploadPlayIcon"></i>
+              <span id="uploadPlayBtnText">Tinglash</span>
+            </button>
+            <button type="button" id="applyUploadedMusicBtn" class="flex-1 py-1.5 px-3 rounded-xl bg-gold hover:bg-gold-dark text-white text-xs font-semibold flex items-center justify-center gap-1 cursor-pointer active:scale-95 shadow-xs">
+              <i class="fa-solid fa-circle-check text-[11px]"></i>
+              <span>Shu musiqani o'rnatish</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80 text-[11px] text-amber-900 flex items-start gap-2">
+          <i class="fa-solid fa-circle-info text-amber-700 text-xs mt-0.5 shrink-0"></i>
+          <span>
+            Qurilmangizdan yuklangan musiqa to'g'ridan-to'g'ri brauzeringiz xotirasiga kiritiladi va taklifnomangizda darhol yangraydi.
+          </span>
+        </div>
+      </div>
+
+      <!-- Tab 3: Internet Havolasi (Direct URL) -->
+      <div id="musicTabLinkContent" class="hidden space-y-3 overflow-y-auto pr-1 flex-1 max-h-[50vh]">
+        <div class="space-y-1.5">
+          <label class="block text-xs font-bold text-espresso">Internetdagi to'g'ridan-to'g'ri MP3 havolasi</label>
+          <div class="relative">
+            <input type="url" id="customMusicUrlModalInput" placeholder="https://example.com/audio/song.mp3" class="w-full px-3 py-2 pr-14 rounded-xl bg-white border border-gold/40 text-xs font-mono focus:outline-none focus:ring-1 focus:ring-gold" />
+            <button type="button" id="pasteMusicLinkBtn" class="absolute right-1.5 top-1.5 text-[10px] text-gold-dark bg-cream-soft px-2 py-1 rounded-md border border-gold/30 hover:bg-gold hover:text-white transition-all cursor-pointer">
+              Nusxa
+            </button>
+          </div>
+          <p class="text-[10px] text-espresso-light">Telegram kanal, shaxsiy hosting yoki boshqa audio manbangizdagi to'g'ridan-to'g'ri .mp3 link.</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button type="button" id="testLinkMusicBtn" class="px-3.5 py-2 rounded-xl bg-cream-soft hover:bg-gold/20 text-gold-dark border border-gold/40 text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-play text-[10px]" id="testLinkIcon"></i>
+            <span id="testLinkBtnText">Tekshirib eshitish</span>
+          </button>
+          <button type="button" id="applyLinkMusicBtn" class="flex-1 py-2 px-3 rounded-xl bg-gold hover:bg-gold-dark text-white text-xs font-semibold flex items-center justify-center gap-1 cursor-pointer active:scale-95 shadow-xs">
+            <i class="fa-solid fa-check text-xs"></i>
+            <span>Ushbu havolani saqlash</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Pastki Paneli: Musiqasiz rejim & Yopish -->
+      <div class="pt-3 border-t border-gold/20 flex items-center justify-between gap-2 mt-2">
+        <button type="button" id="modalMuteMusicBtn" class="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer">
+          <i class="fa-solid fa-volume-xmark text-[11px]"></i>
+          <span data-i18n="musicNoMusic">Musiqasiz (Ovozsiz)</span>
+        </button>
+
+        <button type="button" id="doneMusicModalBtn" class="px-5 py-2 rounded-xl bg-espresso hover:bg-black text-white text-xs font-semibold transition-all cursor-pointer">
+          Tayyor
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================
        TOAST NOTIFICATION (BILDIRISHNOMA)
        ========================================================== -->
   <div id="toastNotification" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-espresso text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-3 flex items-center gap-2 border border-gold/40">
@@ -2565,6 +2798,15 @@
         qrCodeTitle: "To'y Taklifnomasi QR Kodi",
         qrCodeDesc: "Mehmonlar telefon kamerasini ushbu QR kodga qaratib, taklifnomani bir zumda ochishlari mumkin.",
         downloadQrBtn: "QR Kodni Yuklab Olish (PNG)",
+        musicModalTitle: "To'y Fon Musiqasini Tanlash",
+        musicModalSubtitle: "Taklifnomangiz ochilganda yangraydigan romantik kuy",
+        musicTabPresets: "Tayyor Kuylar",
+        musicTabUpload: "O'z Musiqangiz",
+        musicTabLink: "Havola",
+        musicUploadDrop: "Musiqa faylini tanlang yoki shu yerga tashlang",
+        musicUploadHint: "MP3, M4A, WAV formatlari (Telefon yoki Kompyuterdan)",
+        musicNoMusic: "Musiqasiz (Ovozsiz)",
+        navMusic: "Musiqa",
         footerWaiting: "Sizni Intiqlik Bilan Kutib Qolamiz!",
         footerEditPrompt: "Ma'lumotlarni o'zgartirmoqchimisiz yoki yangi taklifnoma yaratmoqchimisiz?",
       },
@@ -2627,6 +2869,15 @@
         qrCodeTitle: "QR-Код Свадебного Приглашения",
         qrCodeDesc: "Гости могут навести камеру смартфона на QR-код и мгновенно открыть приглашение.",
         downloadQrBtn: "Скачать QR-Код (PNG)",
+        musicModalTitle: "Выбор Свадебной Музыки",
+        musicModalSubtitle: "Романтическая музыка, звучащая при открытии приглашения",
+        musicTabPresets: "Готовые Мелодии",
+        musicTabUpload: "Загрузить Свой MP3",
+        musicTabLink: "Ссылка в Интернете",
+        musicUploadDrop: "Выберите или перетащите аудиофайл сюда",
+        musicUploadHint: "Поддерживаются MP3, M4A, WAV (С телефона или компьютера)",
+        musicNoMusic: "Без музыки (Без звука)",
+        navMusic: "Музыка",
         footerWaiting: "С нетерпением ждем встречи с вами!",
         footerEditPrompt: "Хотите изменить данные или создать новое приглашение?",
       },
@@ -2689,6 +2940,15 @@
         qrCodeTitle: "Wedding Invitation QR Code",
         qrCodeDesc: "Guests can scan this QR code with their phone camera to open the invitation instantly.",
         downloadQrBtn: "Download QR Code (PNG)",
+        musicModalTitle: "Choose Wedding Music",
+        musicModalSubtitle: "Romantic melody playing when guests open the invitation",
+        musicTabPresets: "Curated Melodies",
+        musicTabUpload: "Upload Your Song",
+        musicTabLink: "Web Link",
+        musicUploadDrop: "Choose or drag & drop audio file here",
+        musicUploadHint: "Supports MP3, M4A, WAV (From phone or computer)",
+        musicNoMusic: "No music (Silent mode)",
+        navMusic: "Music",
         footerWaiting: "We eagerly look forward to seeing you!",
         footerEditPrompt: "Would you like to edit your details or create a new one?",
       }
@@ -2974,6 +3234,53 @@
     const musicStatusText = document.getElementById("musicStatusText");
     let isAudioPlaying = false;
     let audioInitialized = false;
+
+    // Musiqa modal va forma boshqaruv elementlari
+    const musicSelectorModal = document.getElementById("musicSelectorModal");
+    const closeMusicModalBtn = document.getElementById("closeMusicModalBtn");
+    const doneMusicModalBtn = document.getElementById("doneMusicModalBtn");
+    const openMusicModalBtn = document.getElementById("openMusicModalBtn");
+    const navMusicBtn = document.getElementById("navMusicBtn");
+    const formPreviewMusicBtn = document.getElementById("formPreviewMusicBtn");
+    const formPreviewPlayIcon = document.getElementById("formPreviewPlayIcon");
+    const formPreviewBtnText = document.getElementById("formPreviewBtnText");
+    const formCurrentMusicTitle = document.getElementById("formCurrentMusicTitle");
+    const formCurrentMusicSubtitle = document.getElementById("formCurrentMusicSubtitle");
+    const formMusicCardIcon = document.getElementById("formMusicCardIcon");
+    const activeMusicBadgeTitle = document.getElementById("activeMusicBadgeTitle");
+    const formUploadTriggerBtn = document.getElementById("formUploadTriggerBtn");
+    const toggleAdvancedMusicLinkBtn = document.getElementById("toggleAdvancedMusicLinkBtn");
+    const advancedMusicLinkBlock = document.getElementById("advancedMusicLinkBlock");
+    const advancedLinkChevron = document.getElementById("advancedLinkChevron");
+
+    const musicTabPresetsContent = document.getElementById("musicTabPresetsContent");
+    const musicTabUploadContent = document.getElementById("musicTabUploadContent");
+    const musicTabLinkContent = document.getElementById("musicTabLinkContent");
+    const musicFileInput = document.getElementById("musicFileInput");
+    const browseMusicFileBtn = document.getElementById("browseMusicFileBtn");
+    const musicDropZone = document.getElementById("musicDropZone");
+    const uploadedFilePreview = document.getElementById("uploadedFilePreview");
+    const uploadedFileName = document.getElementById("uploadedFileName");
+    const uploadedFileSize = document.getElementById("uploadedFileSize");
+    const removeUploadedMusicBtn = document.getElementById("removeUploadedMusicBtn");
+    const playUploadedPreviewBtn = document.getElementById("playUploadedPreviewBtn");
+    const uploadPlayIcon = document.getElementById("uploadPlayIcon");
+    const uploadPlayBtnText = document.getElementById("uploadPlayBtnText");
+    const applyUploadedMusicBtn = document.getElementById("applyUploadedMusicBtn");
+
+    const customMusicUrlModalInput = document.getElementById("customMusicUrlModalInput");
+    const pasteMusicLinkBtn = document.getElementById("pasteMusicLinkBtn");
+    const testLinkMusicBtn = document.getElementById("testLinkMusicBtn");
+    const testLinkIcon = document.getElementById("testLinkIcon");
+    const testLinkBtnText = document.getElementById("testLinkBtnText");
+    const applyLinkMusicBtn = document.getElementById("applyLinkMusicBtn");
+    const modalMuteMusicBtn = document.getElementById("modalMuteMusicBtn");
+
+    let userUploadedBlobUrl = null;
+    let userUploadedAudioData = localStorage.getItem("wedding_custom_audio_base64") || null;
+    let userUploadedName = localStorage.getItem("wedding_custom_audio_name") || "";
+    let modalPreviewActiveTrack = null;
+    let isFormPreviewPlaying = false;
 
     // =========================================================================
     // BASE64 URL-SAFE ENCODING & DECODING (UTF-8 SUPPORT)
@@ -3587,8 +3894,10 @@
       inputPhone.value = data.phone || "";
       inputCardNumber.value = data.cardNumber || "";
       inputCardHolder.value = data.cardHolder || "";
-      inputMusicUrl.value = data.musicUrl || "";
+      inputMusicUrl.value = data.musicUrl || "preset:canon";
       inputMessage.value = data.message || "";
+
+      updateMusicUIState(data.musicUrl || "preset:canon");
 
       const theme = data.theme || "royal-gold";
       if (inputTheme) inputTheme.value = theme;
@@ -3911,15 +4220,6 @@
       });
     }
 
-    // Namuna musiqa kuylari tugmalari
-    document.querySelectorAll(".preset-music-btn").forEach(btn => {
-      btn.addEventListener("click", (e) => {
-        const url = btn.getAttribute("data-url");
-        inputMusicUrl.value = url;
-        showToast("Kuy tanlandi: " + btn.innerText.trim());
-      });
-    });
-
     // =========================================================================
     // 10. NUSXALASH TUGMALARI (TELEFON VA KARTA)
     // =========================================================================
@@ -4009,7 +4309,64 @@
       return audioCtx;
     }
 
-    // NAFIS VA ROMANTIK FORTEPIANO KUYLARI (CANON IN D VA TO'Y MELODIYALARI)
+    // NAFIS VA ROMANTIK FORTEPIANO VA TO'Y KUYLARI KUTUBXONASI
+    const MUSIC_PRESETS = [
+      {
+        id: "preset:canon",
+        title: "Pachelbel: Canon in D",
+        subtitle: "Nafis klassik fortepiano va to'y marosimi kuylari",
+        genre: "Romantik Piano",
+        icon: "fa-music",
+        badge: "Tavsiya etiladi",
+        mood: "Nafis va samimiy"
+      },
+      {
+        id: "preset:march",
+        title: "Mendelssohn Shohona Marshi",
+        subtitle: "Tantanali kirib kelish va shohona saroy valsi",
+        genre: "Shohona Vals",
+        icon: "fa-crown",
+        badge: "Tantanali",
+        mood: "Saroy va shohona"
+      },
+      {
+        id: "preset:waltz",
+        title: "Mayin Sevgi Valsi",
+        subtitle: "Sekin romantik muhabbat va lirik simfoniya",
+        genre: "Lirik Melodiya",
+        icon: "fa-heart",
+        badge: "Mashhur",
+        mood: "Yumshoq va sokin"
+      },
+      {
+        id: "preset:oriental",
+        title: "Sharqona To'y Sadolari",
+        subtitle: "O'zbekona to'y ruhiyati, milliy ohang va karnay-surnay tarovati",
+        genre: "Sharqona To'yona",
+        icon: "fa-star-and-crescent",
+        badge: "Milliy",
+        mood: "Fayzli va bayramona"
+      },
+      {
+        id: "preset:starlight",
+        title: "Yulduzli Tun Romantikasi",
+        subtitle: "Oqshom sham yorug'i va akustik sokinlik",
+        genre: "Akustik Lirika",
+        icon: "fa-wand-magic-sparkles",
+        badge: "Sokin",
+        mood: "Romantik shom"
+      },
+      {
+        id: "preset:dreams",
+        title: "Orzular Oqshomi (Neo-Classical)",
+        subtitle: "Royal va zamonaviy sehrli sevgi musiqasi",
+        genre: "Zamonaviy Romantika",
+        icon: "fa-gem",
+        badge: "Yangi",
+        mood: "Sehrli va orombaxsh"
+      }
+    ];
+
     const ROMANTIC_PATTERNS = {
       canon: [
         { bass: 130.81, notes: [261.63, 329.63, 392.00, 523.25, 659.25, 523.25, 392.00, 329.63] }, // C
@@ -4032,6 +4389,24 @@
         { bass: 116.54, notes: [233.08, 293.66, 349.23, 466.16, 587.33, 698.46] },
         { bass: 130.81, notes: [261.63, 329.63, 392.00, 523.25, 659.25, 783.99] },
         { bass: 98.00,  notes: [196.00, 246.94, 293.66, 392.00, 493.88, 587.33] }
+      ],
+      oriental: [
+        { bass: 110.00, notes: [220.00, 233.08, 277.18, 293.66, 349.23, 440.00, 466.16, 554.37] },
+        { bass: 146.83, notes: [293.66, 311.13, 369.99, 440.00, 493.88, 587.33, 622.25, 739.99] },
+        { bass: 130.81, notes: [261.63, 277.18, 329.63, 392.00, 440.00, 523.25, 554.37, 659.25] },
+        { bass: 110.00, notes: [220.00, 233.08, 277.18, 329.63, 440.00, 349.23, 277.18, 233.08] }
+      ],
+      starlight: [
+        { bass: 130.81, notes: [261.63, 329.63, 392.00, 493.88, 659.25, 587.33, 493.88, 392.00] },
+        { bass: 110.00, notes: [220.00, 261.63, 329.63, 392.00, 523.25, 493.88, 392.00, 329.63] },
+        { bass: 87.31,  notes: [174.61, 220.00, 261.63, 329.63, 440.00, 392.00, 329.63, 261.63] },
+        { bass: 98.00,  notes: [196.00, 246.94, 293.66, 349.23, 440.00, 392.00, 349.23, 293.66] }
+      ],
+      dreams: [
+        { bass: 146.83, notes: [293.66, 369.99, 440.00, 554.37, 659.25, 554.37, 440.00, 369.99] },
+        { bass: 116.54, notes: [233.08, 293.66, 349.23, 466.16, 587.33, 466.16, 349.23, 293.66] },
+        { bass: 130.81, notes: [261.63, 329.63, 392.00, 523.25, 659.25, 523.25, 392.00, 329.63] },
+        { bass: 146.83, notes: [293.66, 369.99, 440.00, 587.33, 739.99, 587.33, 440.00, 369.99] }
       ]
     };
 
@@ -4107,7 +4482,7 @@
       isWebAudioPlaying = true;
 
       function tick() {
-        if (!isAudioPlaying) return;
+        if (!isAudioPlaying && !modalPreviewActiveTrack && !isFormPreviewPlaying) return;
         const now = ctx.currentTime;
         const chord = chords[synthStepIdx % chords.length];
         
@@ -4135,33 +4510,62 @@
 
     function updateAudioVisuals() {
       if (isAudioPlaying) {
-        musicIconPlay.classList.add("hidden");
-        musicIconPause.classList.remove("hidden");
-        vinylDisc.classList.add("vinyl-spinning");
-        soundPing.classList.remove("hidden");
-        musicStatusText.innerText = translations[currentLang]?.musicOn || "Musiqa yangramoqda";
+        if (musicIconPlay) musicIconPlay.classList.add("hidden");
+        if (musicIconPause) musicIconPause.classList.remove("hidden");
+        if (vinylDisc) vinylDisc.classList.add("vinyl-spinning");
+        if (soundPing) soundPing.classList.remove("hidden");
+        if (musicStatusText) musicStatusText.innerText = translations[currentLang]?.musicOn || "Musiqa yangramoqda";
       } else {
-        musicIconPlay.classList.remove("hidden");
-        musicIconPause.classList.add("hidden");
-        vinylDisc.classList.remove("vinyl-spinning");
-        soundPing.classList.add("hidden");
-        musicStatusText.innerText = translations[currentLang]?.musicOff || "Musiqa o'chiq";
+        if (musicIconPlay) musicIconPlay.classList.remove("hidden");
+        if (musicIconPause) musicIconPause.classList.add("hidden");
+        if (vinylDisc) vinylDisc.classList.remove("vinyl-spinning");
+        if (soundPing) soundPing.classList.add("hidden");
+        if (musicStatusText) musicStatusText.innerText = translations[currentLang]?.musicOff || "Musiqa o'chiq";
       }
     }
 
     function setWeddingMusicSource(url) {
       if (!url) url = "preset:canon";
       currentWeddingData.musicUrl = url;
+      updateMusicUIState(url);
       if (isAudioPlaying) {
         playWeddingMusic();
       }
     }
 
     function playWeddingMusic() {
-      isAudioPlaying = true;
       const url = (currentWeddingData.musicUrl || "preset:canon").trim();
 
-      // Agar preset yoki mixkit (403 beruvchi) link bo'lsa -> Web Audio API bilan yangraydi
+      // Agar musiqasiz bo'lsa
+      if (url === "none" || url === "mute") {
+        pauseWeddingMusic();
+        return;
+      }
+
+      isAudioPlaying = true;
+
+      // Agar yuklangan shaxsiy audio bo'lsa
+      if (url === "custom:uploaded") {
+        const audioSrc = userUploadedBlobUrl || userUploadedAudioData;
+        if (audioSrc) {
+          try {
+            weddingAudio.src = audioSrc;
+            weddingAudio.play().then(() => {
+              updateAudioVisuals();
+            }).catch(() => {
+              startWebAudioMusic("canon");
+              updateAudioVisuals();
+            });
+            return;
+          } catch (e) {
+            startWebAudioMusic("canon");
+            updateAudioVisuals();
+            return;
+          }
+        }
+      }
+
+      // Agar preset yoki mixkit link bo'lsa -> Web Audio API
       if (!url || url.startsWith("preset:") || url.includes("mixkit")) {
         const mode = url.replace("preset:", "") || "canon";
         startWebAudioMusic(mode);
@@ -4169,7 +4573,7 @@
         return;
       }
 
-      // Agar boshqa tashqi URL bo'lsa -> HTML5 Audio orqali tinglab ko'ramiz
+      // Agar boshqa tashqi URL bo'lsa -> HTML5 Audio
       try {
         weddingAudio.src = url;
         const playPromise = weddingAudio.play();
@@ -4177,7 +4581,6 @@
           playPromise.then(() => {
             updateAudioVisuals();
           }).catch(() => {
-            // Xatolikda darhol chiroyli Web Audio musiqasiga o'tadi
             startWebAudioMusic("canon");
             updateAudioVisuals();
           });
@@ -4202,23 +4605,583 @@
         pauseWeddingMusic();
         showToast("Musiqa to'xtatildi ⏸️");
       } else {
+        if (currentWeddingData.musicUrl === "none") {
+          currentWeddingData.musicUrl = "preset:canon";
+          updateMusicUIState("preset:canon");
+        }
         playWeddingMusic();
         showToast("Romantik musiqa yangramoqda 🎵");
       }
     }
 
-    musicToggleBtn.addEventListener("click", toggleWeddingAudio);
-    musicPill.addEventListener("click", toggleWeddingAudio);
+    if (musicToggleBtn) musicToggleBtn.addEventListener("click", toggleWeddingAudio);
+    if (musicPill) musicPill.addEventListener("click", toggleWeddingAudio);
 
-    // Foydalanuvchining birinchi sensorli teginishi yoki harakatida musiqani ishga tushirish
+    // Foydalanuvchining birinchi harakatida musiqani ishga tushirish
     function attemptAutoPlayOnInteraction() {
       if (!isAudioPlaying && invitationView && !invitationView.classList.contains("hidden")) {
-        playWeddingMusic();
+        if (currentWeddingData.musicUrl !== "none" && currentWeddingData.musicUrl !== "mute") {
+          playWeddingMusic();
+        }
       }
     }
     window.addEventListener("click", attemptAutoPlayOnInteraction, { once: true });
     window.addEventListener("touchstart", attemptAutoPlayOnInteraction, { once: true });
     window.addEventListener("scroll", attemptAutoPlayOnInteraction, { once: true });
+
+    // =========================================================================
+    // YANGI VA OSON TO'Y MUSIQASI BOSHQARUV ENGINE (PRESETS, UPLOAD, LINK)
+    // =========================================================================
+    function updateMusicUIState(musicId) {
+      if (!musicId) musicId = "preset:canon";
+
+      // 1. Formadagi ko'rinishni yangilash
+      if (inputMusicUrl) inputMusicUrl.value = musicId;
+
+      const preset = MUSIC_PRESETS.find(p => p.id === musicId);
+      if (preset) {
+        if (formCurrentMusicTitle) formCurrentMusicTitle.innerText = preset.title;
+        if (formCurrentMusicSubtitle) formCurrentMusicSubtitle.innerText = preset.subtitle;
+        if (activeMusicBadgeTitle) activeMusicBadgeTitle.innerText = preset.genre;
+        if (formMusicCardIcon) formMusicCardIcon.className = `fa-solid ${preset.icon} text-gold-dark`;
+      } else if (musicId === "custom:uploaded") {
+        if (formCurrentMusicTitle) formCurrentMusicTitle.innerText = userUploadedName ? `O'z musiqangiz: ${userUploadedName}` : "Yuklangan Audio Fayl";
+        if (formCurrentMusicSubtitle) formCurrentMusicSubtitle.innerText = "Qurilmangizdan yuklangan shaxsiy qo'shiq";
+        if (activeMusicBadgeTitle) activeMusicBadgeTitle.innerText = "O'z musiqangiz";
+        if (formMusicCardIcon) formMusicCardIcon.className = "fa-solid fa-file-audio text-emerald-600";
+      } else if (musicId === "none" || musicId === "mute") {
+        if (formCurrentMusicTitle) formCurrentMusicTitle.innerText = "Musiqasiz Rejim";
+        if (formCurrentMusicSubtitle) formCurrentMusicSubtitle.innerText = "Taklifnoma ochilganda ovozsiz rejimda ishlaydi";
+        if (activeMusicBadgeTitle) activeMusicBadgeTitle.innerText = "Ovozsiz";
+        if (formMusicCardIcon) formMusicCardIcon.className = "fa-solid fa-volume-xmark text-rose-500";
+      } else {
+        if (formCurrentMusicTitle) formCurrentMusicTitle.innerText = "Internet Musiqasi (MP3)";
+        if (formCurrentMusicSubtitle) formCurrentMusicSubtitle.innerText = musicId;
+        if (activeMusicBadgeTitle) activeMusicBadgeTitle.innerText = "MP3 Havola";
+        if (formMusicCardIcon) formMusicCardIcon.className = "fa-solid fa-link text-blue-600";
+      }
+
+      // 2. Tezkor pills (chiplar) stillarini yangilash
+      document.querySelectorAll(".form-quick-music-pill").forEach(pill => {
+        if (pill.dataset.musicId === musicId) {
+          pill.classList.add("bg-gold", "text-white", "border-gold", "shadow-xs");
+          pill.classList.remove("bg-white", "text-espresso", "border-gold/40");
+        } else {
+          pill.classList.remove("bg-gold", "text-white", "border-gold", "shadow-xs");
+          pill.classList.add("bg-white", "text-espresso", "border-gold/40");
+        }
+      });
+
+      // 3. Modaldagi preset kartalarini yangilash
+      document.querySelectorAll(".music-preset-card").forEach(card => {
+        const isCurrent = card.dataset.musicId === musicId;
+        const selectBtn = card.querySelector(".music-card-select-btn");
+        const selectText = card.querySelector(".music-select-btn-text");
+        const activeCheckBadge = card.querySelector(".music-active-check");
+
+        if (isCurrent) {
+          card.classList.add("active-music");
+          if (selectBtn) {
+            selectBtn.classList.add("bg-emerald-600", "text-white", "border-emerald-600");
+            selectBtn.classList.remove("bg-gold", "hover:bg-gold-dark");
+          }
+          if (selectText) selectText.innerText = "Tanlangan ✓";
+          if (activeCheckBadge) activeCheckBadge.classList.remove("hidden");
+        } else {
+          card.classList.remove("active-music");
+          if (selectBtn) {
+            selectBtn.classList.remove("bg-emerald-600", "text-white", "border-emerald-600");
+            selectBtn.classList.add("bg-gold", "hover:bg-gold-dark");
+          }
+          if (selectText) selectText.innerText = "Tanlash";
+          if (activeCheckBadge) activeCheckBadge.classList.add("hidden");
+        }
+      });
+    }
+
+    function renderMusicPresetsInModal() {
+      if (!musicTabPresetsContent) return;
+      musicTabPresetsContent.innerHTML = "";
+
+      const currentMusicId = currentWeddingData.musicUrl || "preset:canon";
+
+      MUSIC_PRESETS.forEach(item => {
+        const isCurrent = item.id === currentMusicId;
+        const card = document.createElement("div");
+        card.className = `music-preset-card p-3 rounded-2xl bg-white border border-gold/40 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${isCurrent ? "active-music" : ""}`;
+        card.dataset.musicId = item.id;
+
+        card.innerHTML = `
+          <div class="flex items-center gap-3 min-w-0 flex-1">
+            <div class="w-11 h-11 rounded-xl bg-gold/15 text-gold-dark flex items-center justify-center shrink-0 text-lg shadow-inner">
+              <i class="fa-solid ${item.icon}"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h4 class="text-xs font-bold text-espresso leading-snug">${item.title}</h4>
+                <span class="text-[9px] px-1.5 py-0.5 rounded-md font-semibold ${isCurrent ? 'bg-emerald-100 text-emerald-800' : 'bg-gold/20 text-gold-dark'}">${item.genre}</span>
+                <span class="music-active-check ${isCurrent ? '' : 'hidden'} text-[10px] text-emerald-600 font-bold">✓</span>
+              </div>
+              <p class="text-[10px] text-espresso-light mt-0.5 truncate">${item.subtitle}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
+            <!-- Eshitib ko'rish (Preview) -->
+            <button type="button" class="music-preview-track-btn flex-1 sm:flex-none px-3 py-1.5 rounded-xl bg-cream-soft hover:bg-gold/20 text-gold-dark border border-gold/40 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer" data-music-id="${item.id}">
+              <i class="fa-solid fa-play text-[10px] music-play-icon"></i>
+              <span class="music-play-text">Tinglash</span>
+              <span class="music-eq-waves hidden items-center gap-0.5 ml-0.5">
+                <span class="eq-bar eq-bar-1"></span>
+                <span class="eq-bar eq-bar-2"></span>
+                <span class="eq-bar eq-bar-3"></span>
+              </span>
+            </button>
+
+            <!-- Tanlash (Select) -->
+            <button type="button" class="music-card-select-btn flex-1 sm:flex-none px-3.5 py-1.5 rounded-xl ${isCurrent ? 'bg-emerald-600 text-white border border-emerald-600' : 'bg-gold hover:bg-gold-dark text-white'} text-xs font-semibold flex items-center justify-center gap-1 transition-all cursor-pointer active:scale-95 shadow-2xs" data-music-id="${item.id}">
+              <span class="music-select-btn-text">${isCurrent ? 'Tanlangan ✓' : 'Tanlash'}</span>
+            </button>
+          </div>
+        `;
+
+        // Tinglash tugmasi
+        const previewBtn = card.querySelector(".music-preview-track-btn");
+        previewBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          handleModalTrackPreview(item.id, previewBtn);
+        });
+
+        // Tanlash tugmasi
+        const selectBtn = card.querySelector(".music-card-select-btn");
+        selectBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          selectWeddingMusic(item.id);
+          showToast(`Kuy tanlandi: ${item.genre} 🎵`);
+        });
+
+        musicTabPresetsContent.appendChild(card);
+      });
+    }
+
+    function handleModalTrackPreview(musicId, btnEl) {
+      if (modalPreviewActiveTrack === musicId) {
+        // To'xtatamiz
+        stopModalMusicPreview();
+        return;
+      }
+
+      stopModalMusicPreview();
+      modalPreviewActiveTrack = musicId;
+
+      // Tugmani aktiv holatga keltiramiz
+      if (btnEl) {
+        const icon = btnEl.querySelector(".music-play-icon");
+        const text = btnEl.querySelector(".music-play-text");
+        const eq = btnEl.querySelector(".music-eq-waves");
+        if (icon) {
+          icon.classList.remove("fa-play");
+          icon.classList.add("fa-stop");
+        }
+        if (text) text.innerText = "To'xtatish";
+        if (eq) {
+          eq.classList.remove("hidden");
+          eq.classList.add("inline-flex");
+        }
+      }
+
+      // Kuyni chalamiz
+      const mode = musicId.replace("preset:", "") || "canon";
+      startWebAudioMusic(mode);
+    }
+
+    function stopModalMusicPreview() {
+      if (modalPreviewActiveTrack) {
+        stopWebAudioMusic();
+        modalPreviewActiveTrack = null;
+
+        // Barcha tugmalarni reset qilamiz
+        document.querySelectorAll(".music-preview-track-btn").forEach(btn => {
+          const icon = btn.querySelector(".music-play-icon");
+          const text = btn.querySelector(".music-play-text");
+          const eq = btn.querySelector(".music-eq-waves");
+          if (icon) {
+            icon.classList.remove("fa-stop");
+            icon.classList.add("fa-play");
+          }
+          if (text) text.innerText = "Tinglash";
+          if (eq) {
+            eq.classList.remove("inline-flex");
+            eq.classList.add("hidden");
+          }
+        });
+      }
+    }
+
+    function selectWeddingMusic(musicId) {
+      currentWeddingData.musicUrl = musicId;
+      updateMusicUIState(musicId);
+      saveCurrentDataToStorage(currentWeddingData);
+
+      // Agar taklifnoma ochiq bo'lsa va musiqa yangrayotgan bo'lsa, yangilaymiz
+      if (isAudioPlaying) {
+        playWeddingMusic();
+      }
+    }
+
+    // Modalni ochish va yopish
+    function openMusicModal(initialTab = "presets") {
+      if (!musicSelectorModal) return;
+      stopModalMusicPreview();
+      renderMusicPresetsInModal();
+      updateMusicUIState(currentWeddingData.musicUrl || "preset:canon");
+      switchMusicModalTab(initialTab);
+
+      // Agar yuklangan fayl bo'lsa, uni ko'rsatish
+      if (userUploadedName) {
+        if (uploadedFileName) uploadedFileName.innerText = userUploadedName;
+        if (uploadedFilePreview) uploadedFilePreview.classList.remove("hidden");
+      }
+
+      musicSelectorModal.classList.remove("hidden");
+      setTimeout(() => {
+        musicSelectorModal.classList.remove("opacity-0");
+        musicSelectorModal.querySelector("div").classList.remove("scale-95");
+      }, 10);
+    }
+
+    function closeMusicModal() {
+      if (!musicSelectorModal) return;
+      stopModalMusicPreview();
+      musicSelectorModal.classList.add("opacity-0");
+      musicSelectorModal.querySelector("div").classList.add("scale-95");
+      setTimeout(() => {
+        musicSelectorModal.classList.add("hidden");
+      }, 300);
+    }
+
+    function switchMusicModalTab(tabKey) {
+      document.querySelectorAll(".music-tab-btn").forEach(btn => {
+        if (btn.dataset.tab === tabKey) {
+          btn.classList.add("active", "bg-gold", "text-white", "shadow-2xs");
+          btn.classList.remove("text-espresso-light");
+        } else {
+          btn.classList.remove("active", "bg-gold", "text-white", "shadow-2xs");
+          btn.classList.add("text-espresso-light");
+        }
+      });
+
+      if (musicTabPresetsContent) musicTabPresetsContent.classList.toggle("hidden", tabKey !== "presets");
+      if (musicTabUploadContent) musicTabUploadContent.classList.toggle("hidden", tabKey !== "upload");
+      if (musicTabLinkContent) musicTabLinkContent.classList.toggle("hidden", tabKey !== "link");
+    }
+
+    // Tab tugmalari hodisalari
+    document.querySelectorAll(".music-tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tab = btn.dataset.tab;
+        stopModalMusicPreview();
+        switchMusicModalTab(tab);
+      });
+    });
+
+    if (openMusicModalBtn) openMusicModalBtn.addEventListener("click", () => openMusicModal("presets"));
+    if (navMusicBtn) navMusicBtn.addEventListener("click", () => openMusicModal("presets"));
+    if (closeMusicModalBtn) closeMusicModalBtn.addEventListener("click", closeMusicModal);
+    if (doneMusicModalBtn) doneMusicModalBtn.addEventListener("click", closeMusicModal);
+
+    // Formadagi tezkor pills (chiplar)
+    document.querySelectorAll(".form-quick-music-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        const id = pill.dataset.musicId;
+        selectWeddingMusic(id);
+        const preset = MUSIC_PRESETS.find(p => p.id === id);
+        showToast(`Kuy tanlandi: ${preset ? preset.genre : id} 🎵`);
+      });
+    });
+
+    // Formadagi "Tinglash" (Preview) tugmasi
+    if (formPreviewMusicBtn) {
+      formPreviewMusicBtn.addEventListener("click", () => {
+        if (isFormPreviewPlaying) {
+          // To'xtatamiz
+          stopWebAudioMusic();
+          try { weddingAudio.pause(); } catch(e){}
+          isFormPreviewPlaying = false;
+          if (formPreviewPlayIcon) {
+            formPreviewPlayIcon.classList.remove("fa-stop");
+            formPreviewPlayIcon.classList.add("fa-play");
+          }
+          if (formPreviewBtnText) formPreviewBtnText.innerText = "Tinglash";
+          showToast("Musiqa to'xtatildi ⏸️");
+          return;
+        }
+
+        const id = currentWeddingData.musicUrl || (inputMusicUrl ? inputMusicUrl.value : "preset:canon");
+        if (id === "none") {
+          showToast("Hozir musiqasiz rejim tanlangan");
+          return;
+        }
+
+        isFormPreviewPlaying = true;
+        if (formPreviewPlayIcon) {
+          formPreviewPlayIcon.classList.remove("fa-play");
+          formPreviewPlayIcon.classList.add("fa-stop");
+        }
+        if (formPreviewBtnText) formPreviewBtnText.innerText = "To'xtatish";
+
+        if (id.startsWith("preset:")) {
+          const mode = id.replace("preset:", "") || "canon";
+          startWebAudioMusic(mode);
+        } else if (id === "custom:uploaded") {
+          const src = userUploadedBlobUrl || userUploadedAudioData;
+          if (src) {
+            weddingAudio.src = src;
+            weddingAudio.play().catch(() => startWebAudioMusic("canon"));
+          } else {
+            startWebAudioMusic("canon");
+          }
+        } else {
+          weddingAudio.src = id;
+          weddingAudio.play().catch(() => startWebAudioMusic("canon"));
+        }
+        showToast("Musiqa yangramoqda 🎵");
+      });
+    }
+
+    // Formadagi "+ Fayl yuklash" tugmasi
+    if (formUploadTriggerBtn) {
+      formUploadTriggerBtn.addEventListener("click", () => {
+        openMusicModal("upload");
+      });
+    }
+
+    // Kengaytirilgan havola accordion
+    if (toggleAdvancedMusicLinkBtn && advancedMusicLinkBlock) {
+      toggleAdvancedMusicLinkBtn.addEventListener("click", () => {
+        const isHidden = advancedMusicLinkBlock.classList.contains("hidden");
+        advancedMusicLinkBlock.classList.toggle("hidden", !isHidden);
+        if (advancedLinkChevron) {
+          advancedLinkChevron.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
+        }
+      });
+    }
+
+    if (inputMusicUrl) {
+      inputMusicUrl.addEventListener("input", (e) => {
+        const val = e.target.value.trim();
+        if (val) {
+          currentWeddingData.musicUrl = val;
+          updateMusicUIState(val);
+        }
+      });
+    }
+
+    // FAYL YUKLASH FUNKSIYALARI (TAB 2)
+    function handleAudioFileUpload(file) {
+      if (!file) return;
+      if (!file.type.startsWith("audio/") && !file.name.match(/\.(mp3|m4a|wav|aac|ogg)$/i)) {
+        showToast("Iltimos, faqat audio fayl (.mp3, .m4a, .wav) tanlang");
+        return;
+      }
+
+      userUploadedName = file.name;
+      userUploadedBlobUrl = URL.createObjectURL(file);
+
+      // Fayl nomi va hajmini ko'rsatamiz
+      if (uploadedFileName) uploadedFileName.innerText = file.name;
+      const sizeMb = (file.size / (1024 * 1024)).toFixed(1);
+      if (uploadedFileSize) uploadedFileSize.innerText = `${sizeMb} MB audio`;
+      if (uploadedFilePreview) uploadedFilePreview.classList.remove("hidden");
+
+      // Kichik hajmli fayllarni (<= 5MB) localStorage ga Base64 qilib saqlashga urinish
+      if (file.size <= 5 * 1024 * 1024) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          userUploadedAudioData = e.target.result;
+          try {
+            localStorage.setItem("wedding_custom_audio_base64", userUploadedAudioData);
+            localStorage.setItem("wedding_custom_audio_name", userUploadedName);
+          } catch (err) {}
+        };
+        reader.readAsDataURL(file);
+      } else {
+        try {
+          localStorage.removeItem("wedding_custom_audio_base64");
+          localStorage.setItem("wedding_custom_audio_name", userUploadedName);
+        } catch (err) {}
+      }
+
+      showToast("Audio fayl yuklandi! Tinglab ko'rishingiz mumkin 🎧");
+    }
+
+    if (browseMusicFileBtn && musicFileInput) {
+      browseMusicFileBtn.addEventListener("click", () => musicFileInput.click());
+    }
+    if (musicDropZone && musicFileInput) {
+      musicDropZone.addEventListener("click", (e) => {
+        if (e.target !== browseMusicFileBtn) {
+          musicFileInput.click();
+        }
+      });
+      musicDropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        musicDropZone.classList.add("border-gold", "bg-cream-soft");
+      });
+      musicDropZone.addEventListener("dragleave", () => {
+        musicDropZone.classList.remove("border-gold", "bg-cream-soft");
+      });
+      musicDropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        musicDropZone.classList.remove("border-gold", "bg-cream-soft");
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleAudioFileUpload(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    if (musicFileInput) {
+      musicFileInput.addEventListener("change", (e) => {
+        if (e.target.files && e.target.files[0]) {
+          handleAudioFileUpload(e.target.files[0]);
+        }
+      });
+    }
+
+    let isUploadedPreviewPlaying = false;
+    if (playUploadedPreviewBtn) {
+      playUploadedPreviewBtn.addEventListener("click", () => {
+        const src = userUploadedBlobUrl || userUploadedAudioData;
+        if (!src) return;
+
+        if (isUploadedPreviewPlaying) {
+          weddingAudio.pause();
+          isUploadedPreviewPlaying = false;
+          if (uploadPlayIcon) {
+            uploadPlayIcon.classList.remove("fa-pause");
+            uploadPlayIcon.classList.add("fa-play");
+          }
+          if (uploadPlayBtnText) uploadPlayBtnText.innerText = "Tinglash";
+          return;
+        }
+
+        stopWebAudioMusic();
+        weddingAudio.src = src;
+        weddingAudio.play().then(() => {
+          isUploadedPreviewPlaying = true;
+          if (uploadPlayIcon) {
+            uploadPlayIcon.classList.remove("fa-play");
+            uploadPlayIcon.classList.add("fa-pause");
+          }
+          if (uploadPlayBtnText) uploadPlayBtnText.innerText = "To'xtatish";
+        }).catch(() => {
+          showToast("Audioni ijro etib bo'lmadi");
+        });
+      });
+    }
+
+    if (applyUploadedMusicBtn) {
+      applyUploadedMusicBtn.addEventListener("click", () => {
+        if (!userUploadedBlobUrl && !userUploadedAudioData) {
+          showToast("Avval audio faylni tanlang");
+          return;
+        }
+        selectWeddingMusic("custom:uploaded");
+        closeMusicModal();
+        showToast("O'z musiqangiz to'y taklifnomasiga o'rnatildi! 🎶");
+      });
+    }
+
+    if (removeUploadedMusicBtn) {
+      removeUploadedMusicBtn.addEventListener("click", () => {
+        userUploadedBlobUrl = null;
+        userUploadedAudioData = null;
+        userUploadedName = "";
+        try {
+          localStorage.removeItem("wedding_custom_audio_base64");
+          localStorage.removeItem("wedding_custom_audio_name");
+        } catch(e){}
+        if (uploadedFilePreview) uploadedFilePreview.classList.add("hidden");
+        if (currentWeddingData.musicUrl === "custom:uploaded") {
+          selectWeddingMusic("preset:canon");
+        }
+        showToast("Yuklangan musiqa olib tashlandi");
+      });
+    }
+
+    // HAVOLA (URL) BILAN SOZLASH (TAB 3)
+    if (pasteMusicLinkBtn && customMusicUrlModalInput) {
+      pasteMusicLinkBtn.addEventListener("click", () => {
+        navigator.clipboard.readText().then(text => {
+          if (text) {
+            customMusicUrlModalInput.value = text;
+            showToast("Havola joylandi!");
+          }
+        }).catch(() => {
+          customMusicUrlModalInput.focus();
+        });
+      });
+    }
+
+    let isLinkTesting = false;
+    if (testLinkMusicBtn && customMusicUrlModalInput) {
+      testLinkMusicBtn.addEventListener("click", () => {
+        const url = customMusicUrlModalInput.value.trim();
+        if (!url) {
+          showToast("Avval MP3 havolasini kiriting");
+          return;
+        }
+
+        if (isLinkTesting) {
+          weddingAudio.pause();
+          isLinkTesting = false;
+          if (testLinkIcon) {
+            testLinkIcon.classList.remove("fa-pause");
+            testLinkIcon.classList.add("fa-play");
+          }
+          if (testLinkBtnText) testLinkBtnText.innerText = "Tekshirib eshitish";
+          return;
+        }
+
+        stopWebAudioMusic();
+        weddingAudio.src = url;
+        weddingAudio.play().then(() => {
+          isLinkTesting = true;
+          if (testLinkIcon) {
+            testLinkIcon.classList.remove("fa-play");
+            testLinkIcon.classList.add("fa-pause");
+          }
+          if (testLinkBtnText) testLinkBtnText.innerText = "To'xtatish";
+          showToast("Havola to'g'ri, musiqa yangramoqda! 🎵");
+        }).catch(() => {
+          showToast("Havolani ochib bo'lmadi, to'g'ri .mp3 link ekanligini tekshiring");
+        });
+      });
+    }
+
+    if (applyLinkMusicBtn && customMusicUrlModalInput) {
+      applyLinkMusicBtn.addEventListener("click", () => {
+        const url = customMusicUrlModalInput.value.trim();
+        if (!url) {
+          showToast("Iltimos, havolani kiriting");
+          return;
+        }
+        selectWeddingMusic(url);
+        closeMusicModal();
+        showToast("Havola saqlandi va musiqa o'rnatildi! 💌");
+      });
+    }
+
+    // MUSIQASIZ REJIM (MUTE)
+    if (modalMuteMusicBtn) {
+      modalMuteMusicBtn.addEventListener("click", () => {
+        stopModalMusicPreview();
+        pauseWeddingMusic();
+        selectWeddingMusic("none");
+        closeMusicModal();
+        showToast("Musiqasiz (ovozsiz) rejim tanlandi 🔕");
+      });
+    }
 
     // =========================================================================
     // 13. RSVP TASHRIFNI TASDIQLASH VA MEHMONLAR RO'YXATI BOSHQARUVI
