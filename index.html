@@ -65,124 +65,264 @@
   <!-- Swiper.js (Photo Carousel) CSS CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+  <!-- QRCode.js CDN (Taklifnoma QR kodi uchun) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <!-- ==========================================================
        CUSTOM LUXURY THEMES & STYLES (8 TA NAFIS DIZAYN)
        ========================================================== -->
   <style>
     :root {
       --bg-cream: #FAF7F2;
-      --bg-card: #FDFBF7;
+      --bg-card: #FFFFFF;
+      --bg-cream-soft: #F4EBE2;
+      --border-color: #E8DED2;
+      --border-gold: rgba(197, 160, 89, 0.4);
+      --gold-light: #E6CF9B;
       --gold-primary: #C5A059;
+      --gold-dark: #9A7836;
       --gold-gradient: linear-gradient(135deg, #E4C988 0%, #C5A059 50%, #9A7836 100%);
       --text-dark: #2B211E;
-      --pattern-dot: rgba(197, 160, 89, 0.12);
+      --text-light: #655750;
+      --pattern-dot: rgba(197, 160, 89, 0.14);
       --badge-accent: #C5A059;
       --card-bg-gradient: linear-gradient(135deg, #2B211E 0%, #44342F 50%, #201715 100%);
+      --hero-overlay-from: rgba(250, 247, 242, 0.78);
+      --hero-overlay-to: #FAF7F2;
+      --theme-font-title: 'Cormorant Garamond', serif;
     }
 
     /* 1. SHOHONA OLTIN & KREM */
-    .theme-royal-gold {
+    body.theme-royal-gold, .theme-royal-gold {
       --bg-cream: #FAF7F2;
-      --bg-card: #FDFBF7;
+      --bg-card: #FFFFFF;
+      --bg-cream-soft: #F4EBE2;
+      --border-color: #E8DED2;
+      --border-gold: rgba(197, 160, 89, 0.45);
+      --gold-light: #E6CF9B;
       --gold-primary: #C5A059;
+      --gold-dark: #9A7836;
       --gold-gradient: linear-gradient(135deg, #E4C988 0%, #C5A059 50%, #9A7836 100%);
       --text-dark: #2B211E;
-      --pattern-dot: rgba(197, 160, 89, 0.12);
+      --text-light: #655750;
+      --pattern-dot: rgba(197, 160, 89, 0.14);
       --badge-accent: #C5A059;
       --card-bg-gradient: linear-gradient(135deg, #2B211E 0%, #44342F 50%, #201715 100%);
+      --hero-overlay-from: rgba(250, 247, 242, 0.78);
+      --hero-overlay-to: #FAF7F2;
+      --theme-font-title: 'Cormorant Garamond', serif;
     }
 
     /* 2. ZUMRAD & SHOHONA OLTIN */
-    .theme-emerald {
-      --bg-cream: #F2F7F4;
-      --bg-card: #FCFDFD;
+    body.theme-emerald, .theme-emerald {
+      --bg-cream: #F0F6F2;
+      --bg-card: #FFFFFF;
+      --bg-cream-soft: #E1EFE7;
+      --border-color: #CDE3D6;
+      --border-gold: rgba(13, 92, 58, 0.45);
+      --gold-light: #3E976E;
       --gold-primary: #0D5C3A;
+      --gold-dark: #073822;
       --gold-gradient: linear-gradient(135deg, #1B7850 0%, #0D5C3A 55%, #073822 100%);
-      --text-dark: #0E241A;
-      --pattern-dot: rgba(13, 92, 58, 0.14);
+      --text-dark: #0C2419;
+      --text-light: #325243;
+      --pattern-dot: rgba(13, 92, 58, 0.16);
       --badge-accent: #0D5C3A;
       --card-bg-gradient: linear-gradient(135deg, #09281B 0%, #124B32 50%, #051A11 100%);
+      --hero-overlay-from: rgba(240, 246, 242, 0.82);
+      --hero-overlay-to: #F0F6F2;
+      --theme-font-title: 'Playfair Display', serif;
     }
 
     /* 3. SAFSAR & NILUFAR */
-    .theme-amethyst {
-      --bg-cream: #F8F5FA;
-      --bg-card: #FDFCFF;
+    body.theme-amethyst, .theme-amethyst {
+      --bg-cream: #F7F3FA;
+      --bg-card: #FFFFFF;
+      --bg-cream-soft: #EEE4F5;
+      --border-color: #DFCFEA;
+      --border-gold: rgba(110, 45, 110, 0.45);
+      --gold-light: #9C52A6;
       --gold-primary: #6E2D6E;
+      --gold-dark: #471547;
       --gold-gradient: linear-gradient(135deg, #914391 0%, #6E2D6E 55%, #4B194B 100%);
-      --text-dark: #281328;
-      --pattern-dot: rgba(110, 45, 110, 0.12);
+      --text-dark: #271228;
+      --text-light: #573F59;
+      --pattern-dot: rgba(110, 45, 110, 0.15);
       --badge-accent: #6E2D6E;
       --card-bg-gradient: linear-gradient(135deg, #2B102B 0%, #4B1E4B 50%, #1A071A 100%);
+      --hero-overlay-from: rgba(247, 243, 250, 0.82);
+      --hero-overlay-to: #F7F3FA;
+      --theme-font-title: 'Cinzel', serif;
     }
 
     /* 4. PUSHTI MARVARID & ATIRGUL */
-    .theme-blush-pearl {
-      --bg-cream: #FFF7F6;
-      --bg-card: #FFFCFC;
-      --gold-primary: #B76572;
-      --gold-gradient: linear-gradient(135deg, #D98895 0%, #B76572 55%, #8C3E4B 100%);
-      --text-dark: #371D22;
-      --pattern-dot: rgba(183, 101, 114, 0.13);
-      --badge-accent: #B76572;
+    body.theme-blush-pearl, .theme-blush-pearl {
+      --bg-cream: #FFF5F6;
+      --bg-card: #FFFFFF;
+      --bg-cream-soft: #FDE6E9;
+      --border-color: #F8CAD1;
+      --border-gold: rgba(183, 85, 103, 0.45);
+      --gold-light: #D87687;
+      --gold-primary: #B75567;
+      --gold-dark: #832C3C;
+      --gold-gradient: linear-gradient(135deg, #D98895 0%, #B75567 55%, #8C3E4B 100%);
+      --text-dark: #371A20;
+      --text-light: #6A444C;
+      --pattern-dot: rgba(183, 85, 103, 0.15);
+      --badge-accent: #B75567;
       --card-bg-gradient: linear-gradient(135deg, #381920 0%, #5E2C36 50%, #260E14 100%);
+      --hero-overlay-from: rgba(255, 245, 246, 0.82);
+      --hero-overlay-to: #FFF5F6;
+      --theme-font-title: 'Playfair Display', serif;
     }
 
     /* 5. OQQUSH NAFISLIGI (MINIMALIST IVORY) */
-    .theme-pure-silk {
-      --bg-cream: #F9F9F8;
+    body.theme-pure-silk, .theme-pure-silk {
+      --bg-cream: #F8F8F7;
       --bg-card: #FFFFFF;
-      --gold-primary: #4A4643;
+      --bg-cream-soft: #ECECEB;
+      --border-color: #D8D6D4;
+      --border-gold: rgba(42, 39, 37, 0.45);
+      --gold-light: #686460;
+      --gold-primary: #2A2725;
+      --gold-dark: #11100F;
       --gold-gradient: linear-gradient(135deg, #706B66 0%, #4A4643 55%, #242220 100%);
-      --text-dark: #1A1A1A;
-      --pattern-dot: rgba(40, 38, 36, 0.08);
-      --badge-accent: #4A4643;
+      --text-dark: #141312;
+      --text-light: #524F4C;
+      --pattern-dot: rgba(42, 39, 37, 0.12);
+      --badge-accent: #2A2725;
       --card-bg-gradient: linear-gradient(135deg, #1C1B1A 0%, #302E2B 50%, #121110 100%);
+      --hero-overlay-from: rgba(248, 248, 247, 0.84);
+      --hero-overlay-to: #F8F8F7;
+      --theme-font-title: 'Cinzel', serif;
     }
 
-    /* 6. OSMON & FERUZA (SAPPHIRE) */
-    .theme-sapphire {
-      --bg-cream: #F2F5F9;
-      --bg-card: #FAFBFD;
-      --gold-primary: #1C3D68;
-      --gold-gradient: linear-gradient(135deg, #2C578F 0%, #1C3D68 55%, #0F233E 100%);
-      --text-dark: #0F1C2B;
-      --pattern-dot: rgba(28, 61, 104, 0.12);
-      --badge-accent: #1C3D68;
-      --card-bg-gradient: linear-gradient(135deg, #0C1A2B 0%, #1A3452 50%, #07111D 100%);
+    /* 6. OSMON & FERUZA (CELESTIAL SAPPHIRE) */
+    body.theme-sapphire, .theme-sapphire {
+      --bg-cream: #091326;
+      --bg-card: rgba(14, 25, 48, 0.94);
+      --bg-cream-soft: #14223E;
+      --border-color: #243B66;
+      --border-gold: rgba(240, 202, 104, 0.55);
+      --gold-light: #F7DF94;
+      --gold-primary: #F0CA68;
+      --gold-dark: #D4A738;
+      --gold-gradient: linear-gradient(135deg, #FDF0CD 0%, #F0CA68 55%, #C29324 100%);
+      --text-dark: #F5F8FC;
+      --text-light: #AEC2DE;
+      --pattern-dot: rgba(240, 202, 104, 0.25);
+      --badge-accent: #F0CA68;
+      --card-bg-gradient: linear-gradient(135deg, #091224 0%, #152545 50%, #060D1A 100%);
+      --hero-overlay-from: rgba(9, 19, 38, 0.88);
+      --hero-overlay-to: #091326;
+      --theme-font-title: 'Cinzel', serif;
     }
 
     /* 7. SHARQONA NAQSH (SAMARQAND FIRUZA) */
-    .theme-oriental {
-      --bg-cream: #FCF9F2;
-      --bg-card: #FFFEFA;
-      --gold-primary: #088395;
+    body.theme-oriental, .theme-oriental {
+      --bg-cream: #FBF8F0;
+      --bg-card: #FFFFFF;
+      --bg-cream-soft: #E6F5F7;
+      --border-color: #C3E5EB;
+      --border-gold: rgba(7, 128, 146, 0.45);
+      --gold-light: #14A3B9;
+      --gold-primary: #078092;
+      --gold-dark: #044E5A;
       --gold-gradient: linear-gradient(135deg, #0A9EAF 0%, #088395 55%, #055966 100%);
-      --text-dark: #0A262C;
-      --pattern-dot: rgba(8, 131, 149, 0.14);
-      --badge-accent: #088395;
+      --text-dark: #06282E;
+      --text-light: #28535A;
+      --pattern-dot: rgba(7, 128, 146, 0.15);
+      --badge-accent: #078092;
       --card-bg-gradient: linear-gradient(135deg, #06282E 0%, #0D4954 50%, #041B1F 100%);
+      --hero-overlay-from: rgba(251, 248, 240, 0.82);
+      --hero-overlay-to: #FBF8F0;
+      --theme-font-title: 'Cormorant Garamond', serif;
     }
 
     /* 8. RUSTIK & TERRACOTTA */
-    .theme-rustic {
-      --bg-cream: #FCF6F0;
-      --bg-card: #FFFAF5;
-      --gold-primary: #A24E2D;
+    body.theme-rustic, .theme-rustic {
+      --bg-cream: #FAF3EC;
+      --bg-card: #FFFFFF;
+      --bg-cream-soft: #F2E4D6;
+      --border-color: #E8CFBC;
+      --border-gold: rgba(162, 75, 37, 0.45);
+      --gold-light: #C8643C;
+      --gold-primary: #A24B25;
+      --gold-dark: #6C2C10;
       --gold-gradient: linear-gradient(135deg, #C46742 0%, #A24E2D 55%, #783319 100%);
-      --text-dark: #321B13;
-      --pattern-dot: rgba(162, 78, 45, 0.13);
-      --badge-accent: #A24E2D;
+      --text-dark: #2F170E;
+      --text-light: #5F3F32;
+      --pattern-dot: rgba(162, 75, 37, 0.15);
+      --badge-accent: #A24B25;
       --card-bg-gradient: linear-gradient(135deg, #30170F 0%, #52291B 50%, #200E08 100%);
+      --hero-overlay-from: rgba(250, 243, 236, 0.82);
+      --hero-overlay-to: #FAF3EC;
+      --theme-font-title: 'Playfair Display', serif;
     }
 
     body {
-      background-color: var(--bg-cream);
-      color: var(--text-dark);
+      background-color: var(--bg-cream) !important;
+      color: var(--text-dark) !important;
       font-family: 'Montserrat', sans-serif;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* Dynamic font switching for elegance */
+    .font-serif {
+      font-family: var(--theme-font-title, 'Cormorant Garamond', serif) !important;
+    }
+
+    /* Universal theme class overrides ensuring 100% immediate color transformation */
+    .text-gold, [class*="text-gold"]:not(.text-gold-light):not(.text-gold-dark) {
+      color: var(--gold-primary) !important;
+    }
+    .text-gold-dark {
+      color: var(--gold-dark) !important;
+    }
+    .text-gold-light {
+      color: var(--gold-light) !important;
+    }
+    .text-espresso {
+      color: var(--text-dark) !important;
+    }
+    .text-espresso-light {
+      color: var(--text-light) !important;
+    }
+
+    .bg-gold {
+      background-color: var(--gold-primary) !important;
+    }
+    .hover\:bg-gold-dark:hover {
+      background-color: var(--gold-dark) !important;
+    }
+    .hover\:bg-gold:hover {
+      background-color: var(--gold-primary) !important;
+    }
+    .border-gold, [class*="border-gold"] {
+      border-color: var(--border-gold) !important;
+    }
+
+    .bg-cream {
+      background-color: var(--bg-cream) !important;
+    }
+    .bg-cream-soft {
+      background-color: var(--bg-cream-soft) !important;
+    }
+
+    .from-gold {
+      --tw-gradient-from: var(--gold-primary) var(--tw-gradient-from-position) !important;
+      --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position) !important;
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+    }
+    .to-gold-dark {
+      --tw-gradient-to: var(--gold-dark) var(--tw-gradient-to-position) !important;
+    }
+
+    /* Hero overlay dynamic styling */
+    #heroOverlay {
+      background: linear-gradient(to bottom, var(--hero-overlay-from) 0%, var(--hero-overlay-to) 100%) !important;
     }
 
     /* Naqshli fon */
@@ -201,24 +341,685 @@
     /* Hashamatli chegara qutisi */
     .luxury-box {
       background: var(--bg-card);
-      border: 1px solid rgba(197, 160, 89, 0.35);
+      border: 1px solid var(--border-gold);
       border-radius: 1.25rem;
       box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.06);
       position: relative;
       transition: all 0.3s ease;
     }
 
-    /* Burchak bezaklari */
+    /* Burchak bezaklari - baza */
     .corner-decor {
       position: absolute;
       width: 22px;
       height: 22px;
       pointer-events: none;
+      transition: all 0.3s ease;
     }
     .corner-tl { top: 10px; left: 10px; border-top: 1.5px solid var(--gold-primary); border-left: 1.5px solid var(--gold-primary); }
     .corner-tr { top: 10px; right: 10px; border-top: 1.5px solid var(--gold-primary); border-right: 1.5px solid var(--gold-primary); }
     .corner-bl { bottom: 10px; left: 10px; border-bottom: 1.5px solid var(--gold-primary); border-left: 1.5px solid var(--gold-primary); }
     .corner-br { bottom: 10px; right: 10px; border-bottom: 1.5px solid var(--gold-primary); border-right: 1.5px solid var(--gold-primary); }
+
+    /* ==========================================================
+       8 TA DIZAYNNING TURLICHA ARXITEKTURASI, BURCHAKLARI VA STRUKTURASI
+       ========================================================== */
+
+    /* 1. SHOHONA OLTIN (ROYAL CLASSICAL PALACE) */
+    body.theme-royal-gold .luxury-box {
+      border-radius: 1.5rem !important;
+      border: 2px solid var(--border-gold) !important;
+      outline: 1px solid rgba(197, 160, 89, 0.35) !important;
+      outline-offset: -7px;
+      box-shadow: 0 16px 36px -6px rgba(197, 160, 89, 0.22) !important;
+      background: #FFFFFF !important;
+    }
+    body.theme-royal-gold .corner-tl { top: 11px; left: 11px; border-top: 2px solid var(--gold-primary); border-left: 2px solid var(--gold-primary); border-top-left-radius: 6px; }
+    body.theme-royal-gold .corner-tr { top: 11px; right: 11px; border-top: 2px solid var(--gold-primary); border-right: 2px solid var(--gold-primary); border-top-right-radius: 6px; }
+    body.theme-royal-gold .corner-bl { bottom: 11px; left: 11px; border-bottom: 2px solid var(--gold-primary); border-left: 2px solid var(--gold-primary); border-bottom-left-radius: 6px; }
+    body.theme-royal-gold .corner-br { bottom: 11px; right: 11px; border-bottom: 2px solid var(--gold-primary); border-right: 2px solid var(--gold-primary); border-bottom-right-radius: 6px; }
+    body.theme-royal-gold .venue-card,
+    body.theme-royal-gold #previewPhoneBox,
+    body.theme-royal-gold #quickGuestWishForm,
+    body.theme-royal-gold .timeline-item,
+    body.theme-royal-gold .wish-feed-card,
+    body.theme-royal-gold .rsvp-decision-label {
+      border-radius: 1.25rem !important;
+      border: 1.5px solid rgba(197, 160, 89, 0.4) !important;
+      box-shadow: 0 4px 15px rgba(197, 160, 89, 0.1) !important;
+    }
+    body.theme-royal-gold .countdown-card {
+      border-radius: 1.25rem !important;
+      border: 1.5px solid var(--gold-primary) !important;
+      box-shadow: 0 6px 18px rgba(197, 160, 89, 0.18) !important;
+      background: #FFFFFF !important;
+    }
+    body.theme-royal-gold #heroMonogramWrapper {
+      border-radius: 50% !important;
+      border: 2.5px solid var(--gold-primary) !important;
+      box-shadow: 0 0 0 5px rgba(197, 160, 89, 0.22), 0 8px 24px rgba(197, 160, 89, 0.25) !important;
+      background: radial-gradient(circle, #FFFDF8 0%, #FAF4E8 100%) !important;
+    }
+
+    /* 2. ZUMRAD BOTANIK BOG'I (BOTANICAL GLASSHOUSE ARCH) */
+    body.theme-emerald .luxury-box {
+      border-radius: 4.5rem 4.5rem 1.5rem 1.5rem !important;
+      border: 2px solid rgba(13, 92, 58, 0.38) !important;
+      backdrop-filter: blur(14px) !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      box-shadow: 0 20px 45px -10px rgba(13, 92, 58, 0.16) !important;
+    }
+    /* Yuqori qism gumbaz arka shaklida bo'lgani uchun clashing to'g'ri burchakli chiziqlar yashiriladi */
+    body.theme-emerald .corner-tl,
+    body.theme-emerald .corner-tr {
+      display: none !important;
+    }
+    body.theme-emerald .corner-bl {
+      bottom: 12px; left: 12px; border-bottom: 2px solid #0D5C3A; border-left: 2px solid #0D5C3A; border-bottom-left-radius: 12px;
+    }
+    body.theme-emerald .corner-br {
+      bottom: 12px; right: 12px; border-bottom: 2px solid #0D5C3A; border-right: 2px solid #0D5C3A; border-bottom-right-radius: 12px;
+    }
+    body.theme-emerald .venue-card,
+    body.theme-emerald #previewPhoneBox,
+    body.theme-emerald #quickGuestWishForm,
+    body.theme-emerald .timeline-item,
+    body.theme-emerald .wish-feed-card,
+    body.theme-emerald .rsvp-decision-label {
+      border-radius: 2.25rem 2.25rem 1rem 1rem !important;
+      border: 1.5px solid rgba(13, 92, 58, 0.32) !important;
+      background: rgba(244, 250, 246, 0.92) !important;
+    }
+    body.theme-emerald .countdown-card {
+      border-radius: 2.25rem 2.25rem 0.85rem 0.85rem !important;
+      background: #EAF4EE !important;
+      border: 1.5px solid rgba(13, 92, 58, 0.35) !important;
+      box-shadow: 0 6px 16px rgba(13, 92, 58, 0.12) !important;
+    }
+    body.theme-emerald #heroMonogramWrapper {
+      border-radius: 50% !important;
+      border: 2.5px solid #0D5C3A !important;
+      box-shadow: 0 0 0 6px rgba(13, 92, 58, 0.2), 0 8px 24px rgba(13, 92, 58, 0.2) !important;
+      background: #F2FAF5 !important;
+    }
+
+    /* 3. VOGUE / MINIMALIST IPAK (HIGH-FASHION SHARP EDITORIAL) */
+    body.theme-pure-silk .luxury-box {
+      border-radius: 0px !important;
+      border: 2px solid #141312 !important;
+      box-shadow: 8px 8px 0px #141312 !important;
+      background: #FFFFFF !important;
+    }
+    body.theme-pure-silk .corner-decor {
+      width: 15px;
+      height: 15px;
+      border-radius: 0px !important;
+    }
+    body.theme-pure-silk .corner-tl { top: 8px; left: 8px; border-top: 2px solid #141312; border-left: 2px solid #141312; }
+    body.theme-pure-silk .corner-tr { top: 8px; right: 8px; border-top: 2px solid #141312; border-right: 2px solid #141312; }
+    body.theme-pure-silk .corner-bl { bottom: 8px; left: 8px; border-bottom: 2px solid #141312; border-left: 2px solid #141312; }
+    body.theme-pure-silk .corner-br { bottom: 8px; right: 8px; border-bottom: 2px solid #141312; border-right: 2px solid #141312; }
+    body.theme-pure-silk .venue-card,
+    body.theme-pure-silk #previewPhoneBox,
+    body.theme-pure-silk #quickGuestWishForm,
+    body.theme-pure-silk .timeline-item,
+    body.theme-pure-silk .wish-feed-card,
+    body.theme-pure-silk .rsvp-decision-label,
+    body.theme-pure-silk #previewCardContainer,
+    body.theme-pure-silk .custom-input,
+    body.theme-pure-silk button:not(.lang-btn):not(#musicToggleBtn),
+    body.theme-pure-silk a.rounded-full,
+    body.theme-pure-silk .rounded-2xl,
+    body.theme-pure-silk .rounded-xl,
+    body.theme-pure-silk .rounded-full:not(#musicToggleBtn):not(.lang-btn) {
+      border-radius: 0px !important;
+    }
+    body.theme-pure-silk .venue-card,
+    body.theme-pure-silk #previewPhoneBox,
+    body.theme-pure-silk #quickGuestWishForm,
+    body.theme-pure-silk .timeline-item,
+    body.theme-pure-silk .wish-feed-card,
+    body.theme-pure-silk .rsvp-decision-label {
+      border: 1.5px solid #141312 !important;
+      box-shadow: 4px 4px 0px #141312 !important;
+      background: #FFFFFF !important;
+    }
+    body.theme-pure-silk .countdown-card {
+      border-radius: 0px !important;
+      border: 2px solid #141312 !important;
+      box-shadow: 4px 4px 0px #141312 !important;
+      background: #FFFFFF !important;
+    }
+    body.theme-pure-silk #heroMonogramWrapper {
+      border-radius: 0px !important;
+      border: 2.5px solid #141312 !important;
+      box-shadow: 5px 5px 0px #141312 !important;
+      background: #FFFFFF !important;
+      transform: none !important;
+    }
+    body.theme-pure-silk #heroMonogramInner {
+      border-radius: 0px !important;
+      border: 1px solid #141312 !important;
+      border-style: solid !important;
+    }
+    body.theme-pure-silk #previewGroomName,
+    body.theme-pure-silk #previewBrideName,
+    body.theme-pure-silk #previewSignCouple,
+    body.theme-pure-silk #footerCoupleSign {
+      font-family: 'Cinzel', serif !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      font-weight: 700 !important;
+    }
+
+    /* 4. SHARQONA SAMARQAND MEHROB ARKASI (ORIENTAL ISLAMIC ARCH) */
+    body.theme-oriental .luxury-box {
+      border-radius: 4.75rem 4.75rem 1.25rem 1.25rem !important;
+      border: 2.5px solid #078092 !important;
+      box-shadow: 0 18px 40px -8px rgba(7, 128, 146, 0.25) !important;
+      background: #FFFFFF !important;
+    }
+    /* Yuqori gumbaz arka shaklida bo'lgani uchun clashing to'g'ri burchakli chiziqlar yashiriladi */
+    body.theme-oriental .corner-tl,
+    body.theme-oriental .corner-tr {
+      display: none !important;
+    }
+    body.theme-oriental .corner-bl {
+      bottom: 12px; left: 12px; border-bottom: 2px solid #078092; border-left: 2px solid #078092; border-bottom-left-radius: 10px;
+    }
+    body.theme-oriental .corner-br {
+      bottom: 12px; right: 12px; border-bottom: 2px solid #078092; border-right: 2px solid #078092; border-bottom-right-radius: 10px;
+    }
+    body.theme-oriental .venue-card,
+    body.theme-oriental #previewPhoneBox,
+    body.theme-oriental #quickGuestWishForm,
+    body.theme-oriental .timeline-item,
+    body.theme-oriental .wish-feed-card,
+    body.theme-oriental .rsvp-decision-label {
+      border-radius: 2.5rem 2.5rem 1rem 1rem !important;
+      border: 1.5px solid #078092 !important;
+      background: #F1FAFB !important;
+    }
+    body.theme-oriental .countdown-card {
+      border-radius: 2.25rem 2.25rem 0.6rem 0.6rem !important;
+      border: 1.5px solid #078092 !important;
+      background: #E7F7F9 !important;
+      box-shadow: 0 4px 14px rgba(7, 128, 146, 0.15) !important;
+    }
+    body.theme-oriental #heroMonogramWrapper {
+      border-radius: 1.25rem !important;
+      transform: rotate(45deg);
+      border: 2.5px solid #078092 !important;
+      background: #E7F7F9 !important;
+      box-shadow: 0 0 0 6px rgba(7, 128, 146, 0.22) !important;
+    }
+    body.theme-oriental #heroMonogramWrapper > * {
+      transform: rotate(-45deg);
+    }
+
+    /* 5. PUSHTI MARVARID ROMANTIKASI (ROMANTIC SOFT FAIRYTALE PILL) */
+    body.theme-blush-pearl .luxury-box {
+      border-radius: 2.5rem !important;
+      border: 2px solid #F8CAD1 !important;
+      box-shadow: 0 16px 38px -6px rgba(183, 85, 103, 0.18) !important;
+      background: #FFFFFF !important;
+    }
+    /* Yumaloq pill qutisi bilan mos kelishi uchun burchak bezaklari silliq 16px radiusda bo'ladi */
+    body.theme-blush-pearl .corner-decor {
+      width: 26px;
+      height: 26px;
+    }
+    body.theme-blush-pearl .corner-tl { top: 12px; left: 12px; border-top: 2px solid #F8CAD1; border-left: 2px solid #F8CAD1; border-top-left-radius: 16px; }
+    body.theme-blush-pearl .corner-tr { top: 12px; right: 12px; border-top: 2px solid #F8CAD1; border-right: 2px solid #F8CAD1; border-top-right-radius: 16px; }
+    body.theme-blush-pearl .corner-bl { bottom: 12px; left: 12px; border-bottom: 2px solid #F8CAD1; border-left: 2px solid #F8CAD1; border-bottom-left-radius: 16px; }
+    body.theme-blush-pearl .corner-br { bottom: 12px; right: 12px; border-bottom: 2px solid #F8CAD1; border-right: 2px solid #F8CAD1; border-bottom-right-radius: 16px; }
+    body.theme-blush-pearl .venue-card,
+    body.theme-blush-pearl #previewPhoneBox,
+    body.theme-blush-pearl #quickGuestWishForm,
+    body.theme-blush-pearl .timeline-item,
+    body.theme-blush-pearl .wish-feed-card,
+    body.theme-blush-pearl .rsvp-decision-label {
+      border-radius: 2rem !important;
+      border: 1.5px solid #F8CAD1 !important;
+      background: #FFF8F9 !important;
+    }
+    body.theme-blush-pearl .countdown-card {
+      border-radius: 9999px !important;
+      border: 1.5px solid #F8CAD1 !important;
+      background: #FFF5F7 !important;
+      box-shadow: 0 4px 14px rgba(183, 85, 103, 0.12) !important;
+      padding-top: 1.25rem !important;
+      padding-bottom: 1.25rem !important;
+    }
+    body.theme-blush-pearl #heroMonogramWrapper {
+      border-radius: 50% !important;
+      border: 2.5px solid #B75567 !important;
+      box-shadow: 0 0 0 6px rgba(183, 85, 103, 0.2), 0 8px 24px rgba(183, 85, 103, 0.25) !important;
+      background: #FFF5F7 !important;
+    }
+
+    /* 6. OSMON & CELESTIAL SAPPHIRE (NOCTURNAL STARLIT GALA - TO'LIQ VA YUQORI KONTRASTLI) */
+    body.theme-sapphire .luxury-box {
+      border-radius: 1.75rem !important;
+      background: #0E1B36 !important;
+      border: 1.5px solid rgba(240, 202, 104, 0.6) !important;
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(240, 202, 104, 0.2) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .corner-decor {
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 4px rgba(240, 202, 104, 0.5));
+    }
+    body.theme-sapphire .corner-tl { top: 12px; left: 12px; border-top: 2px solid #F0CA68; border-left: 2px solid #F0CA68; border-top-left-radius: 8px; }
+    body.theme-sapphire .corner-tr { top: 12px; right: 12px; border-top: 2px solid #F0CA68; border-right: 2px solid #F0CA68; border-top-right-radius: 8px; }
+    body.theme-sapphire .corner-bl { bottom: 12px; left: 12px; border-bottom: 2px solid #F0CA68; border-left: 2px solid #F0CA68; border-bottom-left-radius: 8px; }
+    body.theme-sapphire .corner-br { bottom: 12px; right: 12px; border-bottom: 2px solid #F0CA68; border-right: 2px solid #F0CA68; border-bottom-right-radius: 8px; }
+
+    body.theme-sapphire .luxury-box h1,
+    body.theme-sapphire .luxury-box h2,
+    body.theme-sapphire .luxury-box h3,
+    body.theme-sapphire .luxury-box h4,
+    body.theme-sapphire .luxury-box label,
+    body.theme-sapphire #previewMessage {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .luxury-box p:not(.text-gold):not(.text-gold-dark) {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire .text-espresso-light {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire .text-espresso {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .text-gold-dark {
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire #previewSignCouple,
+    body.theme-sapphire #footerCoupleSign {
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire .venue-card {
+      border-radius: 1.25rem !important;
+      background: #0E1B36 !important;
+      border: 1.5px solid rgba(240, 202, 104, 0.45) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .venue-card h4 {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .venue-card #previewVenueAddress {
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire .venue-card > div:first-child {
+      background: #14223E !important;
+      color: #F0CA68 !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+    }
+    body.theme-sapphire .timeline-item {
+      border-radius: 1.25rem !important;
+      background: #0E1B36 !important;
+      border: 1.5px solid rgba(240, 202, 104, 0.35) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .timeline-item p:first-child {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .timeline-item p:last-child {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire .timeline-item span:first-child {
+      background: rgba(240, 202, 104, 0.18) !important;
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire #previewPhoneBox {
+      border-radius: 1.25rem !important;
+      background: #0E1B36 !important;
+      border: 1.5px solid rgba(240, 202, 104, 0.4) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #previewPhoneBox span {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire #previewPhoneBox #previewPhoneDisplay {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #previewPhoneBox > div > div > div:first-child {
+      background: #14223E !important;
+      color: #F0CA68 !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+    }
+    body.theme-sapphire #copyPhoneBtn {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire #previewCardContainer {
+      border-radius: 1.25rem !important;
+      background: linear-gradient(135deg, #091224 0%, #152545 50%, #060D1A 100%) !important;
+      border: 1.5px solid rgba(240, 202, 104, 0.5) !important;
+    }
+    body.theme-sapphire .countdown-card {
+      border-radius: 1.25rem !important;
+      background: #0D1C38 !important;
+      border: 1.5px solid rgba(240, 202, 104, 0.6) !important;
+      box-shadow: 0 0 16px rgba(240, 202, 104, 0.25) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .countdown-card span:first-child {
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire .countdown-card span:last-child {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire #heroMonogramWrapper {
+      border-radius: 50% !important;
+      border: 2.5px solid #F0CA68 !important;
+      background: #0D1C38 !important;
+      box-shadow: 0 0 25px rgba(240, 202, 104, 0.4), inset 0 0 15px rgba(240, 202, 104, 0.2) !important;
+    }
+    body.theme-sapphire #previewMonogram {
+      color: #F0CA68 !important;
+      text-shadow: 0 0 10px rgba(240, 202, 104, 0.8) !important;
+    }
+    body.theme-sapphire .custom-input {
+      background-color: #0E1B36 !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire select.custom-input option {
+      background-color: #0E1B36;
+      color: #FFFFFF;
+    }
+    body.theme-sapphire #quickGuestWishForm {
+      background: #0E1B36 !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+    }
+    body.theme-sapphire #quickGuestWishForm input,
+    body.theme-sapphire #quickGuestWishForm textarea {
+      background-color: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .wish-feed-card {
+      background: #0E1B36 !important;
+      border-color: rgba(240, 202, 104, 0.3) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .wish-feed-card span:first-child {
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire .wish-feed-card span:last-child {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire .wish-feed-card p {
+      color: #E8EEF8 !important;
+    }
+    body.theme-sapphire .rsvp-decision-label {
+      background: #0E1B36 !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .rsvp-decision-label span {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .rsvp-decision-label:hover,
+    body.theme-sapphire .rsvp-decision-label:has(:checked) {
+      background: #14223E !important;
+      border-color: #F0CA68 !important;
+    }
+    body.theme-sapphire header {
+      background: rgba(9, 19, 38, 0.96) !important;
+      border-color: rgba(240, 202, 104, 0.35) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire header button:not(.bg-gold):not(.bg-emerald-600) {
+      background: #0E1B36 !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #F5F8FC !important;
+    }
+    body.theme-sapphire .lang-btn:not(.active) {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire #quickDesignBar {
+      background: rgba(9, 19, 38, 0.96) !important;
+      border-color: rgba(240, 202, 104, 0.35) !important;
+    }
+    body.theme-sapphire #quickDesignBar span {
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire .quick-theme-pill {
+      background: #0E1B36 !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire .quick-theme-pill.bg-gold {
+      background: #F0CA68 !important;
+      color: #091326 !important;
+    }
+    body.theme-sapphire #copyShareLinkBtn {
+      background: #0E1B36 !important;
+      border-color: rgba(240, 202, 104, 0.5) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #envelopeCard {
+      background: #0E1B36 !important;
+      border-color: #F0CA68 !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #envelopeCoupleName {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #generatorSection .theme-card {
+      background: #132244 !important;
+      border-color: rgba(240, 202, 104, 0.3) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #generatorSection .theme-card span:first-of-type {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #generatorSection .theme-card span:last-of-type {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire #previewBtn {
+      background: #0E1B36 !important;
+      border-color: #F0CA68 !important;
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire .preset-music-btn {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire #savedDataAlert {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #savedDataAlert span {
+      color: #FFFFFF !important;
+    }
+
+    /* SAPPHIRE MODALLAR VA RO'YXATLAR UCHUN TO'LIQ KONTRAST */
+    body.theme-sapphire #rsvpSuccessModal > div,
+    body.theme-sapphire #shareLinkModal > div,
+    body.theme-sapphire #rsvpListModal > div,
+    body.theme-sapphire #themeSwitcherModal > div,
+    body.theme-sapphire #qrCodeModal > div {
+      background: #0E1B36 !important;
+      border: 2px solid rgba(240, 202, 104, 0.6) !important;
+      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(240, 202, 104, 0.25) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #shareLinkModal h3,
+    body.theme-sapphire #rsvpListModal h3,
+    body.theme-sapphire #themeSwitcherModal h3,
+    body.theme-sapphire #rsvpSuccessModal h3,
+    body.theme-sapphire #qrCodeModal h3 {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #shareLinkModal p,
+    body.theme-sapphire #rsvpListModal p,
+    body.theme-sapphire #themeSwitcherModal p,
+    body.theme-sapphire #rsvpSuccessModal p,
+    body.theme-sapphire #qrCodeModal p {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire #shareLinkModal .bg-cream-soft\/80 {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.35) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #shareLinkModal .bg-cream-soft\/80 p,
+    body.theme-sapphire #shareLinkModal .bg-cream-soft\/80 strong {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #modalGeneratedLinkInput {
+      background: #14223E !important;
+      color: #FFFFFF !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+    }
+    body.theme-sapphire #closeShareModalBtn,
+    body.theme-sapphire #closeRsvpListModalBtn,
+    body.theme-sapphire #closeThemeModalBtn,
+    body.theme-sapphire #closeQrModalBtn {
+      background: #14223E !important;
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire #rsvpListModal .bg-cream-soft\/80 {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.35) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #rsvpStatTotal {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #rsvpListModal .rsvp-filter-btn:not(.active) {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire #rsvpSearchInput {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #copyRsvpListBtn,
+    body.theme-sapphire #exportRsvpCsvBtn,
+    body.theme-sapphire #seedSampleGuestsBtn {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.4) !important;
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire #rsvpGuestsListContainer > div {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.3) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #rsvpGuestsListContainer h4 {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #rsvpGuestsListContainer .text-espresso-light {
+      color: #CBD8ED !important;
+    }
+    body.theme-sapphire #rsvpGuestsListContainer .font-mono {
+      color: #F0CA68 !important;
+    }
+    body.theme-sapphire #rsvpGuestsListContainer .bg-cream-soft\/60 {
+      background: #0E1B36 !important;
+      color: #E8EEF8 !important;
+      border-color: rgba(240, 202, 104, 0.3) !important;
+    }
+    body.theme-sapphire #modalThemeGrid .theme-card {
+      background: #14223E !important;
+      border-color: rgba(240, 202, 104, 0.3) !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #modalThemeGrid .theme-card span:first-of-type {
+      color: #FFFFFF !important;
+    }
+    body.theme-sapphire #modalThemeGrid .theme-card span:last-of-type {
+      color: #CBD8ED !important;
+    }
+
+    /* 7. BOHO RUSTIK & TERRACOTTA (KRAFT PAPER & DASHED STITCH) */
+    body.theme-rustic .luxury-box {
+      border-radius: 1.25rem !important;
+      border: 2.5px dashed #A24B25 !important;
+      box-shadow: 5px 6px 0px rgba(162, 75, 37, 0.2) !important;
+      background: #FFFDF9 !important;
+    }
+    body.theme-rustic .corner-decor {
+      width: 20px;
+      height: 20px;
+    }
+    body.theme-rustic .corner-tl { top: 10px; left: 10px; border-top: 2px dashed #A24B25; border-left: 2px dashed #A24B25; border-top-left-radius: 6px; }
+    body.theme-rustic .corner-tr { top: 10px; right: 10px; border-top: 2px dashed #A24B25; border-right: 2px dashed #A24B25; border-top-right-radius: 6px; }
+    body.theme-rustic .corner-bl { bottom: 10px; left: 10px; border-bottom: 2px dashed #A24B25; border-left: 2px dashed #A24B25; border-bottom-left-radius: 6px; }
+    body.theme-rustic .corner-br { bottom: 10px; right: 10px; border-bottom: 2px dashed #A24B25; border-right: 2px dashed #A24B25; border-bottom-right-radius: 6px; }
+    body.theme-rustic .venue-card,
+    body.theme-rustic #previewPhoneBox,
+    body.theme-rustic #quickGuestWishForm,
+    body.theme-rustic .timeline-item,
+    body.theme-rustic .wish-feed-card,
+    body.theme-rustic .rsvp-decision-label {
+      border-radius: 1rem !important;
+      border: 2px dashed #A24B25 !important;
+      background: #FAF3EC !important;
+      box-shadow: 3px 3px 0px rgba(162, 75, 37, 0.12) !important;
+    }
+    body.theme-rustic .countdown-card {
+      border-radius: 0.85rem !important;
+      border: 2px dashed #A24B25 !important;
+      background: #FAF2EA !important;
+      box-shadow: 3px 3px 0px rgba(162, 75, 37, 0.15) !important;
+    }
+    body.theme-rustic #heroMonogramWrapper {
+      border-radius: 50% !important;
+      border: 3px dashed #A24B25 !important;
+      background: #FAF2EA !important;
+      box-shadow: 0 0 0 4px rgba(162, 75, 37, 0.15) !important;
+    }
+
+    /* 8. BAROKKO SAFSAR QIROLLIGI (IMPERIAL BAROQUE BRACKET ARCH) */
+    body.theme-amethyst .luxury-box {
+      border-radius: 2.75rem 0.6rem 2.75rem 0.6rem !important;
+      border: 2px solid #6E2D6E !important;
+      box-shadow: 0 18px 42px -8px rgba(110, 45, 110, 0.22) !important;
+      background: #FFFFFF !important;
+    }
+    body.theme-amethyst .corner-decor {
+      width: 22px;
+      height: 22px;
+    }
+    body.theme-amethyst .corner-tl { top: 12px; left: 12px; border-top: 2px solid #6E2D6E; border-left: 2px solid #6E2D6E; border-top-left-radius: 16px; }
+    body.theme-amethyst .corner-tr { top: 10px; right: 10px; border-top: 2px solid #6E2D6E; border-right: 2px solid #6E2D6E; border-top-right-radius: 4px; }
+    body.theme-amethyst .corner-bl { bottom: 10px; left: 10px; border-bottom: 2px solid #6E2D6E; border-left: 2px solid #6E2D6E; border-bottom-left-radius: 4px; }
+    body.theme-amethyst .corner-br { bottom: 12px; right: 12px; border-bottom: 2px solid #6E2D6E; border-right: 2px solid #6E2D6E; border-bottom-right-radius: 16px; }
+    body.theme-amethyst .venue-card,
+    body.theme-amethyst #previewPhoneBox,
+    body.theme-amethyst #quickGuestWishForm,
+    body.theme-amethyst .timeline-item,
+    body.theme-amethyst .wish-feed-card,
+    body.theme-amethyst .rsvp-decision-label {
+      border-radius: 1.75rem 0.4rem 1.75rem 0.4rem !important;
+      border: 1.5px solid #6E2D6E !important;
+      background: #F8F0FA !important;
+    }
+    body.theme-amethyst .countdown-card {
+      border-radius: 1.5rem 0.35rem 1.5rem 0.35rem !important;
+      border: 1.5px solid #6E2D6E !important;
+      background: #FAF4FB !important;
+      box-shadow: 0 4px 14px rgba(110, 45, 110, 0.14) !important;
+    }
+    body.theme-amethyst #heroMonogramWrapper {
+      border-radius: 2rem 0.5rem 2rem 0.5rem !important;
+      border: 2.5px solid #6E2D6E !important;
+      box-shadow: 0 0 0 5px rgba(110, 45, 110, 0.18), 0 8px 24px rgba(110, 45, 110, 0.25) !important;
+      background: #FAF4FB !important;
+    }
+    body.theme-amethyst #heroMonogramWrapper > * {
+      transform: none !important;
+    }
 
     /* Aylana plastinka musiqa animatsiyasi */
     @keyframes spinVinyl {
@@ -232,7 +1033,7 @@
     /* Bank karta hashamatli uslubi */
     .luxury-card-bg {
       background: var(--card-bg-gradient);
-      border: 1.5px solid rgba(228, 201, 136, 0.4);
+      border: 1.5px solid var(--border-gold);
       position: relative;
       overflow: hidden;
       transition: background 0.4s ease;
@@ -309,9 +1110,125 @@
       border-color: var(--gold-primary) !important;
       box-shadow: 0 0 0 2px var(--gold-primary), 0 8px 18px -4px rgba(0,0,0,0.12) !important;
     }
+
+    /* ==========================================
+       ROYAL WAX SEAL & ENVELOPE OPENING EFFECT
+       ========================================== */
+    .wax-seal-wrapper {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+    .wax-seal-stamp {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #F4D068 0%, #C5A059 40%, #886720 100%);
+      box-shadow: 
+        0 12px 28px -6px rgba(0, 0, 0, 0.35),
+        inset 0 2px 4px rgba(255, 255, 255, 0.6),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      border: 3px solid rgba(255, 235, 175, 0.4);
+    }
+    .wax-seal-stamp:hover {
+      transform: scale(1.06);
+      box-shadow: 
+        0 16px 36px -6px rgba(197, 160, 89, 0.45),
+        inset 0 2px 5px rgba(255, 255, 255, 0.8),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.5);
+    }
+    .wax-seal-inner {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 245, 210, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 1px 1px 2px rgba(80, 50, 0, 0.6);
+      color: #FFF8E7;
+    }
+    .wax-pulse-ring {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-primary);
+      opacity: 0.6;
+      animation: waxPulse 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+    @keyframes waxPulse {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+    .envelope-shadow {
+      box-shadow: 0 35px 80px -20px rgba(43, 33, 30, 0.22), 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+    .gold-foil-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .gold-foil-line::before, .gold-foil-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    }
   </style>
 </head>
 <body class="wedding-pattern-bg min-h-screen">
+
+  <!-- ==========================================================
+       HASHAMATLI KONVERT VA MUM MUHRI (ROYAL WAX SEAL ENVELOPE)
+       ========================================================== -->
+  <div id="envelopeOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-espresso/80 backdrop-blur-md transition-all duration-700 hidden opacity-0">
+    <div class="relative w-full max-w-md bg-[#FDFBF7] rounded-3xl p-8 sm:p-10 border-2 border-gold/50 envelope-shadow text-center flex flex-col items-center transform transition-transform duration-500 scale-95" id="envelopeCard">
+      <span class="corner-decor corner-tl"></span>
+      <span class="corner-decor corner-tr"></span>
+      <span class="corner-decor corner-bl"></span>
+      <span class="corner-decor corner-br"></span>
+
+      <!-- Konvert yuqori bezagi -->
+      <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-gold-dark mb-1">
+        Royal Wedding Invitation
+      </div>
+      <h2 id="envelopeCoupleName" class="font-script text-4xl sm:text-5xl text-espresso mb-2">
+        Alijon & Madina
+      </h2>
+      <div class="gold-foil-line w-36 mx-auto my-2">
+        <i class="fa-solid fa-heart text-gold text-xs"></i>
+      </div>
+      <p class="text-xs text-espresso-light italic mb-4">
+        Sizni nikoh to'yimiz tantanasiga lutfan taklif etamiz
+      </p>
+
+      <!-- 3D Oltin Mum Muhri (Wax Seal) -->
+      <div class="wax-seal-wrapper my-3" id="openEnvelopeBtn" role="button" aria-label="Taklifnomani ochish">
+        <div class="wax-pulse-ring"></div>
+        <div class="wax-seal-stamp">
+          <div class="wax-seal-inner">
+            <span id="envelopeMonogram" class="font-serif text-2xl font-bold tracking-wider">A & M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 space-y-2">
+        <button type="button" id="openEnvelopeTextBtn" class="px-6 py-2.5 rounded-full bg-gold hover:bg-gold-dark text-white text-xs font-bold uppercase tracking-widest transition-all shadow-md active:scale-95 cursor-pointer">
+          Taklifnomani ochish <i class="fa-solid fa-envelope-open ml-1.5"></i>
+        </button>
+        <p class="text-[10px] text-espresso-light">
+          (Muhrni bosib ochishingiz mumkin)
+        </p>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================
        1. ADMIN / FORMA PANELI
@@ -602,22 +1519,22 @@
             <i class="fa-solid fa-music text-gold-dark text-[11px]"></i>
             <span>Fon Musiqasi uchun MP3 Havolasi</span>
           </label>
-          <input type="url" id="inputMusicUrl" placeholder="https://.../music.mp3" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
+          <input type="text" id="inputMusicUrl" placeholder="preset:canon yoki https://.../musiqa.mp3" class="custom-input w-full px-4 py-2.5 rounded-xl text-sm" />
           
           <!-- Namuna musiqa kuylari -->
           <div class="mt-2 flex flex-wrap gap-2 items-center">
             <span class="text-[11px] text-espresso-light font-medium">Namuna kuylar:</span>
-            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1" data-url="https://assets.mixkit.co/music/preview/mixkit-wedding-piano-walk-537.mp3">
-              <i class="fa-solid fa-play text-[8px]"></i>
+            <button type="button" class="preset-music-btn text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1.5" data-url="preset:canon">
+              <i class="fa-solid fa-music text-[9px]"></i>
               <span>Romantik Piano</span>
             </button>
-            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1" data-url="https://assets.mixkit.co/music/preview/mixkit-love-story-piano-solo-543.mp3">
-              <i class="fa-solid fa-play text-[8px]"></i>
-              <span>Mayin Melodiya</span>
+            <button type="button" class="preset-music-btn text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1.5" data-url="preset:march">
+              <i class="fa-solid fa-crown text-[9px]"></i>
+              <span>Shohona Vals</span>
             </button>
-            <button type="button" class="preset-music-btn text-[11px] px-2 py-0.5 rounded bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1" data-url="https://assets.mixkit.co/music/preview/mixkit-inspiring-cinematic-ambient-1162.mp3">
-              <i class="fa-solid fa-play text-[8px]"></i>
-              <span>Lirik Oqshom</span>
+            <button type="button" class="preset-music-btn text-[11px] px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white transition-all cursor-pointer flex items-center gap-1.5" data-url="preset:waltz">
+              <i class="fa-solid fa-heart text-[9px]"></i>
+              <span>Mayin Melodiya</span>
             </button>
           </div>
         </div>
@@ -675,6 +1592,12 @@
 
         <!-- Admin Boshqaruv Tugmalari (Mehmon rejimida butunlay yashirin bo'ladi) -->
         <div id="navAdminControls" class="flex items-center gap-2">
+          <!-- Konvert Ochish Effekti tugmasi -->
+          <button type="button" id="navEnvelopeBtn" class="px-3 py-1.5 rounded-full bg-white hover:bg-cream-soft text-espresso border border-gold/40 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="Konvert effektini ko'rish">
+            <i class="fa-solid fa-envelope-open-text text-gold-dark text-[11px]"></i>
+            <span class="hidden sm:inline">Konvert</span>
+          </button>
+
           <!-- Mehmonlar (RSVP) Ro'yxati tugmasi -->
           <button type="button" id="navRsvpBtn" class="px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="Tashrifni tasdiqlagan mehmonlar ro'yxati">
             <i class="fa-solid fa-clipboard-user text-[11px]"></i>
@@ -685,6 +1608,12 @@
           <button type="button" id="navThemeToggleBtn" class="px-3 py-1.5 rounded-full bg-white hover:bg-cream-soft text-espresso border border-gold/40 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="Dizaynni tanlash">
             <i class="fa-solid fa-palette text-gold-dark text-[11px]"></i>
             <span class="hidden sm:inline">Dizayn</span>
+          </button>
+
+          <!-- QR Kod tugmasi -->
+          <button type="button" id="navQrBtn" class="px-3 py-1.5 rounded-full bg-white hover:bg-cream-soft text-espresso border border-gold/40 text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer active:scale-95" title="QR Kod">
+            <i class="fa-solid fa-qrcode text-gold-dark text-[11px]"></i>
+            <span class="hidden sm:inline">QR Kod</span>
           </button>
 
           <!-- Havolani Olish tugmasi -->
@@ -702,6 +1631,50 @@
 
       </div>
     </header>
+
+    <!-- 8 TA DIZAYNNI JONLI TANLASH TASMASI (JONLI ALMASHTIRISH RIBBON) -->
+    <div id="quickDesignBar" class="sticky top-[53px] z-40 w-full py-2 px-3 bg-white/95 backdrop-blur-md border-b border-gold/30 shadow-xs transition-all overflow-x-auto">
+      <div class="max-w-2xl mx-auto flex items-center justify-between gap-2">
+        <span class="text-[11px] font-bold text-espresso uppercase tracking-wider shrink-0 flex items-center gap-1.5 pl-1">
+          <i class="fa-solid fa-palette text-gold-dark text-xs"></i>
+          <span class="hidden sm:inline">Dizayn:</span>
+        </span>
+        <div class="flex items-center gap-1.5 overflow-x-auto py-0.5 no-scrollbar" id="quickThemePillContainer">
+          <button type="button" data-theme="royal-gold" class="quick-theme-pill px-3 py-1 rounded-full text-xs font-semibold border border-gold/40 bg-white text-espresso flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-2xs whitespace-nowrap">
+            <i class="fa-solid fa-crown text-[10px] text-amber-500"></i>
+            <span>Shohona Oltin</span>
+          </button>
+          <button type="button" data-theme="emerald" class="quick-theme-pill px-3 py-1 rounded-full text-xs font-semibold border border-gold/40 bg-white text-espresso flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-2xs whitespace-nowrap">
+            <i class="fa-solid fa-leaf text-[10px] text-emerald-600"></i>
+            <span>Zumrad Oqshom</span>
+          </button>
+          <button type="button" data-theme="pure-silk" class="quick-theme-pill px-3 py-1 rounded-full text-xs font-semibold border border-gold/40 bg-white text-espresso flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-2xs whitespace-nowrap">
+            <i class="fa-solid fa-feather text-[10px] text-neutral-700"></i>
+            <span>Oqqush Ipak</span>
+          </button>
+          <button type="button" data-theme="oriental" class="quick-theme-pill px-3 py-1 rounded-full text-xs font-semibold border border-gold/40 bg-white text-espresso flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-2xs whitespace-nowrap">
+            <i class="fa-solid fa-star-and-crescent text-[10px] text-cyan-600"></i>
+            <span>Sharqona Naqsh</span>
+          </button>
+          <button type="button" data-theme="blush-pearl" class="quick-theme-pill px-3 py-1 rounded-full text-xs font-semibold border border-gold/40 bg-white text-espresso flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-2xs whitespace-nowrap">
+            <i class="fa-solid fa-heart text-[10px] text-rose-500"></i>
+            <span>Pushti Marvarid</span>
+          </button>
+          <button type="button" data-theme="sapphire" class="quick-theme-pill px-3 py-1 rounded-full text-xs font-semibold border border-gold/40 bg-white text-espresso flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-2xs whitespace-nowrap">
+            <i class="fa-solid fa-moon text-[10px] text-blue-500"></i>
+            <span>Osmon Feruza</span>
+          </button>
+          <button type="button" data-theme="rustic" class="quick-theme-pill px-3 py-1 rounded-full text-xs font-semibold border border-gold/40 bg-white text-espresso flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-2xs whitespace-nowrap">
+            <i class="fa-solid fa-wheat-awn text-[10px] text-amber-700"></i>
+            <span>Rustik Zaytun</span>
+          </button>
+          <button type="button" data-theme="amethyst" class="quick-theme-pill px-3 py-1 rounded-full text-xs font-semibold border border-gold/40 bg-white text-espresso flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-2xs whitespace-nowrap">
+            <i class="fa-solid fa-shield-halved text-[10px] text-purple-600"></i>
+            <span>Safsar Nilufar</span>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- SUZUVCHI FON MUSIQASI PLEYERI -->
     <div class="fixed bottom-6 right-6 z-40 flex items-center gap-3" id="audioPlayerWidget">
@@ -729,41 +1702,42 @@
          ========================================================== -->
     <section class="relative min-h-[90vh] flex items-center justify-center text-center px-4 overflow-hidden" id="hero">
       <!-- Orqa fon rasmi va gradient qatlam -->
-      <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-1000 scale-105"
+      <div id="heroBgImage" class="absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000 scale-105"
            style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');">
       </div>
-      <div class="absolute inset-0 z-0 bg-gradient-to-b from-cream/80 via-cream/90 to-cream"></div>
+      <div id="heroOverlay" class="absolute inset-0 z-0 transition-colors duration-500"></div>
 
       <!-- Markaziy qism -->
       <div class="relative z-10 max-w-xl mx-auto pt-8 pb-12 flex flex-col items-center">
         
         <!-- Monogramma Muhri (Ismlarning bosh harflari) -->
-        <div data-aos="zoom-in" data-aos-duration="1000" class="w-20 h-20 mb-6 rounded-full border-2 border-gold flex items-center justify-center bg-white/80 backdrop-blur-md shadow-lg shadow-gold/20 relative">
-          <span class="absolute inset-1 rounded-full border border-dashed border-gold/60"></span>
-          <span id="previewMonogram" class="font-script text-3xl text-gold-dark pt-1">A&M</span>
+        <div id="heroMonogramWrapper" data-aos="zoom-in" data-aos-duration="1000" class="w-20 h-20 mb-6 rounded-full border-2 border-gold flex items-center justify-center bg-white/80 backdrop-blur-md shadow-lg shadow-gold/20 relative transition-all duration-500">
+          <span id="heroMonogramIcon" class="absolute -top-3 px-2 py-0.5 rounded-full bg-white border border-gold/40 shadow-2xs text-gold text-xs transition-all duration-300"><i class="fa-solid fa-crown"></i></span>
+          <span id="heroMonogramInner" class="absolute inset-1 rounded-full border border-dashed border-gold/60"></span>
+          <span id="previewMonogram" class="font-script text-3xl text-gold-dark pt-1 transition-all duration-300">A&M</span>
         </div>
 
         <!-- Bismillahir Rohmanir Rohiym -->
-        <p data-aos="fade-up" data-aos-delay="200" class="font-serif italic text-lg sm:text-xl text-gold-dark tracking-widest mb-3">
+        <p id="heroBismillah" data-aos="fade-up" data-aos-delay="200" class="font-serif italic text-lg sm:text-xl text-gold-dark tracking-widest mb-3">
           بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </p>
 
         <!-- Kichik taklif sarlavhasi -->
-        <p data-aos="fade-up" data-aos-delay="300" data-i18n="heroSubtitle" class="uppercase text-xs sm:text-sm font-semibold tracking-[4px] text-espresso-light mb-4">
+        <p id="heroSubtitleText" data-aos="fade-up" data-aos-delay="300" data-i18n="heroSubtitle" class="uppercase text-xs sm:text-sm font-semibold tracking-[4px] text-espresso-light mb-4">
           Nikoh To'yi Tantanasi
         </p>
 
         <!-- KELIN VA KUYOV ISMLARI (Dinamik) -->
-        <h1 data-aos="fade-up" data-aos-delay="400" class="font-script text-6xl sm:text-8xl text-espresso mb-3 leading-tight drop-shadow-sm">
+        <h1 id="heroCoupleTitle" data-aos="fade-up" data-aos-delay="400" class="font-script text-6xl sm:text-8xl text-espresso mb-3 leading-tight drop-shadow-sm transition-all duration-300">
           <span id="previewGroomName">Alijon</span>
-          <span class="font-serif italic text-gold text-4xl sm:text-6xl align-middle px-1">&</span>
+          <span id="previewAmpersand" class="font-serif italic text-gold text-4xl sm:text-6xl align-middle px-1">&</span>
           <span id="previewBrideName">Madina</span>
         </h1>
 
-        <!-- Oltin chiziq va yurakcha -->
-        <div data-aos="fade-up" data-aos-delay="500" class="flex items-center gap-4 w-48 my-4">
+        <!-- Oltin chiziq va dinamik emblem divider -->
+        <div id="heroDividerBox" data-aos="fade-up" data-aos-delay="500" class="flex items-center gap-4 w-48 my-4">
           <span class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-gold"></span>
-          <i class="fa-solid fa-heart text-gold text-sm"></i>
+          <i id="heroDividerIcon" class="fa-solid fa-heart text-gold text-sm transition-all duration-300"></i>
           <span class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-gold"></span>
         </div>
 
@@ -773,8 +1747,8 @@
         </p>
 
         <!-- To'y sanasi nishoni (Dinamik) -->
-        <div data-aos="fade-up" data-aos-delay="700" class="mt-6 inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/90 border border-gold/50 shadow-md backdrop-blur-sm text-gold-dark font-semibold text-sm tracking-widest uppercase">
-          <i class="fa-regular fa-calendar-days text-gold"></i>
+        <div id="heroDateBadge" data-aos="fade-up" data-aos-delay="700" class="mt-6 inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/90 border border-gold/50 shadow-md backdrop-blur-sm text-gold-dark font-semibold text-sm tracking-widest uppercase transition-all duration-300">
+          <i id="heroDateBadgeIcon" class="fa-regular fa-calendar-days text-gold"></i>
           <span id="previewDateBadge">24 · OKTABR · 2026</span>
         </div>
 
@@ -803,9 +1777,9 @@
           Hurmatli va Qadrli Mehmonimiz!
         </h2>
 
-        <div class="flex items-center justify-center gap-3 my-4">
+        <div id="aboutDividerBox" class="flex items-center justify-center gap-3 my-4">
           <span class="w-12 h-[1px] bg-gold/50"></span>
-          <i class="fa-solid fa-star text-gold text-xs"></i>
+          <i id="aboutDividerIcon" class="fa-solid fa-star text-gold text-xs transition-all duration-300"></i>
           <span class="w-12 h-[1px] bg-gold/50"></span>
         </div>
 
@@ -834,24 +1808,24 @@
         <p data-i18n="countdownSubtitle" class="text-xs uppercase tracking-widest text-gold-dark mt-1 mb-6">To'yimizgacha qolgan vaqt</p>
 
         <!-- Taymer Bloklari -->
-        <div class="grid grid-cols-4 gap-2 sm:gap-4 my-6 max-w-md mx-auto">
+        <div id="countdownGrid" class="grid grid-cols-4 gap-2 sm:gap-4 my-6 max-w-md mx-auto">
           <!-- Kun -->
-          <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
+          <div class="countdown-card bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center transition-all duration-300">
             <span id="days" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
             <span data-i18n="timeDays" class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Kun</span>
           </div>
           <!-- Soat -->
-          <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
+          <div class="countdown-card bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center transition-all duration-300">
             <span id="hours" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
             <span data-i18n="timeHours" class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Soat</span>
           </div>
           <!-- Daqiqa -->
-          <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
+          <div class="countdown-card bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center transition-all duration-300">
             <span id="minutes" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
             <span data-i18n="timeMinutes" class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Daqiqa</span>
           </div>
           <!-- Soniya -->
-          <div class="bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center">
+          <div class="countdown-card bg-white p-3 sm:p-4 rounded-xl border border-gold/30 shadow-sm flex flex-col items-center transition-all duration-300">
             <span id="seconds" class="font-serif text-3xl sm:text-4xl font-bold text-gold-dark tabular-nums">00</span>
             <span data-i18n="timeSeconds" class="text-[10px] sm:text-xs uppercase tracking-wider text-espresso-light font-semibold mt-1">Soniya</span>
           </div>
@@ -928,7 +1902,7 @@
         <p data-i18n="locationSubtitle" class="text-xs uppercase tracking-widest text-gold-dark mt-1 mb-8">Marosim manzili va aniq vaqti</p>
 
         <!-- To'yxona Manzili Kartochkasi -->
-        <div class="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center mb-8">
+        <div class="venue-card bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center mb-8 transition-all">
           <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-cream-soft border border-gold/40 flex items-center justify-center text-gold-dark">
             <i class="fa-solid fa-location-dot text-2xl"></i>
           </div>
@@ -954,7 +1928,7 @@
         <div class="text-left space-y-4 max-w-md mx-auto">
           <h4 data-i18n="timelineTitle" class="font-serif text-xl font-semibold text-espresso text-center mb-4">Marosim Rejasi</h4>
 
-          <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
+          <div class="timeline-item flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20 transition-all">
             <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">17:30</span>
             <div>
               <p data-i18n="event1Title" class="font-semibold text-sm text-espresso">Mehmonlarni Kutib Olish</p>
@@ -962,7 +1936,7 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
+          <div class="timeline-item flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20 transition-all">
             <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">18:30</span>
             <div>
               <p data-i18n="event2Title" class="font-semibold text-sm text-espresso">Kelin-Kuyovning Tantanali Kirib Kelishi</p>
@@ -970,7 +1944,7 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
+          <div class="timeline-item flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20 transition-all">
             <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">19:30</span>
             <div>
               <p data-i18n="event3Title" class="font-semibold text-sm text-espresso">To'y Oqshomi Ziyofati</p>
@@ -978,7 +1952,7 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20">
+          <div class="timeline-item flex items-center gap-4 p-3 bg-white/70 rounded-xl border border-gold/20 transition-all">
             <span class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold-dark font-bold text-xs">21:30</span>
             <div>
               <p data-i18n="event4Title" class="font-semibold text-sm text-espresso">To'y Torti & Gul Otish Marosimi</p>
@@ -1131,12 +2105,12 @@
               To'yimizga kela olasizmi? *
             </label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <label class="flex items-center gap-3 p-3 rounded-xl border border-gold/40 bg-white cursor-pointer hover:bg-cream-soft/50 transition-all has-[:checked]:border-gold has-[:checked]:bg-cream-soft">
+              <label class="rsvp-decision-label flex items-center gap-3 p-3 rounded-xl border border-gold/40 bg-white cursor-pointer hover:bg-cream-soft/50 transition-all has-[:checked]:border-gold has-[:checked]:bg-cream-soft">
                 <input type="radio" name="rsvpDecision" value="Ha, albatta boraman" checked class="accent-gold w-4 h-4" />
                 <span data-i18n="rsvpYes" class="text-xs sm:text-sm font-medium text-espresso">💍 Ha, albatta boraman</span>
               </label>
 
-              <label class="flex items-center gap-3 p-3 rounded-xl border border-gold/40 bg-white cursor-pointer hover:bg-cream-soft/50 transition-all has-[:checked]:border-gold has-[:checked]:bg-cream-soft">
+              <label class="rsvp-decision-label flex items-center gap-3 p-3 rounded-xl border border-gold/40 bg-white cursor-pointer hover:bg-cream-soft/50 transition-all has-[:checked]:border-gold has-[:checked]:bg-cream-soft">
                 <input type="radio" name="rsvpDecision" value="Afsuski, bora olmayman" class="accent-gold w-4 h-4" />
                 <span data-i18n="rsvpNo" class="text-xs sm:text-sm font-medium text-espresso">🌸 Afsuski, bora olmayman</span>
               </label>
@@ -1210,6 +2184,11 @@
           <button type="button" id="copyShareLinkBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-gold/50 text-espresso text-xs font-semibold tracking-wide shadow-sm hover:bg-cream-soft transition-all cursor-pointer">
             <i class="fa-solid fa-link text-gold"></i>
             <span id="copyShareLinkText" data-i18n="copyLink">Havolani Nusxalash</span>
+          </button>
+
+          <button type="button" id="openQrModalBtn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold hover:bg-gold-dark text-white text-xs font-semibold tracking-wide shadow-sm transition-all cursor-pointer active:scale-95">
+            <i class="fa-solid fa-qrcode text-sm"></i>
+            <span data-i18n="qrCodeBtn">QR Kod</span>
           </button>
         </div>
       </section>
@@ -1317,9 +2296,75 @@
         </button>
       </div>
 
+      <!-- QR Kod Bloki (shareLinkModal ichida) -->
+      <div class="p-3 mb-3 bg-cream-soft/60 rounded-2xl border border-gold/30 flex items-center gap-3 text-left">
+        <div id="shareModalQrCode" class="p-1.5 bg-white rounded-xl border border-gold/40 shadow-xs shrink-0 flex items-center justify-center w-[85px] h-[85px]"></div>
+        <div class="flex-1 space-y-1">
+          <span class="text-[11px] font-bold text-espresso block flex items-center gap-1">
+            <i class="fa-solid fa-qrcode text-gold-dark text-xs"></i>
+            <span data-i18n="qrCodeTitle">Taklifnoma QR Kodi</span>
+          </span>
+          <p class="text-[10px] text-espresso-light leading-snug">
+            Mehmonlar telefon kamerasini qaratib ochishlari mumkin.
+          </p>
+          <div class="flex items-center gap-1.5 pt-0.5">
+            <button type="button" id="downloadShareQrBtn" class="px-2.5 py-1 rounded-lg bg-gold hover:bg-gold-dark text-white text-[10px] font-bold transition-all shadow-2xs flex items-center gap-1 cursor-pointer">
+              <i class="fa-solid fa-download text-[9px]"></i>
+              <span>Yuklab olish</span>
+            </button>
+            <button type="button" id="enlargeShareQrBtn" class="px-2.5 py-1 rounded-lg bg-white border border-gold/40 text-gold-dark hover:bg-gold hover:text-white text-[10px] font-semibold transition-all flex items-center gap-1 cursor-pointer">
+              <i class="fa-solid fa-expand text-[9px]"></i>
+              <span>Katta</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <button type="button" id="modalDoneBtn" class="text-xs text-espresso-light hover:text-gold-dark transition-colors cursor-pointer">
         Yopish
       </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       MODAL OYNA (MAXSUS TO'Y TAKLIFNOMASI QR KODI MODALI)
+       ========================================================== -->
+  <div id="qrCodeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 sm:p-7 border-2 border-gold/40 shadow-2xl relative text-center transform scale-95 transition-transform duration-300 flex flex-col items-center">
+      <button type="button" id="closeQrModalBtn" aria-label="Yopish" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-cream-soft hover:bg-gold/20 text-espresso-light hover:text-espresso flex items-center justify-center transition-colors cursor-pointer">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="w-12 h-12 rounded-full bg-gold/15 text-gold-dark mx-auto flex items-center justify-center mb-2 text-xl border border-gold/30 shadow-inner">
+        <i class="fa-solid fa-qrcode"></i>
+      </div>
+
+      <h3 data-i18n="qrCodeTitle" class="font-serif text-2xl font-bold text-espresso mb-0.5">
+        Taklifnoma QR Kodi
+      </h3>
+      <p id="qrModalCoupleNames" class="font-script text-2xl text-gold-dark mb-3">
+        Alijon & Madina
+      </p>
+
+      <!-- Skanerlash oson bo'lishi uchun maxsus oq ramkadagi QR kod -->
+      <div class="p-3.5 bg-white rounded-2xl border-2 border-gold/40 shadow-md inline-flex items-center justify-center my-1">
+        <div id="fullModalQrCode" class="w-[180px] h-[180px] flex items-center justify-center"></div>
+      </div>
+
+      <p data-i18n="qrCodeDesc" class="text-xs text-espresso-light mt-3 mb-4 leading-relaxed">
+        Mehmonlar telefon kamerasini ushbu QR kodga qaratib, taklifnomani bir zumda ochishlari mumkin.
+      </p>
+
+      <div class="w-full space-y-2">
+        <button type="button" id="downloadFullQrBtn" class="w-full py-2.5 px-4 rounded-xl bg-gold hover:bg-gold-dark text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer active:scale-95">
+          <i class="fa-solid fa-download"></i>
+          <span data-i18n="downloadQrBtn">QR Kodni Yuklab Olish (PNG)</span>
+        </button>
+        <button type="button" id="copyLinkFromQrModalBtn" class="w-full py-2 px-4 rounded-xl bg-cream-soft hover:bg-gold/20 text-espresso font-semibold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+          <i class="fa-regular fa-copy text-xs"></i>
+          <span data-i18n="copyLink">Havolani Nusxalash</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1516,6 +2561,10 @@
         shareSubtitle: "Ushbu taklifnomani yaqinlaringizga yuboring",
         shareTelegram: "Telegram orqali yuborish",
         copyLink: "Havolani Nusxalash",
+        qrCodeBtn: "QR Kod",
+        qrCodeTitle: "To'y Taklifnomasi QR Kodi",
+        qrCodeDesc: "Mehmonlar telefon kamerasini ushbu QR kodga qaratib, taklifnomani bir zumda ochishlari mumkin.",
+        downloadQrBtn: "QR Kodni Yuklab Olish (PNG)",
         footerWaiting: "Sizni Intiqlik Bilan Kutib Qolamiz!",
         footerEditPrompt: "Ma'lumotlarni o'zgartirmoqchimisiz yoki yangi taklifnoma yaratmoqchimisiz?",
       },
@@ -1574,6 +2623,10 @@
         shareSubtitle: "Поделитесь приглашением с близкими",
         shareTelegram: "Отправить через Telegram",
         copyLink: "Скопировать Ссылку",
+        qrCodeBtn: "QR-Код",
+        qrCodeTitle: "QR-Код Свадебного Приглашения",
+        qrCodeDesc: "Гости могут навести камеру смартфона на QR-код и мгновенно открыть приглашение.",
+        downloadQrBtn: "Скачать QR-Код (PNG)",
         footerWaiting: "С нетерпением ждем встречи с вами!",
         footerEditPrompt: "Хотите изменить данные или создать новое приглашение?",
       },
@@ -1632,6 +2685,10 @@
         shareSubtitle: "Share this invitation with loved ones",
         shareTelegram: "Share via Telegram",
         copyLink: "Copy Link",
+        qrCodeBtn: "QR Code",
+        qrCodeTitle: "Wedding Invitation QR Code",
+        qrCodeDesc: "Guests can scan this QR code with their phone camera to open the invitation instantly.",
+        downloadQrBtn: "Download QR Code (PNG)",
         footerWaiting: "We eagerly look forward to seeing you!",
         footerEditPrompt: "Would you like to edit your details or create a new one?",
       }
@@ -1686,6 +2743,7 @@
         icon: "fa-crown",
         gradient: "linear-gradient(135deg, #E6CF9B, #C5A059)",
         badgeBg: "#C5A059",
+        bgImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80"
       },
       {
         id: "emerald",
@@ -1695,6 +2753,7 @@
         icon: "fa-gem",
         gradient: "linear-gradient(135deg, #1B7850, #0D5C3A)",
         badgeBg: "#0D5C3A",
+        bgImage: "https://images.unsplash.com/photo-1519225429980-715cb0215aed?auto=format&fit=crop&w=1920&q=80"
       },
       {
         id: "amethyst",
@@ -1704,6 +2763,7 @@
         icon: "fa-wand-magic-sparkles",
         gradient: "linear-gradient(135deg, #914391, #6E2D6E)",
         badgeBg: "#6E2D6E",
+        bgImage: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1920&q=80"
       },
       {
         id: "blush-pearl",
@@ -1713,6 +2773,7 @@
         icon: "fa-heart",
         gradient: "linear-gradient(135deg, #D98895, #B76572)",
         badgeBg: "#B76572",
+        bgImage: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1920&q=80"
       },
       {
         id: "pure-silk",
@@ -1722,6 +2783,7 @@
         icon: "fa-feather",
         gradient: "linear-gradient(135deg, #5A5653, #2B2928)",
         badgeBg: "#4A4643",
+        bgImage: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80"
       },
       {
         id: "sapphire",
@@ -1731,6 +2793,7 @@
         icon: "fa-moon",
         gradient: "linear-gradient(135deg, #2C578F, #1C3D68)",
         badgeBg: "#1C3D68",
+        bgImage: "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1920&q=80"
       },
       {
         id: "oriental",
@@ -1740,6 +2803,7 @@
         icon: "fa-mosque",
         gradient: "linear-gradient(135deg, #0A9EAF, #088395)",
         badgeBg: "#088395",
+        bgImage: "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=1920&q=80"
       },
       {
         id: "rustic",
@@ -1749,6 +2813,7 @@
         icon: "fa-wheat-awn",
         gradient: "linear-gradient(135deg, #C46742, #A24E2D)",
         badgeBg: "#A24E2D",
+        bgImage: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1920&q=80"
       }
     ];
 
@@ -1762,7 +2827,7 @@
       phone: "+998 90 123 45 67",
       cardNumber: "8600 1234 5678 9012",
       cardHolder: "Madina X. (Uzcard/Humo)",
-      musicUrl: "https://assets.mixkit.co/music/preview/mixkit-wedding-piano-walk-537.mp3",
+      musicUrl: "preset:canon",
       message: "Hayotimizdagi eng unutilmas, hayajonli va quvonchli kun — yangi oila rishtalari bog'lanayotgan ushbu tantanali onlarda biz bilan birga bo'lishingizni chin yurakdan istaymiz.\n\nSizning tashrifingiz va samimiy duolaringiz biz uchun cheksiz quvonchdir!",
       theme: "royal-gold"
     };
@@ -1796,6 +2861,19 @@
     const closeShareModalBtn = document.getElementById("closeShareModalBtn");
     const modalDoneBtn = document.getElementById("modalDoneBtn");
 
+    // Modal elements for QR Code
+    const qrCodeModal = document.getElementById("qrCodeModal");
+    const closeQrModalBtn = document.getElementById("closeQrModalBtn");
+    const navQrBtn = document.getElementById("navQrBtn");
+    const openQrModalBtn = document.getElementById("openQrModalBtn");
+    const shareModalQrCode = document.getElementById("shareModalQrCode");
+    const fullModalQrCode = document.getElementById("fullModalQrCode");
+    const qrModalCoupleNames = document.getElementById("qrModalCoupleNames");
+    const downloadFullQrBtn = document.getElementById("downloadFullQrBtn");
+    const downloadShareQrBtn = document.getElementById("downloadShareQrBtn");
+    const enlargeShareQrBtn = document.getElementById("enlargeShareQrBtn");
+    const copyLinkFromQrModalBtn = document.getElementById("copyLinkFromQrModalBtn");
+
     // Modal elements for RSVP Dashboard
     const rsvpListModal = document.getElementById("rsvpListModal");
     const closeRsvpListModalBtn = document.getElementById("closeRsvpListModalBtn");
@@ -1813,6 +2891,63 @@
     const themeSwitcherModal = document.getElementById("themeSwitcherModal");
     const closeThemeModalBtn = document.getElementById("closeThemeModalBtn");
     const modalThemeGrid = document.getElementById("modalThemeGrid");
+
+    // Royal Wax Seal Envelope Elements
+    const envelopeOverlay = document.getElementById("envelopeOverlay");
+    const envelopeCard = document.getElementById("envelopeCard");
+    const envelopeCoupleName = document.getElementById("envelopeCoupleName");
+    const envelopeMonogram = document.getElementById("envelopeMonogram");
+    const openEnvelopeBtn = document.getElementById("openEnvelopeBtn");
+    const openEnvelopeTextBtn = document.getElementById("openEnvelopeTextBtn");
+    const navEnvelopeBtn = document.getElementById("navEnvelopeBtn");
+
+    function showEnvelope(data) {
+      if (!envelopeOverlay) return;
+      const g = (data && data.groom) || currentWeddingData.groom || "Alijon";
+      const b = (data && data.bride) || currentWeddingData.bride || "Madina";
+      if (envelopeCoupleName) {
+        envelopeCoupleName.innerText = `${g} & ${b}`;
+      }
+      if (envelopeMonogram) {
+        const initialG = g.trim()[0] || "A";
+        const initialB = b.trim()[0] || "M";
+        envelopeMonogram.innerText = `${initialG} & ${initialB}`;
+      }
+      envelopeOverlay.classList.remove("hidden");
+      setTimeout(() => {
+        envelopeOverlay.classList.remove("opacity-0");
+        if (envelopeCard) {
+          envelopeCard.classList.remove("scale-95");
+          envelopeCard.classList.add("scale-100");
+        }
+      }, 20);
+    }
+
+    function openEnvelope() {
+      if (!envelopeOverlay) return;
+      if (envelopeCard) {
+        envelopeCard.classList.remove("scale-100");
+        envelopeCard.classList.add("scale-105");
+      }
+      envelopeOverlay.classList.add("opacity-0");
+      setTimeout(() => {
+        envelopeOverlay.classList.add("hidden");
+        if (envelopeCard) {
+          envelopeCard.classList.remove("scale-105");
+          envelopeCard.classList.add("scale-95");
+        }
+      }, 500);
+
+      if (!isAudioPlaying) {
+        playWeddingMusic();
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    if (openEnvelopeBtn) openEnvelopeBtn.addEventListener("click", openEnvelope);
+    if (openEnvelopeTextBtn) openEnvelopeTextBtn.addEventListener("click", openEnvelope);
+    if (navEnvelopeBtn) navEnvelopeBtn.addEventListener("click", () => showEnvelope(currentWeddingData));
 
     // Form inputs
     const inputGroom = document.getElementById("inputGroom");
@@ -1856,7 +2991,6 @@
           .replace(/\//g, "_")
           .replace(/=+$/, "");
       } catch (err) {
-        console.error("Base64 kodlashda xatolik:", err);
         return "";
       }
     }
@@ -1875,7 +3009,6 @@
         const jsonStr = new TextDecoder().decode(bytes);
         return JSON.parse(jsonStr);
       } catch (err) {
-        console.error("Base64 dekodlashda xatolik:", err);
         try {
           return JSON.parse(decodeURIComponent(escape(atob(base64Str))));
         } catch (e2) {
@@ -1889,6 +3022,122 @@
       const encoded = encodeDataBase64(data || currentWeddingData);
       return `${base}#data=${encoded}`;
     }
+
+    // 8 TA DIZAYN UCHUN XUSUSIY EMBLEMA VA STRUKTURA SOZLAMALARI
+    const THEME_CONFIGS = {
+      "royal-gold": {
+        heroDividerIcon: "fa-solid fa-crown",
+        aboutDividerIcon: "fa-solid fa-crown",
+        dateBadgeIcon: "fa-solid fa-crown",
+        monogramIcon: "fa-solid fa-crown",
+        titleFontClass: "font-script",
+        signFontClass: "font-script text-4xl text-gold-dark",
+        ampersandClass: "font-serif italic text-gold text-4xl sm:text-6xl align-middle px-1",
+        subtitle: {
+          uz: "Shohona Nikoh To'yi Tantanasi",
+          ru: "Торжество Королевского Бракосочетания",
+          en: "Royal Imperial Wedding Celebration"
+        }
+      },
+      "emerald": {
+        heroDividerIcon: "fa-solid fa-leaf",
+        aboutDividerIcon: "fa-solid fa-seedling",
+        dateBadgeIcon: "fa-solid fa-leaf",
+        monogramIcon: "fa-solid fa-leaf",
+        titleFontClass: "font-serif italic font-semibold",
+        signFontClass: "font-serif italic text-3xl text-emerald-800",
+        ampersandClass: "font-serif italic text-emerald-700 text-4xl sm:text-6xl align-middle px-1",
+        subtitle: {
+          uz: "Tabiat & Zumrad Bog'i Nikoh Oqshomi",
+          ru: "Изумрудный Сад и Торжество Бракосочетания",
+          en: "Botanical Glasshouse Wedding Celebration"
+        }
+      },
+      "pure-silk": {
+        heroDividerIcon: "fa-solid fa-diamond",
+        aboutDividerIcon: "fa-solid fa-minus",
+        dateBadgeIcon: "fa-solid fa-square",
+        monogramIcon: "fa-solid fa-diamond",
+        titleFontClass: "font-cinzel font-bold uppercase tracking-[0.16em]",
+        signFontClass: "font-cinzel uppercase tracking-[0.14em] font-bold text-2xl text-black",
+        ampersandClass: "font-cinzel text-neutral-400 text-3xl sm:text-5xl align-middle px-2 font-normal",
+        subtitle: {
+          uz: "Haute Couture Minimalist Nikoh Taklifnomasi",
+          ru: "Haute Couture Минималистичное Свадебное Приглашение",
+          en: "Haute Couture Minimalist Wedding Invitation"
+        }
+      },
+      "oriental": {
+        heroDividerIcon: "fa-solid fa-star-and-crescent",
+        aboutDividerIcon: "fa-solid fa-dharmachakra",
+        dateBadgeIcon: "fa-solid fa-star-and-crescent",
+        monogramIcon: "fa-solid fa-star-and-crescent",
+        titleFontClass: "font-serif font-bold tracking-wide",
+        signFontClass: "font-serif font-bold text-3xl text-[#078092]",
+        ampersandClass: "font-serif italic text-[#078092] text-4xl sm:text-6xl align-middle px-1",
+        subtitle: {
+          uz: "Registon Firuzasi Nikoh Tantanasi",
+          ru: "Самаркандская Бирюза и Торжество Бракосочетания",
+          en: "Samarkand Oriental Wedding Celebration"
+        }
+      },
+      "blush-pearl": {
+        heroDividerIcon: "fa-solid fa-heart",
+        aboutDividerIcon: "fa-solid fa-heart",
+        dateBadgeIcon: "fa-solid fa-heart",
+        monogramIcon: "fa-solid fa-heart",
+        titleFontClass: "font-script font-normal",
+        signFontClass: "font-script text-4xl text-[#B75567]",
+        ampersandClass: "font-script text-[#B75567] text-4xl sm:text-6xl align-middle px-1",
+        subtitle: {
+          uz: "Pushti Marvarid & Atirgul Romantikasi",
+          ru: "Розовый Жемчуг и Романтика Роз",
+          en: "Blush Pearl & Rose Romance Celebration"
+        }
+      },
+      "sapphire": {
+        heroDividerIcon: "fa-solid fa-wand-magic-sparkles",
+        aboutDividerIcon: "fa-solid fa-star",
+        dateBadgeIcon: "fa-solid fa-star",
+        monogramIcon: "fa-solid fa-wand-magic-sparkles",
+        titleFontClass: "font-cinzel font-semibold tracking-wider",
+        signFontClass: "font-cinzel tracking-wider font-semibold text-2xl text-[#F0CA68]",
+        ampersandClass: "font-serif italic text-[#F0CA68] text-4xl sm:text-6xl align-middle px-1",
+        subtitle: {
+          uz: "Yulduzli Moviy Tun Nikoh Oqshomi",
+          ru: "Звездная Сапфировая Ночь Торжества",
+          en: "Celestial Starlight Midnight Celebration"
+        }
+      },
+      "rustic": {
+        heroDividerIcon: "fa-solid fa-wheat-awn",
+        aboutDividerIcon: "fa-solid fa-wheat-awn",
+        dateBadgeIcon: "fa-solid fa-wheat-awn",
+        monogramIcon: "fa-solid fa-wheat-awn",
+        titleFontClass: "font-display font-bold",
+        signFontClass: "font-display font-bold text-3xl text-[#A24E2D]",
+        ampersandClass: "font-serif italic text-[#A24E2D] text-4xl sm:text-6xl align-middle px-1",
+        subtitle: {
+          uz: "Rustik Zaytun & Terracotta Nikoh To'yi",
+          ru: "Рустик Терракота и Оливковая Свадьба",
+          en: "Rustic Olive & Terracotta Celebration"
+        }
+      },
+      "amethyst": {
+        heroDividerIcon: "fa-solid fa-shield-halved",
+        aboutDividerIcon: "fa-solid fa-crown",
+        dateBadgeIcon: "fa-solid fa-shield-halved",
+        monogramIcon: "fa-solid fa-shield-halved",
+        titleFontClass: "font-cinzel font-bold",
+        signFontClass: "font-cinzel font-bold text-2xl text-[#6E2D6E]",
+        ampersandClass: "font-serif italic text-[#6E2D6E] text-4xl sm:text-6xl align-middle px-1",
+        subtitle: {
+          uz: "Barokko Safsar Qirolligi Nikoh Tantanasi",
+          ru: "Барочное Аметистовое Королевское Торжество",
+          en: "Imperial Baroque Amethyst Celebration"
+        }
+      }
+    };
 
     // 8 TA DIZAYNNI QO'LLASH (THEME ENGINE)
     function applyTheme(themeId) {
@@ -1920,10 +3169,84 @@
         }
       });
 
+      // Jonli tezkor tasma (Quick theme pills) yangilash
+      document.querySelectorAll(".quick-theme-pill").forEach(pill => {
+        if (pill.dataset.theme === validTheme) {
+          pill.classList.add("bg-gold", "text-white", "border-gold", "shadow-sm");
+          pill.classList.remove("bg-white", "text-espresso", "border-gold/40");
+          pill.querySelectorAll("i").forEach(icon => {
+            icon.className = icon.className.replace(/text-\w+-\d+/g, "text-white");
+          });
+        } else {
+          pill.classList.remove("bg-gold", "text-white", "border-gold", "shadow-sm");
+          pill.classList.add("bg-white", "text-espresso", "border-gold/40");
+        }
+      });
+
       const selectedThemeObj = THEMES.find(t => t.id === validTheme);
       const selectedThemeLabel = document.getElementById("selectedThemeLabel");
       if (selectedThemeLabel && selectedThemeObj) {
         selectedThemeLabel.innerText = selectedThemeObj.name;
+      }
+
+      // Hero fon rasmini yangilash
+      const heroBgImage = document.getElementById("heroBgImage");
+      if (heroBgImage && selectedThemeObj && selectedThemeObj.bgImage) {
+        heroBgImage.style.backgroundImage = `url('${selectedThemeObj.bgImage}')`;
+      }
+
+      // 8 ta Dizaynning o'ziga xos emblem va vizual detallarini yangilash
+      const cfg = THEME_CONFIGS[validTheme] || THEME_CONFIGS["royal-gold"];
+      
+      const heroDividerIcon = document.getElementById("heroDividerIcon");
+      if (heroDividerIcon && cfg.heroDividerIcon) {
+        heroDividerIcon.className = `${cfg.heroDividerIcon} text-gold text-sm transition-all duration-300`;
+      }
+
+      const aboutDividerIcon = document.getElementById("aboutDividerIcon");
+      if (aboutDividerIcon && cfg.aboutDividerIcon) {
+        aboutDividerIcon.className = `${cfg.aboutDividerIcon} text-gold text-xs transition-all duration-300`;
+      }
+
+      const heroDateBadgeIcon = document.getElementById("heroDateBadgeIcon");
+      if (heroDateBadgeIcon && cfg.dateBadgeIcon) {
+        heroDateBadgeIcon.className = `${cfg.dateBadgeIcon} text-gold`;
+      }
+
+      // Monogramma yuqori emblemasi
+      const heroMonogramIcon = document.getElementById("heroMonogramIcon");
+      if (heroMonogramIcon && cfg.monogramIcon) {
+        heroMonogramIcon.innerHTML = `<i class="${cfg.monogramIcon}"></i>`;
+      }
+
+      // Sarlavha shrifti va uslubi
+      const heroCoupleTitle = document.getElementById("heroCoupleTitle");
+      if (heroCoupleTitle) {
+        heroCoupleTitle.className = `${cfg.titleFontClass} text-6xl sm:text-8xl text-espresso mb-3 leading-tight drop-shadow-sm transition-all duration-300`;
+      }
+
+      // Kelin-kuyov o'rtasidagi & belgisi
+      const previewAmpersand = document.getElementById("previewAmpersand");
+      if (previewAmpersand && cfg.ampersandClass) {
+        previewAmpersand.className = `${cfg.ampersandClass} transition-all duration-300`;
+      }
+
+      // Kelin-kuyov pastki imzolari
+      const previewSignCouple = document.getElementById("previewSignCouple");
+      if (previewSignCouple && cfg.signFontClass) {
+        previewSignCouple.className = `${cfg.signFontClass} transition-all duration-300`;
+      }
+
+      const footerCoupleSign = document.getElementById("footerCoupleSign");
+      if (footerCoupleSign && cfg.signFontClass) {
+        footerCoupleSign.className = `${cfg.signFontClass} transition-all duration-300`;
+      }
+
+      // Kichik taklif sarlavhasi
+      const heroSubtitleText = document.getElementById("heroSubtitleText");
+      if (heroSubtitleText && cfg.subtitle) {
+        const langSub = cfg.subtitle[currentLang] || cfg.subtitle.uz || "Nikoh To'yi Tantanasi";
+        heroSubtitleText.innerText = langSub;
       }
     }
 
@@ -1949,6 +3272,8 @@
         footerEditBtn.classList.add("hidden");
         footerEditBtn.style.display = "none";
       }
+      const quickDesignBar = document.getElementById("quickDesignBar");
+      if (quickDesignBar) quickDesignBar.classList.add("hidden");
       const rsvpHostNotice = document.getElementById("rsvpHostNotice");
       if (rsvpHostNotice) rsvpHostNotice.classList.add("hidden");
     }
@@ -1973,6 +3298,8 @@
         footerEditBtn.classList.remove("hidden");
         footerEditBtn.style.display = "";
       }
+      const quickDesignBar = document.getElementById("quickDesignBar");
+      if (quickDesignBar) quickDesignBar.classList.remove("hidden");
       const rsvpHostNotice = document.getElementById("rsvpHostNotice");
       if (rsvpHostNotice) rsvpHostNotice.classList.remove("hidden");
     }
@@ -1989,6 +3316,7 @@
             applyGuestModeUI();
             updateInvitationDOM(currentWeddingData);
             showInvitationMode();
+            showEnvelope(currentWeddingData);
             return;
           }
         }
@@ -2013,6 +3341,9 @@
       if (!shareLinkModal) return;
       modalGeneratedLinkInput.value = guestUrl;
       modalCopyBtnText.innerText = "Nusxa";
+
+      // QR Kodni shareLinkModal ichida generatsiya qilamiz
+      generateQrCodeInContainer(shareModalQrCode, guestUrl, 85);
 
       const groom = currentWeddingData.groom || "Kelin-kuyov";
       const bride = currentWeddingData.bride || "";
@@ -2048,6 +3379,132 @@
 
     if (closeShareModalBtn) closeShareModalBtn.addEventListener("click", closeShareModal);
     if (modalDoneBtn) modalDoneBtn.addEventListener("click", closeShareModal);
+
+    // =========================================================================
+    // QR KOD GENERATOR VA YUKLAB OLISH FUNKSIYALARI
+    // =========================================================================
+    function generateQrCodeInContainer(containerEl, url, size = 180) {
+      if (!containerEl) return;
+      containerEl.innerHTML = "";
+      
+      let rendered = false;
+      if (window.QRCode) {
+        try {
+          new QRCode(containerEl, {
+            text: url,
+            width: size,
+            height: size,
+            colorDark: "#1a1a1a",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+          });
+          rendered = true;
+        } catch (e) {
+          rendered = false;
+        }
+      }
+      
+      if (!rendered) {
+        // High-reliability Fallback (instant QR server)
+        const qrImg = document.createElement("img");
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(url)}&margin=6`;
+        qrImg.alt = "QR Kod";
+        qrImg.className = "w-full h-full object-contain mx-auto rounded-lg shadow-xs";
+        containerEl.appendChild(qrImg);
+      }
+    }
+
+    function downloadQrCode(containerEl, fileName = "toy_taklifnoma_qr.png") {
+      if (!containerEl) return;
+      const canvas = containerEl.querySelector("canvas");
+      if (canvas) {
+        const link = document.createElement("a");
+        link.download = fileName;
+        link.href = canvas.toDataURL("image/png");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast("QR Kod yuklab olindi! 📷");
+        return;
+      }
+      const img = containerEl.querySelector("img");
+      if (img && img.src) {
+        fetch(img.src)
+          .then(res => res.blob())
+          .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.download = fileName;
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("QR Kod yuklab olindi! 📷");
+          })
+          .catch(() => {
+            window.open(img.src, "_blank");
+          });
+      }
+    }
+
+    function openQrModal() {
+      if (!qrCodeModal) return;
+      const guestUrl = generateGuestUrl(currentWeddingData);
+      const g = currentWeddingData.groom || "Alijon";
+      const b = currentWeddingData.bride || "Madina";
+      if (qrModalCoupleNames) {
+        qrModalCoupleNames.innerText = `${g} & ${b}`;
+      }
+      generateQrCodeInContainer(fullModalQrCode, guestUrl, 180);
+      qrCodeModal.classList.remove("hidden");
+      setTimeout(() => {
+        qrCodeModal.classList.remove("opacity-0");
+        qrCodeModal.querySelector("div").classList.remove("scale-95");
+      }, 10);
+    }
+
+    function closeQrModal() {
+      if (!qrCodeModal) return;
+      qrCodeModal.classList.add("opacity-0");
+      qrCodeModal.querySelector("div").classList.add("scale-95");
+      setTimeout(() => {
+        qrCodeModal.classList.add("hidden");
+      }, 300);
+    }
+
+    if (closeQrModalBtn) closeQrModalBtn.addEventListener("click", closeQrModal);
+    if (navQrBtn) navQrBtn.addEventListener("click", openQrModal);
+    if (openQrModalBtn) openQrModalBtn.addEventListener("click", openQrModal);
+    if (downloadFullQrBtn) {
+      downloadFullQrBtn.addEventListener("click", () => {
+        const g = currentWeddingData.groom || "kuyov";
+        const b = currentWeddingData.bride || "kelin";
+        downloadQrCode(fullModalQrCode, `taklifnoma_qr_${g}_${b}.png`);
+      });
+    }
+    if (downloadShareQrBtn) {
+      downloadShareQrBtn.addEventListener("click", () => {
+        const g = currentWeddingData.groom || "kuyov";
+        const b = currentWeddingData.bride || "kelin";
+        downloadQrCode(shareModalQrCode, `taklifnoma_qr_${g}_${b}.png`);
+      });
+    }
+    if (enlargeShareQrBtn) {
+      enlargeShareQrBtn.addEventListener("click", () => {
+        closeShareModal();
+        openQrModal();
+      });
+    }
+    if (copyLinkFromQrModalBtn) {
+      copyLinkFromQrModalBtn.addEventListener("click", () => {
+        const guestUrl = generateGuestUrl(currentWeddingData);
+        navigator.clipboard.writeText(guestUrl).then(() => {
+          showToast("Taklifnoma havolasi nusxalandi!");
+        }).catch(() => {
+          prompt("Havola:", guestUrl);
+        });
+      });
+    }
 
     if (modalCopyLinkBtn) {
       modalCopyLinkBtn.addEventListener("click", () => {
@@ -2106,7 +3563,7 @@
           return { ...defaultWeddingData, ...parsed };
         }
       } catch (err) {
-        console.error("LocalStorage o'qishda xatolik:", err);
+        // Safe fallback without console pollution
       }
       return null;
     }
@@ -2115,7 +3572,7 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (err) {
-        console.error("LocalStorage ga yozishda xatolik:", err);
+        // Safe fallback without console pollution
       }
     }
 
@@ -2154,6 +3611,13 @@
       const gInitial = groom.charAt(0).toUpperCase();
       const bInitial = bride.charAt(0).toUpperCase();
       document.getElementById("previewMonogram").innerText = `${gInitial}&${bInitial}`;
+
+      if (envelopeCoupleName) {
+        envelopeCoupleName.innerText = `${groom} & ${bride}`;
+      }
+      if (envelopeMonogram) {
+        envelopeMonogram.innerText = `${gInitial} & ${bInitial}`;
+      }
 
       // 2. Taklif matni
       document.getElementById("previewMessage").innerText = data.message.trim();
@@ -2248,12 +3712,8 @@
       // 6. Tanlangan Dizayn (8 ta Elegant Uslub)
       applyTheme(data.theme || "royal-gold");
 
-      // 7. Musiqa URL
-      if (data.musicUrl && data.musicUrl.trim()) {
-        weddingAudio.src = data.musicUrl.trim();
-      } else {
-        weddingAudio.src = defaultWeddingData.musicUrl;
-      }
+      // 7. Musiqa URL va sozlash
+      setWeddingMusicSource(data.musicUrl || defaultWeddingData.musicUrl);
 
       // 8. Taymerni ishga tushirish
       startCountdownTimer(weddingTimestamp);
@@ -2529,41 +3989,221 @@
     });
 
     // =========================================================================
-    // 12. FON MUSIQASI PLEYERI (PLAY / PAUSE & AUTO-PLAY)
+    // 12. FON MUSIQASI PLEYERI (WEB AUDIO API & HTML5 AUDIO INTEGRATSIYASI)
     // =========================================================================
+    let audioCtx = null;
+    let synthTimer = null;
+    let currentSynthTheme = "canon";
+    let isWebAudioPlaying = false;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // NAFIS VA ROMANTIK FORTEPIANO KUYLARI (CANON IN D VA TO'Y MELODIYALARI)
+    const ROMANTIC_PATTERNS = {
+      canon: [
+        { bass: 130.81, notes: [261.63, 329.63, 392.00, 523.25, 659.25, 523.25, 392.00, 329.63] }, // C
+        { bass: 98.00,  notes: [196.00, 246.94, 293.66, 392.00, 493.88, 392.00, 293.66, 246.94] }, // G
+        { bass: 110.00, notes: [220.00, 261.63, 329.63, 440.00, 523.25, 440.00, 329.63, 261.63] }, // Am
+        { bass: 82.41,  notes: [164.81, 196.00, 246.94, 329.63, 392.00, 329.63, 246.94, 196.00] }, // Em
+        { bass: 87.31,  notes: [174.61, 220.00, 261.63, 349.23, 440.00, 349.23, 261.63, 220.00] }, // F
+        { bass: 130.81, notes: [261.63, 329.63, 392.00, 523.25, 659.25, 523.25, 392.00, 329.63] }, // C
+        { bass: 87.31,  notes: [174.61, 220.00, 261.63, 349.23, 440.00, 349.23, 261.63, 220.00] }, // F
+        { bass: 98.00,  notes: [196.00, 246.94, 293.66, 392.00, 493.88, 587.33, 493.88, 392.00] }  // G
+      ],
+      march: [
+        { bass: 146.83, notes: [293.66, 369.99, 440.00, 587.33, 739.99, 587.33, 440.00, 369.99] },
+        { bass: 110.00, notes: [220.00, 277.18, 329.63, 440.00, 554.37, 440.00, 329.63, 277.18] },
+        { bass: 123.47, notes: [246.94, 293.66, 369.99, 493.88, 587.33, 493.88, 369.99, 293.66] },
+        { bass: 98.00,  notes: [196.00, 246.94, 293.66, 392.00, 493.88, 392.00, 293.66, 246.94] }
+      ],
+      waltz: [
+        { bass: 110.00, notes: [220.00, 261.63, 329.63, 440.00, 523.25, 659.25] },
+        { bass: 116.54, notes: [233.08, 293.66, 349.23, 466.16, 587.33, 698.46] },
+        { bass: 130.81, notes: [261.63, 329.63, 392.00, 523.25, 659.25, 783.99] },
+        { bass: 98.00,  notes: [196.00, 246.94, 293.66, 392.00, 493.88, 587.33] }
+      ]
+    };
+
+    function playSynthNote(ctx, freq, startTime, duration = 1.8, velocity = 0.24) {
+      if (!ctx || ctx.state === "closed") return;
+      try {
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+
+        osc1.type = "sine";
+        osc1.frequency.setValueAtTime(freq, startTime);
+
+        osc2.type = "triangle";
+        osc2.frequency.setValueAtTime(freq * 2, startTime);
+
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(1600, startTime);
+        filter.frequency.exponentialRampToValueAtTime(350, startTime + duration);
+
+        gain.gain.setValueAtTime(0.0001, startTime);
+        gain.gain.linearRampToValueAtTime(velocity, startTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc1.start(startTime);
+        osc2.start(startTime);
+        osc1.stop(startTime + duration);
+        osc2.stop(startTime + duration);
+      } catch (e) {}
+    }
+
+    function playSynthPad(ctx, bassFreq, midFreq, startTime, duration = 3.2) {
+      if (!ctx || ctx.state === "closed") return;
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(bassFreq, startTime);
+
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(500, startTime);
+
+        gain.gain.setValueAtTime(0.0001, startTime);
+        gain.gain.linearRampToValueAtTime(0.08, startTime + 0.5);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(startTime);
+        osc.stop(startTime + duration);
+      } catch (e) {}
+    }
+
+    let synthStepIdx = 0;
+
+    function startWebAudioMusic(mode = "canon") {
+      stopWebAudioMusic();
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      currentSynthTheme = mode;
+      const chords = ROMANTIC_PATTERNS[mode] || ROMANTIC_PATTERNS.canon;
+      synthStepIdx = 0;
+      isWebAudioPlaying = true;
+
+      function tick() {
+        if (!isAudioPlaying) return;
+        const now = ctx.currentTime;
+        const chord = chords[synthStepIdx % chords.length];
+        
+        playSynthPad(ctx, chord.bass, chord.notes[0], now, 3.2);
+
+        const stepTime = 3.0 / chord.notes.length;
+        chord.notes.forEach((freq, i) => {
+          playSynthNote(ctx, freq, now + i * stepTime, 2.0, 0.2);
+        });
+
+        synthStepIdx++;
+      }
+
+      tick();
+      synthTimer = setInterval(tick, 3000);
+    }
+
+    function stopWebAudioMusic() {
+      if (synthTimer) {
+        clearInterval(synthTimer);
+        synthTimer = null;
+      }
+      isWebAudioPlaying = false;
+    }
+
     function updateAudioVisuals() {
       if (isAudioPlaying) {
         musicIconPlay.classList.add("hidden");
         musicIconPause.classList.remove("hidden");
         vinylDisc.classList.add("vinyl-spinning");
         soundPing.classList.remove("hidden");
-        musicStatusText.innerText = translations[currentLang].musicOn;
+        musicStatusText.innerText = translations[currentLang]?.musicOn || "Musiqa yangramoqda";
       } else {
         musicIconPlay.classList.remove("hidden");
         musicIconPause.classList.add("hidden");
         vinylDisc.classList.remove("vinyl-spinning");
         soundPing.classList.add("hidden");
-        musicStatusText.innerText = translations[currentLang].musicOff;
+        musicStatusText.innerText = translations[currentLang]?.musicOff || "Musiqa o'chiq";
       }
     }
 
-    function toggleWeddingAudio() {
-      if (!audioInitialized) {
-        weddingAudio.load();
-        audioInitialized = true;
+    function setWeddingMusicSource(url) {
+      if (!url) url = "preset:canon";
+      currentWeddingData.musicUrl = url;
+      if (isAudioPlaying) {
+        playWeddingMusic();
+      }
+    }
+
+    function playWeddingMusic() {
+      isAudioPlaying = true;
+      const url = (currentWeddingData.musicUrl || "preset:canon").trim();
+
+      // Agar preset yoki mixkit (403 beruvchi) link bo'lsa -> Web Audio API bilan yangraydi
+      if (!url || url.startsWith("preset:") || url.includes("mixkit")) {
+        const mode = url.replace("preset:", "") || "canon";
+        startWebAudioMusic(mode);
+        updateAudioVisuals();
+        return;
       }
 
-      if (weddingAudio.paused) {
-        weddingAudio.play().then(() => {
-          isAudioPlaying = true;
-          updateAudioVisuals();
-        }).catch(err => {
-          console.log("Audio play error:", err);
-        });
-      } else {
-        weddingAudio.pause();
-        isAudioPlaying = false;
+      // Agar boshqa tashqi URL bo'lsa -> HTML5 Audio orqali tinglab ko'ramiz
+      try {
+        weddingAudio.src = url;
+        const playPromise = weddingAudio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            updateAudioVisuals();
+          }).catch(() => {
+            // Xatolikda darhol chiroyli Web Audio musiqasiga o'tadi
+            startWebAudioMusic("canon");
+            updateAudioVisuals();
+          });
+        }
+      } catch (err) {
+        startWebAudioMusic("canon");
         updateAudioVisuals();
+      }
+    }
+
+    function pauseWeddingMusic() {
+      isAudioPlaying = false;
+      try {
+        weddingAudio.pause();
+      } catch (e) {}
+      stopWebAudioMusic();
+      updateAudioVisuals();
+    }
+
+    function toggleWeddingAudio() {
+      if (isAudioPlaying) {
+        pauseWeddingMusic();
+        showToast("Musiqa to'xtatildi ⏸️");
+      } else {
+        playWeddingMusic();
+        showToast("Romantik musiqa yangramoqda 🎵");
       }
     }
 
@@ -2572,20 +4212,13 @@
 
     // Foydalanuvchining birinchi sensorli teginishi yoki harakatida musiqani ishga tushirish
     function attemptAutoPlayOnInteraction() {
-      if (!audioInitialized && weddingAudio.paused && !generatorSection.classList.contains("hidden") === false) {
-        weddingAudio.play().then(() => {
-          isAudioPlaying = true;
-          audioInitialized = true;
-          updateAudioVisuals();
-        }).catch(() => {});
+      if (!isAudioPlaying && invitationView && !invitationView.classList.contains("hidden")) {
+        playWeddingMusic();
       }
-      window.removeEventListener("click", attemptAutoPlayOnInteraction);
-      window.removeEventListener("touchstart", attemptAutoPlayOnInteraction);
-      window.removeEventListener("scroll", attemptAutoPlayOnInteraction);
     }
-    window.addEventListener("click", attemptAutoPlayOnInteraction);
-    window.addEventListener("touchstart", attemptAutoPlayOnInteraction);
-    window.addEventListener("scroll", attemptAutoPlayOnInteraction);
+    window.addEventListener("click", attemptAutoPlayOnInteraction, { once: true });
+    window.addEventListener("touchstart", attemptAutoPlayOnInteraction, { once: true });
+    window.addEventListener("scroll", attemptAutoPlayOnInteraction, { once: true });
 
     // =========================================================================
     // 13. RSVP TASHRIFNI TASDIQLASH VA MEHMONLAR RO'YXATI BOSHQARUVI
@@ -2595,7 +4228,7 @@
         const saved = localStorage.getItem(RSVP_STORAGE_KEY);
         if (saved) return JSON.parse(saved);
       } catch (e) {
-        console.error("RSVP o'qishda xatolik:", e);
+        // Safe fallback without console pollution
       }
       return [];
     }
@@ -2604,7 +4237,7 @@
       try {
         localStorage.setItem(RSVP_STORAGE_KEY, JSON.stringify(guests));
       } catch (e) {
-        console.error("RSVP saqlashda xatolik:", e);
+        // Safe fallback without console pollution
       }
       updateRsvpUI();
     }
@@ -3050,7 +4683,18 @@
       card.addEventListener("click", () => {
         const tId = card.dataset.theme;
         applyTheme(tId);
+        saveCurrentDataToStorage(currentWeddingData);
         showToast(`Dizayn tanlandi: ${card.querySelector("span").innerText}`);
+      });
+    });
+
+    // Jonli tezkor tasma (Quick theme ribbon) tugmalari
+    document.querySelectorAll(".quick-theme-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        const tId = pill.dataset.theme;
+        applyTheme(tId);
+        saveCurrentDataToStorage(currentWeddingData);
+        showToast(`Dizayn o'zgardi: ${pill.querySelector("span").innerText} ✨`);
       });
     });
 
@@ -3125,7 +4769,7 @@
       wishesFeed.innerHTML = "";
       wishes.forEach(w => {
         const card = document.createElement("div");
-        card.className = "p-3.5 rounded-xl bg-white border border-gold/25 shadow-2xs";
+        card.className = "wish-feed-card p-3.5 rounded-xl bg-white border border-gold/25 shadow-2xs transition-all";
         card.innerHTML = `
           <div class="flex items-center justify-between mb-1.5">
             <span class="font-serif font-bold text-sm text-espresso flex items-center gap-1.5">
